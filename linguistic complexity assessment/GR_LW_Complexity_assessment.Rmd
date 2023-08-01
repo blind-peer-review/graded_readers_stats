@@ -1,0 +1,1668 @@
+---
+title: 'Deconstructing the Library of Babel: Analysis of linguistic complexity in
+  Spanish graded readers and literary works'
+author: "Author 1"
+date: "2023-07-31"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<br>
+Hello, reader! Thank you for your interest in this work.
+
+Let me guide you through the steps taken to conduct the statistical analyses reported on our paper.
+
+## Preparation
+
+**Loading libraries**
+
+Here are the libraries that we are going to employ. If you have not already, remember to install them via `install.packages()` first.
+
+```{r load libraries, message=FALSE}
+library(tidyverse)
+library(cowplot)
+library(randomForest)
+library(caret)
+library(networkD3)
+library(gridExtra)
+library(RColorBrewer)
+library(extrafont)
+library(corrplot)
+library(sjmisc)
+library(sjlabelled)
+library(ggridges)
+```
+
+**Loading data sets**
+
+Next, we are going to load the three data sets obtained after computing the measures needed for our model with Python: one .CSV file for the graded readers corpus, another one for the literary works corpus, and the last one for the reference corpus of general Spanish. Furthermore, we will also load some stats computed by graded lexical item.
+
+```{r load files, message=FALSE}
+# === GRADED READERS ===
+
+# Corpus
+readers_corpus <- read_csv('Data/readers.csv')
+
+# Vocabulary stats
+readers_vocab_beginner <- read_csv('Data/Vocabulary/beginner.csv')
+readers_vocab_intermediate <- read_csv('Data/Vocabulary/intermediate.csv')
+readers_vocab_advanced <- read_csv('Data/Vocabulary/advanced.csv')
+
+
+# === LITERARY WORKS ===
+
+# Corpus
+literature_corpus <- read_csv('Data/literature.csv')
+
+# Vocabulary stats
+literature_vocab_children <- read_csv('Data/Vocabulary/children.csv')
+literature_vocab_youth <- read_csv('Data/Vocabulary/youth.csv')
+literature_vocab_adult <- read_csv('Data/Vocabulary/adult.csv')
+
+
+# === REFERENCE CORPUS ===
+
+# Corpus
+reference_corpus <- read_csv('Data/reference.csv')
+
+# Vocabulary stats
+reference_vocab <- read_csv('Data/Vocabulary/reference.csv')
+```
+**Getting the data sets nice and ready**
+
+The original data sets have way too many columns. Now we are going to select only the ones relevant to the statistical analyses. We are also going to add up the column values of auxiliary and regular verb features.
+
+```{r remove columns, message=FALSE, results='hide'}
+# ================================ GRADED READERS DATA SET ================================
+
+# STEP 1. Select relevant columns
+readers_corpus <- dplyr::select(readers_corpus,
+                                c(1, 2, (11:13), 16, 18, 20, 23, (25:27), 255,
+                                  256, 258, 261, 263, 265, 267, 273, 372, 368,
+                                  374, 370, 346, 348, 350, 416, 418, 420, 422,
+                                  426, 428, 430, 651, 652, (657:659)))
+
+# STEP 2. Add up auxiliary and regular verb features in a single column
+readers_corpus$`upos-VERB-Mood-Ind DOC%` <-
+  readers_corpus$`upos-AUX-Mood-Ind DOC%` + readers_corpus$`upos-VERB-Mood-Ind DOC%`
+readers_corpus$`upos-VERB-Mood-Sub DOC%` <-
+  readers_corpus$`upos-AUX-Mood-Sub DOC%` + readers_corpus$`upos-VERB-Mood-Sub DOC%`
+readers_corpus$`upos-VERB-Mood-Cnd DOC%` <-
+  readers_corpus$`upos-AUX-Mood-Cnd DOC%` + readers_corpus$`upos-VERB-Mood-Cnd DOC%`
+readers_corpus$`upos-VERB-Tense-Pres DOC%` <-
+  readers_corpus$`upos-AUX-Tense-Pres DOC%` + readers_corpus$`upos-VERB-Tense-Pres DOC%`
+readers_corpus$`upos-VERB-Tense-Imp DOC%` <-
+  readers_corpus$`upos-AUX-Tense-Imp DOC%` + readers_corpus$`upos-VERB-Tense-Imp DOC%`
+readers_corpus$`upos-VERB-Tense-Past DOC%` <-
+  readers_corpus$`upos-AUX-Tense-Past DOC%` + readers_corpus$`upos-VERB-Tense-Past DOC%`
+readers_corpus$`upos-VERB-Tense-Fut DOC%` <-
+  readers_corpus$`upos-AUX-Tense-Fut DOC%` + readers_corpus$`upos-VERB-Tense-Fut DOC%`
+
+# STEP 3. Drop auxiliary verb feature columns
+readers_corpus <- dplyr::select(readers_corpus, -c(21:27))
+
+# ================================== LITERATURE DATA SET ==================================
+
+# STEP 1. Select relevant columns
+literature_corpus <- dplyr::select(literature_corpus,
+                                   c(1, 2, (11:13), 16, 18, 20, 23, (25:27), 253,
+                                     257, 256, 259, 260, 251, 262, 265, 384, 380,
+                                     386, 382, 358, 360, 362, 502, 500, 504, 506,
+                                     476, 478, 480, 637, 638, (643:645)))
+
+# STEP 2. Add up auxiliary and regular verb features in a single column
+literature_corpus$`upos-VERB-Mood-Ind DOC%` <-
+  literature_corpus$`upos-AUX-Mood-Ind DOC%` + literature_corpus$`upos-VERB-Mood-Ind DOC%`
+literature_corpus$`upos-VERB-Mood-Sub DOC%` <-
+  literature_corpus$`upos-AUX-Mood-Sub DOC%` + literature_corpus$`upos-VERB-Mood-Sub DOC%`
+literature_corpus$`upos-VERB-Mood-Cnd DOC%` <-
+  literature_corpus$`upos-AUX-Mood-Cnd DOC%` + literature_corpus$`upos-VERB-Mood-Cnd DOC%`
+literature_corpus$`upos-VERB-Tense-Pres DOC%` <-
+  literature_corpus$`upos-AUX-Tense-Pres DOC%` + literature_corpus$`upos-VERB-Tense-Pres DOC%`
+literature_corpus$`upos-VERB-Tense-Imp DOC%` <-
+  literature_corpus$`upos-AUX-Tense-Imp DOC%` + literature_corpus$`upos-VERB-Tense-Imp DOC%`
+literature_corpus$`upos-VERB-Tense-Past DOC%` <-
+  literature_corpus$`upos-AUX-Tense-Past DOC%` + literature_corpus$`upos-VERB-Tense-Past DOC%`
+literature_corpus$`upos-VERB-Tense-Fut DOC%` <-
+  literature_corpus$`upos-AUX-Tense-Fut DOC%` + literature_corpus$`upos-VERB-Tense-Fut DOC%`
+
+# STEP 3. Drop auxiliary verb feature columns
+literature_corpus <- dplyr::select(literature_corpus, -c(21:27))
+
+# =============================== REFERENCE CORPUS DATA SET ===============================
+
+# STEP 1. Select relevant columns
+reference_corpus <- dplyr::select(reference_corpus,
+                                  c((8:10), 13, 15, 17, 20, (22:24), 259, 260,
+                                    265, 262, 264, 258, 269, 248, 591, 595, 593,
+                                    613, 619, 617, 615, 449, 451, 453, 455, 425,
+                                    427, 431, 650, 651, (656:658)))
+
+# STEP 2. Add up auxiliary and regular verb features in a single column
+reference_corpus$`upos-VERB-Mood-Ind DOC%` <-
+  reference_corpus$`upos-AUX-Mood-Ind DOC%` + reference_corpus$`upos-VERB-Mood-Ind DOC%`
+reference_corpus$`upos-VERB-Mood-Sub DOC%` <-
+  reference_corpus$`upos-AUX-Mood-Sub DOC%` + reference_corpus$`upos-VERB-Mood-Sub DOC%`
+reference_corpus$`upos-VERB-Mood-Cnd DOC%` <-
+  reference_corpus$`upos-AUX-Mood-Cnd DOC%` + reference_corpus$`upos-VERB-Mood-Cnd DOC%`
+reference_corpus$`upos-VERB-Tense-Pres DOC%` <-
+  reference_corpus$`upos-AUX-Tense-Pres DOC%` + reference_corpus$`upos-VERB-Tense-Pres DOC%`
+reference_corpus$`upos-VERB-Tense-Imp DOC%` <-
+  reference_corpus$`upos-AUX-Tense-Imp DOC%` + reference_corpus$`upos-VERB-Tense-Imp DOC%`
+reference_corpus$`upos-VERB-Tense-Past DOC%` <-
+  reference_corpus$`upos-AUX-Tense-Past DOC%` + reference_corpus$`upos-VERB-Tense-Past DOC%`
+reference_corpus$`upos-VERB-Tense-Fut DOC%` <-
+  reference_corpus$`upos-AUX-Tense-Fut DOC%` + reference_corpus$`upos-VERB-Tense-Fut DOC%`
+
+# STEP 3. Drop auxiliary verb feature columns
+reference_corpus <- dplyr::select(reference_corpus, -c(19:25))
+
+```
+
+That's starting to look a lot better now! However, since in the original file all parse tree properties are in a tuple in the same column, we still need to tweak the data frame columns a little bit more:
+
+```{r tree properties, message=FALSE, results='hide'}
+# STEP 1. REMOVE TUPLE PARENTHESES
+# --------------------------------
+
+# Function to remove parentheses
+strip_parens <- function(x) gsub('[()]', '', x)
+
+# Remove ( and ) from the beginning and the end of each tuple.
+# Apply the function per row (2 = column, 1 = row).
+
+# === Graded readers ===
+readers_corpus[, 'Tree'] <- data.frame(apply(readers_corpus[, 'Tree'], 2, strip_parens))
+readers_corpus[, 'Context tree'] <- data.frame(apply(readers_corpus[, 'Context tree'], 2, strip_parens))
+
+# === Literary works ===
+literature_corpus[, 'Tree'] <- data.frame(apply(literature_corpus[, 'Tree'], 2, strip_parens))
+literature_corpus[, 'Context tree'] <- data.frame(apply(literature_corpus[, 'Context tree'], 2, strip_parens))
+
+# === Reference corpus ===
+reference_corpus[, 'Tree'] <- data.frame(apply(reference_corpus[, 'Tree'], 2, strip_parens))
+reference_corpus[, 'Context tree'] <- data.frame(apply(reference_corpus[, 'Context tree'], 2, strip_parens))
+
+# STEP 2. CREATE NEW COLUMNS AND DROP OLD ONES
+# --------------------------------------------
+
+new_tree_columns <- c('Min_Width', 'Max_Width', 'Avg_Width',
+                      'Min_Depth', 'Max_Depth', 'Avg_Depth')
+new_context_tree_columns <- c('Ctxt_Min_Width', 'Ctxt_Max_Width', 'Ctxt_Avg_Width',
+                              'Ctxt_Min_Depth', 'Ctxt_Max_Depth', 'Ctxt_Avg_Depth')
+
+# === Graded readers ===
+readers_corpus[new_tree_columns] <- str_split_fixed(readers_corpus$Tree, ', ', 6)
+readers_corpus[new_context_tree_columns] <- str_split_fixed(readers_corpus$`Context tree`, ', ', 6)
+readers_corpus <- dplyr::select(readers_corpus, -c('Tree', 'Context tree'))
+
+# === Literary works ===
+literature_corpus[new_tree_columns] <- str_split_fixed(literature_corpus$Tree, ', ', 6)
+literature_corpus[new_context_tree_columns] <- str_split_fixed(literature_corpus$`Context tree`, ', ', 6)
+literature_corpus <- dplyr::select(literature_corpus, -c('Tree', 'Context tree'))
+
+# === Reference corpus ===
+reference_corpus[new_tree_columns] <- str_split_fixed(reference_corpus$Tree, ', ', 6)
+reference_corpus[new_context_tree_columns] <- str_split_fixed(reference_corpus$`Context tree`, ', ', 6)
+reference_corpus <- dplyr::select(reference_corpus, -c('Tree', 'Context tree'))
+
+# STEP 3. CONVERT NEW COLUMNS TO NUMERIC TYPE VECTORS
+# ---------------------------------------------------
+
+# === Graded readers ===
+readers_corpus[, new_tree_columns] <- apply(readers_corpus[, new_tree_columns], 2, function(x) as.numeric(x))
+readers_corpus[, new_context_tree_columns] <- apply(readers_corpus[, new_context_tree_columns], 2,
+                                                    function(x) as.numeric(x))
+
+# === Literary works ===
+literature_corpus[, new_tree_columns] <- apply(literature_corpus[, new_tree_columns], 2,
+                                               function(x) as.numeric(x))
+literature_corpus[, new_context_tree_columns] <- apply(literature_corpus[, new_context_tree_columns], 2,
+                                                       function(x) as.numeric(x))
+
+# === Reference corpus ===
+reference_corpus[, new_tree_columns] <- apply(reference_corpus[, new_tree_columns], 2,
+                                              function(x) as.numeric(x))
+reference_corpus[, new_context_tree_columns] <- apply(reference_corpus[, new_context_tree_columns], 2,
+                                                      function(x) as.numeric(x))
+
+```
+
+Last but not least, we are going to rename some columns so that they are easier to operate with.
+
+```{r rename, message=FALSE, results='hide'}
+# === Graded readers ===
+readers_corpus <- readers_corpus %>%
+  rename(`Freq_A1A2` = `Freq A1-A2`,
+         `Freq_B1` = `Freq B1`,
+         `Freq_B2` = `Freq B2`,
+         `TFIDF_A1A2` = `TFIDF A1-A2`,
+         `TFIDF_B1` = `TFIDF B1`,
+         `TFIDF_B2` = `TFIDF B2`,
+         `Ctxt_Freq` = `Context freq`,
+         `Ctxt_TFIDF` = `Context TFIDF`,
+         `Freq_Markers` = `deprel-mark DOC%`,
+         `Freq_AdvCl` = `deprel-advcl DOC%`,
+         `Freq_XComp` = `deprel-xcomp DOC%`,
+         `Freq_CComp` = `deprel-ccomp DOC%`,
+         `Freq_ACl` = `deprel-acl DOC%`,
+         `Freq_NMod` = `deprel-nmod DOC%`,
+         `Freq_Conj` = `deprel-conj DOC%`,
+         `Freq_Appos` = `deprel-appos DOC%`,
+         `Freq_Past` = `upos-VERB-Tense-Past DOC%`,
+         `Freq_Pres` = `upos-VERB-Tense-Pres DOC%`,
+         `Freq_Fut` = `upos-VERB-Tense-Fut DOC%`,
+         `Freq_Imp` = `upos-VERB-Tense-Imp DOC%`,
+         `Freq_Ind` = `upos-VERB-Mood-Ind DOC%`,
+         `Freq_Sub` = `upos-VERB-Mood-Sub DOC%`,
+         `Freq_Cnd` = `upos-VERB-Mood-Cnd DOC%`,
+         `Density` = `Lexical density`)
+
+# === Literary works ===
+literature_corpus <- literature_corpus %>%
+  rename(`Freq_A1A2` = `Freq A1-A2`,
+         `Freq_B1` = `Freq B1`,
+         `Freq_B2` = `Freq B2`,
+         `TFIDF_A1A2` = `TFIDF A1-A2`,
+         `TFIDF_B1` = `TFIDF B1`,
+         `TFIDF_B2` = `TFIDF B2`,
+         `Ctxt_Freq` = `Context freq`,
+         `Ctxt_TFIDF` = `Context TFIDF`,
+         `Freq_Markers` = `deprel-mark DOC%`,
+         `Freq_AdvCl` = `deprel-advcl DOC%`,
+         `Freq_XComp` = `deprel-xcomp DOC%`,
+         `Freq_CComp` = `deprel-ccomp DOC%`,
+         `Freq_ACl` = `deprel-acl DOC%`,
+         `Freq_NMod` = `deprel-nmod DOC%`,
+         `Freq_Conj` = `deprel-conj DOC%`,
+         `Freq_Appos` = `deprel-appos DOC%`,
+         `Freq_Past` = `upos-VERB-Tense-Past DOC%`,
+         `Freq_Pres` = `upos-VERB-Tense-Pres DOC%`,
+         `Freq_Fut` = `upos-VERB-Tense-Fut DOC%`,
+         `Freq_Imp` = `upos-VERB-Tense-Imp DOC%`,
+         `Freq_Ind` = `upos-VERB-Mood-Ind DOC%`,
+         `Freq_Sub` = `upos-VERB-Mood-Sub DOC%`,
+         `Freq_Cnd` = `upos-VERB-Mood-Cnd DOC%`,
+         `Density` = `Lexical density`)
+
+# === Reference corpus ===
+reference_corpus <- reference_corpus %>%
+  rename(`Freq_A1A2` = `Freq A1-A2`,
+         `Freq_B1` = `Freq B1`,
+         `Freq_B2` = `Freq B2`,
+         `TFIDF_A1A2` = `TFIDF A1-A2`,
+         `TFIDF_B1` = `TFIDF B1`,
+         `TFIDF_B2` = `TFIDF B2`,
+         `Ctxt_Freq` = `Context freq`,
+         `Ctxt_TFIDF` = `Context TFIDF`,
+         `Freq_Markers` = `deprel-mark DOC%`,
+         `Freq_AdvCl` = `deprel-advcl DOC%`,
+         `Freq_XComp` = `deprel-xcomp DOC%`,
+         `Freq_CComp` = `deprel-ccomp DOC%`,
+         `Freq_ACl` = `deprel-acl DOC%`,
+         `Freq_NMod` = `deprel-nmod DOC%`,
+         `Freq_Conj` = `deprel-conj DOC%`,
+         `Freq_Appos` = `deprel-appos DOC%`,
+         `Freq_Past` = `upos-VERB-Tense-Past DOC%`,
+         `Freq_Pres` = `upos-VERB-Tense-Pres DOC%`,
+         `Freq_Fut` = `upos-VERB-Tense-Fut DOC%`,
+         `Freq_Imp` = `upos-VERB-Tense-Imp DOC%`,
+         `Freq_Ind` = `upos-VERB-Mood-Ind DOC%`,
+         `Freq_Sub` = `upos-VERB-Mood-Sub DOC%`,
+         `Freq_Cnd` = `upos-VERB-Mood-Cnd DOC%`,
+         `Density` = `Lexical density`)
+```
+
+
+**COLUMN EXPLANATION**
+
++ **Title**: Title of each work included in the corpora (basically, its ID).
++ **Level**: Alleged level of difficulty of each text included in the corpora (_beginner_, _intermediate_, and _advanced_, for graded readers; _children's literature_, _young adult fiction_, and _adult literature_, for literary works).
++ **Freq_A1A2**: Relative frequency of the occurring A1-A2 lexical items.
++ **Freq_B1**: Relative frequency of the occurring B1 lexical items.
++ **Freq_B2**: Relative frequency of the occurring B2 lexical items.
++ **TFIDF_A1A2**: Tf-idf of the occurring A1-A2 lexical items.
++ **TFIDF_B1**: Tf-idf of the occurring B1 lexical items.
++ **TFIDF_B2**: Tf-idf of the occurring B2 lexical items.
++ **Ctxt_Freq**: Relative frequency of the words surrounding the occurring graded lexical items in a window of 3 words on each side.
++ **Ctxt_TFIDF**: Tf-idf of the words surrounding the occurring graded lexical items in a window of 3 words on each side.
++ **Freq_Markers**: Relative frequency of subordination markers.
++ **Freq_AdvCl**: Relative frequency of adverbial clause modifiers.
++ **Freq_XComp**: Relative frequency of open clausal complements.
++ **Freq_CComp**: Relative frequency of clausal complements.
++ **Freq_ACl**: Relative frequency of adnominal clauses.
++ **Freq_NMod**: Relative frequency of nominal modifiers.
++ **Freq_Conj**: Relative frequency of conjuncts.
++ **Freq_Appos**: Relative frequency of appositional modifiers.
++ **Freq_Past**: Relative frequency of past tense uses.
++ **Freq_Pres**: Relative frequency of present tense uses.
++ **Freq_Fut**: Relative frequency of future tense uses.
++ **Freq_Imp**: Relative frequency of imperative tense uses.
++ **Freq_Ind**: Relative frequency of indicative mood uses.
++ **Freq_Sub**: Relative frequency of subjunctive mood uses.
++ **Freq_Cnd**: Relative frequency of conditional mood uses.
++ **Density**: Ratio of content to function words in the text.
++ **msttr**: Mean segmental type-token ratio of the text.
++ **mtld**: Measure of textual lexical diversity.
++ **hdd**: Lexical hypergeometric distribution.
++ **Herdan**: Herdan's C.
++ **Min_Width**: Mean minimum width of the parse trees of the sentences in which the graded vocabulary appears.
++ **Max_Width**: Mean maximum width of the parse trees of the sentences in which the graded vocabulary appears.
++ **Avg_Width**: Mean average width of the parse trees of the sentences in which the graded vocabulary appears.
++ **Min_Depth**: Mean minimum depth of the parse trees of the sentences in which the graded vocabulary appears.
++ **Max_Depth**: Mean maximum depth of the parse trees of the sentences in which the graded vocabulary appears.
++ **Avg_Depth**: Mean average depth of the parse trees of the sentences in which the graded vocabulary appears.
++ **Ctxt_Min_Width**: Mean minimum width of the parse trees of the sentences in which the graded vocabulary's context appears.
++ **Ctxt_Max_Width**: Mean maximum width of the parse trees of the sentences in which the graded vocabulary's context appears.
++ **Ctxt_Avg_Width**: Mean average width of the parse trees of the sentences in which the graded vocabulary's context appears.
++ **Ctxt_Min_Depth**: Mean minimum depth of the parse trees of the sentences in which the graded vocabulary's context appears.
++ **Ctxt_Max_Depth**: Mean maximum depth of the parse trees of the sentences in which the graded vocabulary's context appears.
++ **Ctxt_Avg_Depth**: Mean average depth of the parse trees of the sentences in which the graded vocabulary's context appears.
+
+Let's take a look at the data sets now!
+
+```{r}
+summary(readers_corpus)
+summary(literature_corpus)
+summary(reference_corpus)
+```
+
+The graded readers and the literary works tibbles have the exact same structure: 42 columns (variables) x 50 rows (works considered). The reference corpus has virtually the same columns, save for the first two (_Title_ and _Level_), which are not there because we make no distinction among the texts composing the corpus. The number of rows, however, is different, since this corpus is made up of 609 files. Therefore, the resulting tibble has a structure of 40 columns x 609 rows.
+
+## Data exploration and visualisation
+
+**DESCRIPTIVE STATISTICS**
+
+
+**Occurring LI**
+
+Sankey charts depicting the relative frequency of graded vocabulary occurrences per corpus and lexical item level.
+
+```{r sankey charts, echo=FALSE, fig.width=10, fig.height=15}
+# Create a data frame of the number of times each pair of source and target nodes occur.
+
+# 1. Collect all relevant information
+
+# === Graded readers ===
+sankey_vocab_beginner <- dplyr::select(readers_vocab_beginner, c(2, 5))
+sankey_vocab_beginner$Work_type <- "Graded readers"
+sankey_vocab_beginner$Work_level <- "Beginner"
+sankey_vocab_beginner <- sankey_vocab_beginner %>% select(Work_type, Work_level, Level, Frequency)
+
+sankey_vocab_intermediate <- dplyr::select(readers_vocab_intermediate, c(2, 5))
+sankey_vocab_intermediate$Work_type <- "Graded readers"
+sankey_vocab_intermediate$Work_level <- "Intermediate"
+sankey_vocab_intermediate <- sankey_vocab_intermediate %>% select(Work_type, Work_level, Level, Frequency)
+
+sankey_vocab_advanced <- dplyr::select(readers_vocab_advanced, c(2, 5))
+sankey_vocab_advanced$Work_type <- "Graded readers"
+sankey_vocab_advanced$Work_level <- "Advanced"
+sankey_vocab_advanced <- sankey_vocab_advanced %>% select(Work_type, Work_level, Level, Frequency)
+
+# === Literary works ===
+sankey_vocab_children <- dplyr::select(literature_vocab_children, c(2, 5))
+sankey_vocab_children$Work_type <- "Literary works"
+sankey_vocab_children$Work_level <- "Children's literature"
+sankey_vocab_children <- sankey_vocab_children %>% select(Work_type, Work_level, Level, Frequency)
+
+sankey_vocab_youth <- dplyr::select(literature_vocab_youth, c(2, 5))
+sankey_vocab_youth$Work_type <- "Literary works"
+sankey_vocab_youth$Work_level <- "Young adult fiction"
+sankey_vocab_youth <- sankey_vocab_youth %>% select(Work_type, Work_level, Level, Frequency)
+
+sankey_vocab_adult <- dplyr::select(literature_vocab_adult, c(2, 5))
+sankey_vocab_adult$Work_type <- "Literary works"
+sankey_vocab_adult$Work_level <- "Adult literature"
+sankey_vocab_adult <- sankey_vocab_adult %>% select(Work_type, Work_level, Level, Frequency)
+
+# === Reference corpus ===
+sankey_vocab_reference <- dplyr::select(reference_vocab, c(2, 5))
+sankey_vocab_reference$Work_type <- "Corpus of general Spanish"
+sankey_vocab_reference$Work_level <- "Reference corpus"
+sankey_vocab_reference <- sankey_vocab_reference %>% select(Work_type, Work_level, Level, Frequency)
+
+# 2. Link relevant information
+sankey_vocab <- rbind(sankey_vocab_beginner,
+                      sankey_vocab_intermediate,
+                      sankey_vocab_advanced,
+                      sankey_vocab_children,
+                      sankey_vocab_youth,
+                      sankey_vocab_adult,
+                      sankey_vocab_reference)
+
+sankey_vocab <- sankey_vocab %>% filter(Frequency > 0)
+
+# 3. Compute weights for the first pairs of source and target nodes
+value_flow_1 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Beginner"), 4]) * 100, digits = 2)
+value_flow_2 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Intermediate"), 4]) * 100, digits = 2)
+value_flow_3 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Advanced"), 4]) * 100, digits = 2)
+
+value_flow_4 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Children's literature"), 4]) * 100, digits = 2)
+value_flow_5 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Young adult fiction"), 4]) * 100, digits = 2)
+value_flow_6 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Adult literature"), 4]) * 100, digits = 2)
+
+# 4. Compute weights for the second pairs of source and target nodes
+value_flow_7 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Beginner" & sankey_vocab$Level=="A1-A2"), 4]) * 100, digits = 2)
+value_flow_8 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Beginner" & sankey_vocab$Level=="B1"), 4]) * 100, digits = 2)
+value_flow_9 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Beginner" & sankey_vocab$Level=="B2"), 4]) * 100, digits = 2)
+
+value_flow_10 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Intermediate" & sankey_vocab$Level=="A1-A2"), 4]) * 100, digits = 2)
+value_flow_11 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Intermediate" & sankey_vocab$Level=="B1"), 4]) * 100, digits = 2)
+value_flow_12 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Intermediate" & sankey_vocab$Level=="B2"), 4]) * 100, digits = 2)
+
+value_flow_13 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Advanced" & sankey_vocab$Level=="A1-A2"), 4]) * 100, digits = 2)
+value_flow_14 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Advanced" & sankey_vocab$Level=="B1"), 4]) * 100, digits = 2)
+value_flow_15 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Advanced" & sankey_vocab$Level=="B2"), 4]) * 100, digits = 2)
+
+value_flow_16 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Children's literature" & sankey_vocab$Level=="A1-A2"), 4]) * 100, digits = 2)
+value_flow_17 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Children's literature" & sankey_vocab$Level=="B1"), 4]) * 100, digits = 2)
+value_flow_18 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Children's literature" & sankey_vocab$Level=="B2"), 4]) * 100, digits = 2)
+
+value_flow_19 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Young adult fiction" & sankey_vocab$Level=="A1-A2"), 4]) * 100, digits = 2)
+value_flow_20 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Young adult fiction" & sankey_vocab$Level=="B1"), 4]) * 100, digits = 2)
+value_flow_21 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Young adult fiction" & sankey_vocab$Level=="B2"), 4]) * 100, digits = 2)
+
+value_flow_22 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Adult literature" & sankey_vocab$Level=="A1-A2"), 4]) * 100, digits = 2)
+value_flow_23 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Adult literature" & sankey_vocab$Level=="B1"), 4]) * 100, digits = 2)
+value_flow_24 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Adult literature" & sankey_vocab$Level=="B2"), 4]) * 100, digits = 2)
+
+value_flow_25 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Reference corpus" & sankey_vocab$Level=="A1-A2"), 4]) * 100, digits = 2)
+value_flow_26 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Reference corpus" & sankey_vocab$Level=="B1"), 4]) * 100, digits = 2)
+value_flow_27 <- round(sum(sankey_vocab[which(sankey_vocab$Work_level=="Reference corpus" & sankey_vocab$Level=="B2"), 4]) * 100, digits = 2)
+
+# 5. Create the links dataframe
+links <- data.frame(
+  source = c(
+    "Graded readers", "Graded readers", "Graded readers", 
+    "Literary works", "Literary works", "Literary works",
+    "Beginner", "Beginner", "Beginner",
+    "Intermediate", "Intermediate", "Intermediate",
+    "Advanced", "Advanced", "Advanced",
+    "Children's literature", "Children's literature", "Children's literature",
+    "Young adult fiction", "Young adult fiction", "Young adult fiction",
+    "Adult literature", "Adult literature", "Adult literature",
+    "Reference corpus", "Reference corpus", "Reference corpus"
+  ),
+  target = c(
+    "Beginner", "Intermediate", "Advanced", 
+    "Children's literature", "Young adult fiction", "Adult literature",
+    "A1-A2", "B1", "B2",
+    "A1-A2", "B1", "B2",
+    "A1-A2", "B1", "B2",
+    "A1-A2", "B1", "B2",
+    "A1-A2", "B1", "B2",
+    "A1-A2", "B1", "B2",
+    "A1-A2", "B1", "B2"
+  ),
+  value = c(value_flow_1, value_flow_2, value_flow_3, value_flow_4, value_flow_5, value_flow_6,
+            value_flow_7, value_flow_8, value_flow_9,
+            value_flow_10, value_flow_11, value_flow_12,
+            value_flow_13, value_flow_14, value_flow_15,
+            value_flow_16, value_flow_17, value_flow_18,
+            value_flow_19, value_flow_20, value_flow_21,
+            value_flow_22, value_flow_23, value_flow_24,
+            value_flow_25, value_flow_26, value_flow_27)
+)
+
+# 6. Create the nodes dataframe
+nodes <- data.frame(
+  name=c(as.character(links$source),as.character(links$target)) %>% unique()
+)
+
+# 7. Create the Sankey diagram
+links$IDsource <- match(links$source, nodes$name)-1
+links$IDtarget <- match(links$target, nodes$name)-1
+
+# 7.1. Attribute colors to the nodes and links for maximum clarity.
+nodes$group <- factor(nodes$name, levels=c("Graded readers", "Literary works",
+                                           "Beginner", "Intermediate", "Advanced",
+                                           "Children's literature", "Young adult fiction", "Adult literature",
+                                           "Reference corpus",
+                                           "A1-A2","B1", "B2"))
+nodes$group <- gsub(" ", "_", nodes$group)
+nodes$group <- gsub("'", "", nodes$group)
+
+links$group <- as.factor(c(
+  "link1", "link2", "link3", 
+  "link4", "link5", "link6", 
+  "link7", "link8", "link9", 
+  "link10", "link11", "link12", 
+  "link13", "link14", "link15", 
+  "link16", "link17", "link18",
+  "link19", "link20", "link21", 
+  "link22", "link23", "link24",
+  "link25", "link26", "link27"
+))
+
+links$group <- factor(links$group, levels=c(
+  "link1", "link2", "link3", 
+  "link4", "link5", "link6", 
+  "link7", "link8", "link9", 
+  "link10", "link11", "link12", 
+  "link13", "link14", "link15", 
+  "link16", "link17", "link18",
+  "link19", "link20", "link21", 
+  "link22", "link23", "link24",
+  "link25", "link26", "link27"
+))
+
+my_color <- 'd3.scaleOrdinal()
+.domain([
+  "Graded_readers", "Literary_works",
+  "Beginner", "Intermediate", "Advanced",
+  "Childrens_literature", "Young_adult_fiction", "Adult_literature",
+  "Reference_corpus",
+  "A1-A2","B1", "B2",
+  
+  "link1", "link2", "link3", 
+  "link4", "link5", "link6", 
+  "link7", "link8", "link9",
+  "link10", "link11", "link12", 
+  "link13", "link14", "link15", 
+  "link16", "link17", "link18",
+  "link19", "link20", "link21", 
+  "link22", "link23", "link24",
+  "link25", "link26", "link27"
+])
+.range([
+  "#ff7b00", "#b185db", 
+  "#ffc300", "#ffaa00", "#ff9500",
+  "#dec9e9", "#d2b7e5", "#c19ee0",
+  "black",
+  "#caf0f8", "#90e0ef", "#48cae4",
+  
+  "#ffc300", "#ffaa00", "#ff9500",
+  "#dec9e9", "#d2b7e5", "#c19ee0", 
+  "#caf0f8", "#90e0ef", "#48cae4", 
+  "#caf0f8", "#90e0ef", "#48cae4", 
+  "#caf0f8", "#90e0ef", "#48cae4",
+  "#caf0f8", "#90e0ef", "#48cae4", 
+  "#caf0f8", "#90e0ef", "#48cae4", 
+  "#caf0f8", "#90e0ef", "#48cae4",
+  "#caf0f8", "#90e0ef", "#48cae4"
+])'
+
+nodes$name[1][1] <- "Graded readers (40.79%)"
+nodes$name[2][1] <- "Literary works (39.82%)"
+nodes$name[9][1] <- "Reference corpus (11.45%)"
+
+p <- sankeyNetwork(Links = links, Nodes = nodes,
+                   Source = "IDsource", Target = "IDtarget",
+                   Value = "value", NodeID = "name",
+                   fontSize = 12,
+                   colourScale = my_color,
+                   NodeGroup = "group",
+                   LinkGroup = "group",
+                   nodeWidth = 5,
+                   sinksRight=TRUE)
+
+htmlwidgets::onRender(p, '
+  function(el) { 
+    var nodeWidth = this.sankey.nodeWidth();
+    var links = this.sankey.links();
+        
+    links.forEach((d, i) => {
+      var startX = d.source.x + nodeWidth;
+      var endX = d.target.x;
+      
+      var startY = d.source.y + d.sy + d.dy / 2;
+      var endY = d.target.y + d.ty + d.dy / 2;
+      
+      d3.select(el).select("svg g")
+        .append("text")
+        .style("font", "9px sans-serif")
+        .attr("text-anchor", "middle")
+        .attr("alignment-baseline", "middle")
+        .attr("x", endX-40)
+        .attr("y", endY - (endY - startY) / 100)
+        .text(d.value);
+    })
+  }
+')
+```
+
+
+```{r recode factors, echo=FALSE}
+# Let's convert the Level variables into factors and give them English labels.
+
+readers_corpus$Level <- factor(readers_corpus$Level, levels=c("Inicial", "Intermedio", "Avanzado"))
+readers_corpus$Level <- recode_factor(readers_corpus$Level,
+                                      Inicial = "Beginner",
+                                      Intermedio = "Intermediate",
+                                      Avanzado = "Advanced")
+literature_corpus$Level <- factor(literature_corpus$Level, levels=c("Infantil", "Juvenil", "Adulta"))
+literature_corpus$Level <- recode_factor(literature_corpus$Level,
+                                         Infantil = "Children's literature",
+                                         Juvenil = "Young adult fiction",
+                                         Adulta = "Adult literature")
+```
+
+**Parse trees' properties**
+
+Violin plots depicting the properties of the parse trees of the sentences where the graded vocabulary and its context occur.
+
+```{r violin plots, echo=FALSE, fig.width=12, fig.height=4, fig.align='default'}
+
+GR_avgW <- readers_corpus %>%
+  ggplot(aes(x = "", y = Avg_Width, fill = Level)) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Blues") +
+  theme(legend.position = "none") +
+  labs(caption = "Average width (graded vocabulary)") +
+  theme(plot.caption = element_text(hjust = 0.5, size=9)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 1) +
+  facet_wrap(~Level, nrow = 1)
+
+GR_ctxt_avgW <- readers_corpus %>%
+  ggplot(aes(x = "", y = Ctxt_Avg_Width, fill = Level)) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Purples") +
+  theme(legend.position = "none") +
+  labs(caption = "Average width (graded vocabulary context)") +
+  theme(plot.caption = element_text(hjust = 0.5, size=9)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 0.7) +
+  facet_wrap(~Level, nrow = 1)
+
+GR_avgD <- readers_corpus %>%
+  ggplot(aes(x = "", y = Avg_Depth, fill = Level)) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Greens") +
+  theme(legend.position = "none") +
+  labs(caption = "Average depth (graded vocabulary)") +
+  theme(plot.caption = element_text(hjust = 0.5, size=9)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 0.7) +
+  facet_wrap(~Level, nrow = 1)
+
+GR_ctxt_avgD <- readers_corpus %>%
+  ggplot(aes(x = "", y = Ctxt_Avg_Depth, fill = Level)) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Oranges") +
+  theme(legend.position = "none") +
+  labs(caption = "Average depth (graded vocabulary context)") +
+  theme(plot.caption = element_text(hjust = 0.5, size=9)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 0.7) +
+  facet_wrap(~Level, nrow = 1)
+
+LW_avgW <- literature_corpus %>%
+  ggplot(aes(x = "", y = Avg_Width, fill = Level)) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Blues") +
+  theme(legend.position = "none") +
+  labs(caption = "Average width (graded vocabulary)") +
+  theme(plot.caption = element_text(hjust = 0.5, size=9)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 0.7) +
+  facet_wrap(~Level, labeller = labeller(Level = label_wrap_gen(width = 10)), nrow = 1)
+
+LW_ctxt_avgW <- literature_corpus %>%
+  ggplot(aes(x = "", y = Ctxt_Avg_Width, fill = Level)) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Purples") +
+  theme(legend.position = "none") +
+  labs(caption = "Average width (graded vocabulary context)") +
+  theme(plot.caption = element_text(hjust = 0.5, size=9)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 0.7) +
+  facet_wrap(~Level, labeller = labeller(Level = label_wrap_gen(width = 10)), nrow = 1)
+
+LW_avgD <- literature_corpus %>%
+  ggplot(aes(x = "", y = Avg_Depth, fill = Level)) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Greens") +
+  theme(legend.position = "none") +
+  labs(caption = "Average depth (graded vocabulary)") +
+  theme(plot.caption = element_text(hjust = 0.5, size=9)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 0.7) +
+  facet_wrap(~Level, labeller = labeller(Level = label_wrap_gen(width = 10)), nrow = 1)
+
+LW_ctxt_avgD <- literature_corpus %>%
+  ggplot(aes(x = "", y = Ctxt_Avg_Depth, fill = Level)) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Oranges") +
+  theme(legend.position = "none") +
+  labs(caption = "Average depth (graded vocabulary context)") +
+  theme(plot.caption = element_text(hjust = 0.5, size=9)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 0.7) +
+  facet_wrap(~Level, labeller = labeller(Level = label_wrap_gen(width = 10)), nrow = 1)
+
+RC_avgW <- reference_corpus %>%
+  ggplot(aes(x = "", y = Avg_Width, fill = "")) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Blues") +
+  theme(legend.position = "none") +
+  labs(caption = "Average width (graded vocabulary)") +
+  theme(plot.caption = element_text(hjust = 0.5, size=9)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 0.7)
+
+RC_ctxt_avgW <- reference_corpus %>%
+  ggplot(aes(x = "", y = Ctxt_Avg_Width, fill = "")) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Purples") +
+  theme(legend.position = "none") +
+  labs(caption = "Average width (graded vocabulary context)") +
+  theme(plot.caption = element_text(hjust = 0.5, size=9)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 0.7)
+
+RC_avgD <- reference_corpus %>%
+  ggplot(aes(x = "", y = Avg_Depth, fill = "")) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Greens") +
+  theme(legend.position = "none") +
+  labs(caption = "Average depth (graded vocabulary)") +
+  theme(plot.caption = element_text(hjust = 0.5, size=9)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 0.7)
+
+RC_ctxt_avgD <- reference_corpus %>%
+  ggplot(aes(x = "", y = Ctxt_Avg_Depth, fill = "")) +
+  geom_violin() +
+  scale_fill_brewer(palette = "Oranges") +
+  theme(legend.position = "none") +
+  labs(caption = "Average depth (graded vocabulary context)") +
+  theme(plot.caption = element_text(hjust = 0.5, size=9)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 0.7)
+
+GR_avgW <- GR_avgW + ylim(2.5, 12)
+GR_ctxt_avgW <- GR_ctxt_avgW + ylim(2.5, 12)
+GR_avgD <- GR_avgD + ylim(2.5, 7.5)
+GR_ctxt_avgD <- GR_ctxt_avgD + ylim(2.5, 7.5)
+
+LW_avgW <- LW_avgW + ylim(2, 15)
+LW_ctxt_avgW <- LW_ctxt_avgW + ylim(2, 15)
+LW_avgD <- LW_avgD + ylim(2, 9)
+LW_ctxt_avgD <- LW_ctxt_avgD + ylim(2, 9)
+
+RC_avgW <- RC_avgW + ylim(0, 25)
+RC_ctxt_avgW <- RC_ctxt_avgW + ylim(0, 25)
+RC_avgD <- RC_avgD + ylim(0, 15)
+RC_ctxt_avgD <- RC_ctxt_avgD + ylim(0, 15)
+
+grid.arrange(GR_avgW, GR_ctxt_avgW, GR_avgD, GR_ctxt_avgD, top = "\nGraded readers parse trees\n", nrow = 1)
+grid.arrange(LW_avgW, LW_ctxt_avgW, LW_avgD, LW_ctxt_avgD, top = "\n\nLiterary works parse trees\n", nrow = 1)
+grid.arrange(RC_avgW, RC_ctxt_avgW, RC_avgD, RC_ctxt_avgD, top = "\n\nReference corpus parse trees\n", nrow = 1)
+
+```
+
+
+**Relative frequencies of moods**
+
+Density ridgeline plots
+
+```{r moods, echo=FALSE, fig.width=12, fig.height=4, fig.align='default'}
+GR_density_ind <- ggplot(readers_corpus, aes(x = Freq_Ind, y = Level, fill = after_stat(x))) +
+  geom_density_ridges_gradient(rel_min_height = 0.01, scale = 2, alpha = 0.7) +
+  labs(caption = "\nIndicative\n") +
+  theme(plot.caption = element_text(hjust = 0.5, size=10)) +
+  scale_fill_viridis_c(name = "", option = "rocket") +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank())
+
+GR_density_sub <- ggplot(readers_corpus, aes(x = Freq_Sub, y = Level, fill = after_stat(x))) +
+  geom_density_ridges_gradient(rel_min_height = 0.01, scale = 2, alpha = 0.7) +
+  labs(caption = "\nSubjunctive\n") +
+  theme(plot.caption = element_text(hjust = 0.5, size=10)) +
+  scale_fill_viridis_c(name = "", option = "mako") +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank())
+
+GR_density_cond <- ggplot(readers_corpus, aes(x = Freq_Cnd, y = Level, fill = after_stat(x))) +
+  geom_density_ridges_gradient(rel_min_height = 0.01, scale = 2, alpha = 0.7) +
+  labs(caption = "\nConditional\n") +
+  theme(plot.caption = element_text(hjust = 0.5, size=10)) +
+  scale_fill_viridis_c(name = "", option = "C") +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank())
+
+LW_density_ind <- ggplot(literature_corpus, aes(x = Freq_Ind, y = Level, fill = after_stat(x))) +
+  geom_density_ridges_gradient(rel_min_height = 0.01, scale = 2, alpha = 0.7) +
+  labs(caption = "\nIndicative\n") +
+  theme(plot.caption = element_text(hjust = 0.5, size=10)) +
+  scale_fill_viridis_c(name = "", option = "rocket") +
+  scale_y_discrete(labels = function(x) str_wrap(x, width = 10)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank())
+
+LW_density_sub <- ggplot(literature_corpus, aes(x = Freq_Sub, y = Level, fill = after_stat(x))) +
+  geom_density_ridges_gradient(rel_min_height = 0.01, scale = 2, alpha = 0.7) +
+  labs(caption = "\nSubjunctive\n") +
+  theme(plot.caption = element_text(hjust = 0.5, size=10)) +
+  scale_fill_viridis_c(name = "", option = "mako") +
+  scale_y_discrete(labels = function(x) str_wrap(x, width = 10)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank())
+
+LW_density_cond <- ggplot(literature_corpus, aes(x = Freq_Cnd, y = Level, fill = after_stat(x))) +
+  geom_density_ridges_gradient(rel_min_height = 0.01, scale = 2, alpha = 0.7) +
+  labs(caption = "\nConditional\n") +
+  theme(plot.caption = element_text(hjust = 0.5, size=10)) +
+  scale_fill_viridis_c(name = "", option = "C") +
+  scale_y_discrete(labels = function(x) str_wrap(x, width = 10)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank())
+
+reference_corpus['group'] <- as.numeric(1)
+
+RC_density_ind <- ggplot(reference_corpus, aes(x = Freq_Ind, y = group, fill = after_stat(x))) +
+  geom_density_ridges_gradient(rel_min_height = 0.01, scale = 2, alpha = 0.7) +
+  labs(caption = "\nIndicative\n") +
+  theme(plot.caption = element_text(hjust = 0.5, size=10)) +
+  scale_fill_viridis_c(name = "", option = "rocket") +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+
+RC_density_sub <- ggplot(reference_corpus, aes(x = Freq_Sub, y = group, fill = after_stat(x))) +
+  geom_density_ridges_gradient(rel_min_height = 0.01, scale = 2, alpha = 0.7) +
+  labs(caption = "\nSubjunctive\n") +
+  theme(plot.caption = element_text(hjust = 0.5, size=10)) +
+  scale_fill_viridis_c(name = "", option = "mako") +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+
+RC_density_cond <- ggplot(reference_corpus, aes(x = Freq_Cnd, y = group, fill = after_stat(x))) +
+  geom_density_ridges_gradient(rel_min_height = 0.01, scale = 2, alpha = 0.7) +
+  labs(caption = "\nConditional\n") +
+  theme(plot.caption = element_text(hjust = 0.5, size=10)) +
+  scale_fill_viridis_c(name = "", option = "C") +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+
+GR_density_ind <- GR_density_ind + xlim(0, 0.16)
+LW_density_ind <- LW_density_ind + xlim(0, 0.16)
+RC_density_ind <- RC_density_ind + xlim(0, 0.16) + ylim(0, 200)
+
+GR_density_sub <- GR_density_sub + xlim(0, 0.025)
+LW_density_sub <- LW_density_sub + xlim(0, 0.025)
+RC_density_sub <- RC_density_sub + xlim(0, 0.025) + ylim(0, 200)
+
+GR_density_cond <- GR_density_cond + xlim(0, 0.013)
+LW_density_cond <- LW_density_cond + xlim(0, 0.013)
+RC_density_cond <- RC_density_cond + xlim(0, 0.013) + ylim(0, 200)
+
+grid.arrange(GR_density_ind, GR_density_sub, GR_density_cond, top = "\nGraded readers mood relative frequencies\n", nrow=1)
+
+grid.arrange(LW_density_ind, LW_density_sub, LW_density_cond, top = "\nLiterary works mood relative frequencies\n", nrow=1)
+
+grid.arrange(RC_density_ind, RC_density_sub, RC_density_cond, top = "\nReference corpus mood relative frequencies\n", nrow=1)
+```
+
+
+## Random forests and permutation tests
+
+**ASSESSING MULTICOLLINEARITY**
+
+**Pairwise Spearman correlations**
+
+```{r correlations, fig.width=12, fig.height=6, fig.align='default'}
+par(mfrow=c(1,2))
+
+# === GRADED READERS ===
+readers_corr <- dplyr::select(readers_corpus, -c(1, 2))
+readers_corr <- cor(readers_corr, method = "spearman")
+readers_corr <- corrplot(readers_corr, type = "lower", order = "hclust",
+                         title = "Graded readers", mar=c(0,0,1,0), tl.cex = 0.5,
+                         tl.col = "black", tl.srt = 45)
+
+# === LITERARY WORKS ===
+literature_corr <- dplyr::select(literature_corpus, -c(1, 2))
+literature_corr <- cor(literature_corr, method = "spearman")
+literature_corr <- corrplot(literature_corr, type = "lower", order = "hclust",
+                            title = "Literary works", mar=c(0,0,1,0), tl.cex = 0.5,
+                            tl.col = "black", tl.srt = 45)
+```
+
+**RANDOM FORESTS**
+
+```{r random forests, fig.width=12, fig.height=12, fig.align='default'}
+# === GRADED READERS ===
+
+# --- Step 1. Split the data into a training (70%) and testing (30%) sets using a stratified random
+# sampling approach ---
+set.seed(4)
+
+readers_training <- readers_corpus %>%
+  group_by(Level) %>%
+  slice_sample(prop=0.7)
+
+readers_testing <- anti_join(readers_corpus, readers_training, by = "Title")
+
+# --- Step 2. Fit the random forest model ---
+set.seed(211)
+
+readers_model <- randomForest(Level ~ . - Title, data = readers_training, mtry=6, ntree=60,
+                              importance=TRUE, proximity=TRUE)
+readers_model
+
+# --- Step 3. Plot the out-of-bag error rate information ---
+readers_obb_error_data <- data.frame(
+  Trees=rep(1:nrow(readers_model$err.rate)),
+  Type=rep(c("OOB", "Beginner", "Intermediate", "Advanced"), each=nrow(readers_model$err.rate)),
+  Error=c(readers_model$err.rate[, "OOB"],
+          readers_model$err.rate[, "Beginner"],
+          readers_model$err.rate[, "Intermediate"],
+          readers_model$err.rate[, "Advanced"])
+)
+
+readers_obb_error_data$Type <- factor(readers_obb_error_data$Type, levels = c("Beginner", "Intermediate", "Advanced", "OOB"))
+
+ggplot(data=readers_obb_error_data, aes(x=Trees, y=Error)) +
+  geom_line(aes(color=Type)) +
+  ggtitle("Graded readers' out-of-bag (OOB) error rate information") +
+  theme(legend.key.size = unit(1, 'cm'),
+        legend.title = element_blank(),
+        legend.text = element_text(size=20)) +
+  theme(axis.text.x=element_text(size=15),
+        axis.title.x=element_text(size=20),
+        axis.text.y=element_text(size=18),
+        axis.title.y=element_text(size=20)) +
+  ylim(0, 0.9)
+
+# --- Step 4. Predict classes for the test set ---
+readers_predict <- predict(readers_model, readers_testing)
+confusionMatrix(readers_predict, readers_testing$Level)
+
+# --- Step 5. Let's plot the dot charts of variable importance ---
+varImpPlot(readers_model,
+           sort = T,
+           n.var = 40,
+           main = "Graded readers' random forest variable importance")
+
+# --- Step 6. Multi-dimensional Scaling Plot of Proximity Matrix ---
+readers_distance.matrix <- dist(1-readers_model$proximity)
+readers_mds.stuff <- cmdscale(readers_distance.matrix, eig=TRUE, x.ret=TRUE)
+readers_mds.var.per <- round(readers_mds.stuff$eig/sum(readers_mds.stuff$eig)*100, 1)
+readers_mds.values <- readers_mds.stuff$points
+readers_mds.data <- data.frame(Sample=rownames(readers_mds.values),
+                               X=readers_mds.values[,1],
+                               Y=readers_mds.values[,2],
+                               Status=readers_training$Level)
+
+ggplot(data=readers_mds.data, aes(x=X, y=Y, label=Sample)) +
+  geom_text(size = 10, aes(color=Status)) +
+  theme_bw() +
+  xlab(paste("MDS1 - ", readers_mds.var.per[1], "%", sep="")) +
+  ylab(paste("MDS2 - ", readers_mds.var.per[2], "%", sep="")) +
+  ggtitle("GRs MDS plot (1 - RF proximities)") +
+  theme(legend.title = element_blank(),
+        legend.text = element_text(size=20)) +
+  theme(axis.text.x=element_text(size=15),
+        axis.title.x=element_text(size=20),
+        axis.text.y=element_text(size=18),
+        axis.title.y=element_text(size=20)) +
+  theme(plot.title = element_text(hjust = 0.5, size=30)) 
+
+# === LITERARY WORKS ===
+
+# --- Step 1. Split the data into a training (70%) and testing (30%) sets using a stratified random
+# sampling approach ---
+set.seed(2001)
+
+literature_training <- literature_corpus %>%
+  group_by(Level) %>%
+  slice_sample(prop=0.7)
+
+literature_testing <- anti_join(literature_corpus, literature_training, by = "Title")
+
+#  --- Step 2. Fit the random forest model ---
+set.seed(211)
+
+literature_model <- randomForest(Level ~ . - Title, data = literature_training, mtry=6, ntree=75, importance=TRUE, proximity=TRUE)
+literature_model
+
+#  --- Step 3. Plot the out-of-bag error rate information ---
+literature_obb_error_data <- data.frame(
+  Trees=rep(1:nrow(literature_model$err.rate)),
+  Type=rep(c("OOB", "Children's literature", "Young adult fiction", "Adult literature"), each=nrow(literature_model$err.rate)),
+  Error=c(literature_model$err.rate[, "OOB"],
+          literature_model$err.rate[, "Children's literature"],
+          literature_model$err.rate[, "Young adult fiction"],
+          literature_model$err.rate[, "Adult literature"])
+)
+
+literature_obb_error_data$Type <- factor(literature_obb_error_data$Type, levels = c("Children's literature", "Young adult fiction", "Adult literature", "OOB"))
+
+ggplot(data=literature_obb_error_data, aes(x=Trees, y=Error)) +
+  geom_line(aes(color=Type)) +
+  theme(legend.key.size = unit(1, 'cm'),
+        legend.title = element_blank(),
+        legend.text = element_text(size=20)) +
+  theme(axis.text.x=element_text(size=15),
+        axis.title.x=element_text(size=20),
+        axis.text.y=element_text(size=18),
+        axis.title.y=element_text(size=20)) +
+  ylim(0, 0.9)
+
+#  --- Step 4. Predict classes for the test set ---
+literature_predict <- predict(literature_model, literature_testing)
+confusionMatrix(literature_predict, literature_testing$Level)
+
+#  --- Step 5. Let's plot the dot charts of variable importance ---
+varImpPlot(literature_model,
+           sort = T,
+           n.var = 40,
+           main = "Literary works' random forest variable importance")
+
+#  --- Step 6. Multi-dimensional Scaling Plot of Proximity Matrix ---
+literature_distance.matrix <- dist(1-literature_model$proximity)
+literature_mds.stuff <- cmdscale(literature_distance.matrix, eig=TRUE, x.ret=TRUE)
+literature_mds.var.per <- round(literature_mds.stuff$eig/sum(literature_mds.stuff$eig)*100, 1)
+literature_mds.values <- literature_mds.stuff$points
+literature_mds.data <- data.frame(Sample=rownames(literature_mds.values),
+                                  X=literature_mds.values[,1],
+                                  Y=literature_mds.values[,2],
+                                  Status=literature_training$Level)
+
+ggplot(data=literature_mds.data, aes(x=X, y=Y, label=Sample)) +
+  geom_text(size = 10, aes(color=Status)) +
+  theme_bw() +
+  xlab(paste("MDS1 - ", literature_mds.var.per[1], "%", sep="")) +
+  ylab(paste("MDS2 - ", literature_mds.var.per[2], "%", sep="")) +
+  ggtitle("LWs MDS plot (1 - RF proximities)") +
+  theme(legend.title = element_blank(),
+        legend.text = element_text(size=20)) +
+  theme(axis.text.x=element_text(size=15),
+        axis.title.x=element_text(size=20),
+        axis.text.y=element_text(size=18),
+        axis.title.y=element_text(size=20)) +
+  theme(plot.title = element_text(hjust = 0.5, size=30)) 
+```
+
+**PERMUTATION TESTS**
+
+Using the following variables
+
+```{r permutation tests, fig.width=12, fig.height=12, fig.align='default'}
+
+# 1) AVERAGE DEPTH OF THE CONTEXT TREES
+
+# === Step 1. Calculate the difference in sample means: ===
+
+GR_mean_ctxt_depth_A1A2 <- mean(readers_corpus$Ctxt_Avg_Depth[readers_corpus$Level=="Beginner"])
+GR_mean_ctxt_depth_B1 <- mean(readers_corpus$Ctxt_Avg_Depth[readers_corpus$Level=="Intermediate"])
+GR_mean_ctxt_depth_B2 <- mean(readers_corpus$Ctxt_Avg_Depth[readers_corpus$Level=="Advanced"])
+
+LW_mean_ctxt_depth_A1A2 <- mean(literature_corpus$Ctxt_Avg_Depth[literature_corpus$Level=="Children's literature"])
+LW_mean_ctxt_depth_B1 <- mean(literature_corpus$Ctxt_Avg_Depth[literature_corpus$Level=="Young adult fiction"])
+LW_mean_ctxt_depth_B2 <- mean(literature_corpus$Ctxt_Avg_Depth[literature_corpus$Level=="Adult literature"])
+
+RC_mean_ctxt_depth <- mean(reference_corpus$Ctxt_Avg_Depth)
+
+# === Step 2. Calculate the absolute difference in means ===
+
+GR_LW_mean_ctxt_depth_stat_A1A2 <- abs(GR_mean_ctxt_depth_A1A2 - LW_mean_ctxt_depth_A1A2)
+GR_LW_mean_ctxt_depth_stat_B1 <- abs(GR_mean_ctxt_depth_B1 - LW_mean_ctxt_depth_B1)
+GR_LW_mean_ctxt_depth_stat_B2 <- abs(GR_mean_ctxt_depth_B2 - LW_mean_ctxt_depth_B2)
+
+GR_RC_mean_ctxt_depth_stat_A1A2 <- abs(GR_mean_ctxt_depth_A1A2 - RC_mean_ctxt_depth)
+GR_RC_mean_ctxt_depth_stat_B1 <- abs(GR_mean_ctxt_depth_B1 - RC_mean_ctxt_depth)
+GR_RC_mean_ctxt_depth_stat_B2 <- abs(GR_mean_ctxt_depth_B2 - RC_mean_ctxt_depth)
+
+LW_RC_mean_ctxt_depth_stat_A1A2 <- abs(LW_mean_ctxt_depth_A1A2 - RC_mean_ctxt_depth)
+LW_RC_mean_ctxt_depth_stat_B1 <- abs(LW_mean_ctxt_depth_B1 - RC_mean_ctxt_depth)
+LW_RC_mean_ctxt_depth_stat_B2 <- abs(LW_mean_ctxt_depth_B2 - RC_mean_ctxt_depth)
+
+# === Step 3. Perform the permutation test ===
+
+set.seed(1979)
+
+# AVERAGE DEPTH OF THE CONTEXT TREES
+
+# Number of observations to sample
+GR_n <- length(readers_corpus$Level)
+LW_n <- length(literature_corpus$Level)
+RC_n <- length(reference_corpus$group)
+
+# Number of permutation samples to take
+P <- 10000
+
+# Variable we will resample from
+GR_ctxt_depth_variable <- readers_corpus$Ctxt_Avg_Depth
+LW_ctxt_depth_variable <- literature_corpus$Ctxt_Avg_Depth
+RC_ctxt_depth_variable <- reference_corpus$Ctxt_Avg_Depth
+
+# Initialize a matrix to store the permutation data. Each column is a permutation sample of data.
+GR_ctxt_depth_PermSamples <- matrix(0, nrow=GR_n, ncol=P)
+LW_ctxt_depth_PermSamples <- matrix(0, nrow=LW_n, ncol=P)
+RC_ctxt_depth_PermSamples <- matrix(0, nrow=RC_n, ncol=P)
+
+for(i in 1:P){
+  GR_ctxt_depth_PermSamples[, i] <- sample(GR_ctxt_depth_variable, size=GR_n, replace=FALSE)
+}
+
+for(i in 1:P){
+  LW_ctxt_depth_PermSamples[, i] <- sample(LW_ctxt_depth_variable, size=LW_n, replace=FALSE)
+}
+
+for(i in 1:P){
+  RC_ctxt_depth_PermSamples[, i] <- sample(RC_ctxt_depth_variable, size=RC_n, replace=FALSE)
+}
+
+# Initialize vectors to store the test stats
+Perm.test.stat_GR_LW_ctxt_depth_A1A2 <- rep(0, P)
+Perm.test.stat_GR_LW_ctxt_depth_B1 <- rep(0, P)
+Perm.test.stat_GR_LW_ctxt_depth_B2 <- rep(0, P)
+
+Perm.test.stat_GR_RC_ctxt_depth_A1A2 <- rep(0, P)
+Perm.test.stat_GR_RC_ctxt_depth_B1 <- rep(0, P)
+Perm.test.stat_GR_RC_ctxt_depth_B2 <- rep(0, P)
+
+Perm.test.stat_LW_RC_ctxt_depth_A1A2 <- rep(0, P)
+Perm.test.stat_LW_RC_ctxt_depth_B1 <- rep(0, P)
+Perm.test.stat_LW_RC_ctxt_depth_B2 <- rep(0, P)
+
+# Loop through, and calculate test stats
+for(i in 1:P){
+  Perm.test.stat_GR_LW_ctxt_depth_A1A2[i] <- abs(mean(GR_ctxt_depth_PermSamples[
+    readers_corpus$Level=="Beginner", i]) - mean(LW_ctxt_depth_PermSamples[
+      literature_corpus$Level=="Children's literature", i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_LW_ctxt_depth_B1[i] <- abs(mean(GR_ctxt_depth_PermSamples[
+    readers_corpus$Level=="Intermediate", i]) - mean(LW_ctxt_depth_PermSamples[
+      literature_corpus$Level=="Young adult fiction", i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_LW_ctxt_depth_B2[i] <- abs(mean(GR_ctxt_depth_PermSamples[
+    readers_corpus$Level=="Advanced", i]) - mean(LW_ctxt_depth_PermSamples[
+      literature_corpus$Level=="Adult literature", i]))
+}
+
+for(i in 1:P){
+  Perm.test.stat_GR_RC_ctxt_depth_A1A2[i] <- abs(mean(GR_ctxt_depth_PermSamples[
+    readers_corpus$Level=="Beginner", i]) - mean(RC_ctxt_depth_PermSamples[
+      reference_corpus$group==1, i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_RC_ctxt_depth_B1[i] <- abs(mean(GR_ctxt_depth_PermSamples[
+    readers_corpus$Level=="Intermediate", i]) - mean(RC_ctxt_depth_PermSamples[
+      reference_corpus$group==1, i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_RC_ctxt_depth_B2[i] <- abs(mean(GR_ctxt_depth_PermSamples[
+    readers_corpus$Level=="Advanced", i]) - mean(RC_ctxt_depth_PermSamples[
+      reference_corpus$group==1, i]))
+}
+
+# === Calculate the permutation p-value ===
+
+# === GRs vs. LWs ===
+
+# If there is no difference in the mean average depth of the context trees of beginner GRs and LWs, we would observe a test statistic of 1.062 or more by chance roughly 0.02% of the time.  
+mean(Perm.test.stat_GR_LW_ctxt_depth_A1A2 >= GR_LW_mean_ctxt_depth_stat_A1A2)
+# If there is no difference in the mean average depth of the context trees of intermediate GRs and LWs, we would observe a test statistic of 0.02 or more by chance roughly 98.1% of the time.
+mean(Perm.test.stat_GR_LW_ctxt_depth_B1 >= GR_LW_mean_ctxt_depth_stat_B1)
+# If there is no difference in the mean average depth of the context trees of advanced GRs and LWs, we would observe a test statistic of 0.254 or more by chance roughly 72.87% of the time.
+mean(Perm.test.stat_GR_LW_ctxt_depth_B2 >= GR_LW_mean_ctxt_depth_stat_B2)
+
+# === GRs vs. RC ===
+
+# If there is no difference in the mean average depth of the context trees of beginner GRs and RC, we would observe a test statistic of 2.96 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_GR_RC_ctxt_depth_A1A2 >= GR_RC_mean_ctxt_depth_stat_A1A2)
+# If there is no difference in the mean average depth of the context trees of intermediate GRs and RC, we would observe a test statistic of 2.156 or more by chance roughly 73.2% of the time.
+mean(Perm.test.stat_GR_RC_ctxt_depth_B1 >= GR_RC_mean_ctxt_depth_stat_B1)
+# If there is no difference in the mean average depth of the context trees of advanced GRs and RC, we would observe a test statistic of 1.51 or more by chance roughly 99% of the time.
+mean(Perm.test.stat_GR_RC_ctxt_depth_B2 >= GR_RC_mean_ctxt_depth_stat_B2)
+
+# === LW vs. RC ===
+
+# If there is no difference in the mean average depth of the context trees of beginner LW and RC, we would observe a test statistic of 1.9 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_ctxt_depth_A1A2 >= LW_RC_mean_ctxt_depth_stat_A1A2)
+# If there is no difference in the mean average depth of the context trees of intermediate LW and RC, we would observe a test statistic of 2.18 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_ctxt_depth_B1 >= LW_RC_mean_ctxt_depth_stat_B1)
+# If there is no difference in the mean average depth of the context trees of advanced LW and RC, we would observe a test statistic of 1.256 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_ctxt_depth_B2 >= LW_RC_mean_ctxt_depth_stat_B2)
+
+# --------------------
+
+# 2) RELATIVE FREQUENCY OF THE SUBJUNCTIVE MOOD
+
+# === Step 1. Calculate the difference in sample means: ===
+
+GR_mean_sub_A1A2 <- mean(readers_corpus$Freq_Sub[readers_corpus$Level=="Beginner"])
+GR_mean_sub_B1 <- mean(readers_corpus$Freq_Sub[readers_corpus$Level=="Intermediate"])
+GR_mean_sub_B2 <- mean(readers_corpus$Freq_Sub[readers_corpus$Level=="Advanced"])
+
+LW_mean_sub_A1A2 <- mean(literature_corpus$Freq_Sub[literature_corpus$Level=="Children's literature"])
+LW_mean_sub_B1 <- mean(literature_corpus$Freq_Sub[literature_corpus$Level=="Young adult fiction"])
+LW_mean_sub_B2 <- mean(literature_corpus$Freq_Sub[literature_corpus$Level=="Adult literature"])
+
+RC_mean_sub <- mean(reference_corpus$Freq_Sub)
+
+# === Step 2. Calculate the absolute difference in means ===
+
+GR_LW_mean_sub_stat_A1A2 <- abs(GR_mean_sub_A1A2 - LW_mean_sub_A1A2)
+GR_LW_mean_sub_stat_B1 <- abs(GR_mean_sub_B1 - LW_mean_sub_B1)
+GR_LW_mean_sub_stat_B2 <- abs(GR_mean_sub_B2 - LW_mean_sub_B2)
+
+GR_RC_mean_sub_stat_A1A2 <- abs(GR_mean_sub_A1A2 - RC_mean_sub)
+GR_RC_mean_sub_stat_B1 <- abs(GR_mean_sub_B1 - RC_mean_sub)
+GR_RC_mean_sub_stat_B2 <- abs(GR_mean_sub_B2 - RC_mean_sub)
+
+LW_RC_mean_sub_stat_A1A2 <- abs(LW_mean_sub_A1A2 - RC_mean_sub)
+LW_RC_mean_sub_stat_B1 <- abs(LW_mean_sub_B1 - RC_mean_sub)
+LW_RC_mean_sub_stat_B2 <- abs(LW_mean_sub_B2 - RC_mean_sub)
+
+# === Step 3. Perform the permutation test ===
+
+# Variable we will resample from
+GR_sub_variable <- readers_corpus$Freq_Sub
+LW_sub_variable <- literature_corpus$Freq_Sub
+RC_sub_variable <- reference_corpus$Freq_Sub
+
+# Initialize a matrix to store the permutation data. Each column is a permutation sample of data.
+GR_sub_PermSamples <- matrix(0, nrow=GR_n, ncol=P)
+LW_sub_PermSamples <- matrix(0, nrow=LW_n, ncol=P)
+RC_sub_PermSamples <- matrix(0, nrow=RC_n, ncol=P)
+
+for(i in 1:P){
+  GR_sub_PermSamples[, i] <- sample(GR_sub_variable, size=GR_n, replace=FALSE)
+}
+
+for(i in 1:P){
+  LW_sub_PermSamples[, i] <- sample(LW_sub_variable, size=LW_n, replace=FALSE)
+}
+
+for(i in 1:P){
+  RC_sub_PermSamples[, i] <- sample(RC_sub_variable, size=RC_n, replace=FALSE)
+}
+
+# Initialize vectors to store the test stats
+Perm.test.stat_GR_LW_sub_A1A2 <- rep(0, P)
+Perm.test.stat_GR_LW_sub_B1 <- rep(0, P)
+Perm.test.stat_GR_LW_sub_B2 <- rep(0, P)
+
+Perm.test.stat_GR_RC_sub_A1A2 <- rep(0, P)
+Perm.test.stat_GR_RC_sub_B1 <- rep(0, P)
+Perm.test.stat_GR_RC_sub_B2 <- rep(0, P)
+
+Perm.test.stat_LW_RC_sub_A1A2 <- rep(0, P)
+Perm.test.stat_LW_RC_sub_B1 <- rep(0, P)
+Perm.test.stat_LW_RC_sub_B2 <- rep(0, P)
+
+# Loop through, and calculate test stats
+for(i in 1:P){
+  Perm.test.stat_GR_LW_sub_A1A2[i] <- abs(mean(GR_sub_PermSamples[
+    readers_corpus$Level=="Beginner", i]) - mean(LW_sub_PermSamples[
+      literature_corpus$Level=="Children's literature", i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_LW_sub_B1[i] <- abs(mean(GR_sub_PermSamples[
+    readers_corpus$Level=="Intermediate", i]) - mean(LW_sub_PermSamples[
+      literature_corpus$Level=="Young adult fiction", i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_LW_sub_B2[i] <- abs(mean(GR_sub_PermSamples[
+    readers_corpus$Level=="Advanced", i]) - mean(LW_sub_PermSamples[
+      literature_corpus$Level=="Adult literature", i]))
+}
+
+for(i in 1:P){
+  Perm.test.stat_GR_RC_sub_A1A2[i] <- abs(mean(GR_sub_PermSamples[
+    readers_corpus$Level=="Beginner", i]) - mean(RC_sub_PermSamples[
+      reference_corpus$group==1, i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_RC_sub_B1[i] <- abs(mean(GR_sub_PermSamples[
+    readers_corpus$Level=="Intermediate", i]) - mean(RC_sub_PermSamples[
+      reference_corpus$group==1, i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_RC_sub_B2[i] <- abs(mean(GR_sub_PermSamples[
+    readers_corpus$Level=="Advanced", i]) - mean(RC_sub_PermSamples[
+      reference_corpus$group==1, i]))
+}
+
+# === Calculate the permutation p-value ===
+
+# === GRs vs. LWs ===
+  
+# If there is no difference in the mean average subjunctive frequencies of beginner GRs and LWs, we would observe a test statistic of 0.0037 or more by chance roughly 1.16% of the time.
+mean(Perm.test.stat_GR_LW_sub_A1A2 >= GR_LW_mean_sub_stat_A1A2)
+# If there is no difference in the mean average subjunctive frequencies of intermediate GRs and LWs, we would observe a test statistic of 0.002 or more by chance roughly 50.47% of the time.
+mean(Perm.test.stat_GR_LW_sub_B1 >= GR_LW_mean_sub_stat_B1)
+# If there is no difference in the mean average subjunctive frequencies of advanced GRs and LWs, we would observe a test statistic of 0.001 or more by chance roughly 79.86% of the time.
+mean(Perm.test.stat_GR_LW_sub_B2 >= GR_LW_mean_sub_stat_B2)
+
+# === GRs vs. RC ===
+
+# If there is no difference in the mean average subjunctive frequencies of beginner GRs and RC, we would observe a test statistic of 0.0038 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_GR_RC_sub_A1A2 >= GR_RC_mean_sub_stat_A1A2)
+# If there is no difference in the mean average subjunctive frequencies of intermediate GRs and RC, we would observe a test statistic of 0.0011 or more by chance roughly 62.55% of the time.
+mean(Perm.test.stat_GR_RC_sub_B1 >= GR_RC_mean_sub_stat_B1)
+# If there is no difference in the mean average subjunctive frequencies of advanced GRs and RC, we would observe a test statistic of 0.0013 or more by chance roughly 52.51% of the time.
+mean(Perm.test.stat_GR_RC_sub_B2 >= GR_RC_mean_sub_stat_B2)
+
+# === LW vs. RC ===
+
+# If there is no difference in the mean average subjunctive frequencies of beginner LW and RC, we would observe a test statistic of 3.0127e-05 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_sub_A1A2 >= LW_RC_mean_sub_stat_A1A2)
+# If there is no difference in the mean average subjunctive frequencies of intermediate LW and RC, we would observe a test statistic of 0.00083 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_sub_B1 >= LW_RC_mean_sub_stat_B1)
+# If there is no difference in the mean average subjunctive frequencies of advanced LW and RC, we would observe a test statistic of 0.0024 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_sub_B2 >= LW_RC_mean_sub_stat_B2)
+
+# --------------------
+
+# 3) RELATIVE FREQUENCY OF B1 WORDS
+
+# === Step 1. Calculate the difference in sample means: ===
+
+GR_mean_B1_A1A2 <- mean(readers_corpus$Freq_B1[readers_corpus$Level=="Beginner"])
+GR_mean_B1_B1 <- mean(readers_corpus$Freq_B1[readers_corpus$Level=="Intermediate"])
+GR_mean_B1_B2 <- mean(readers_corpus$Freq_B1[readers_corpus$Level=="Advanced"])
+
+LW_mean_B1_A1A2 <- mean(literature_corpus$Freq_B1[literature_corpus$Level=="Children's literature"])
+LW_mean_B1_B1 <- mean(literature_corpus$Freq_B1[literature_corpus$Level=="Young adult fiction"])
+LW_mean_B1_B2 <- mean(literature_corpus$Freq_B1[literature_corpus$Level=="Adult literature"])
+
+RC_mean_B1 <- mean(reference_corpus$Freq_B1)
+
+# === Step 2. Calculate the absolute difference in means ===
+
+GR_LW_mean_B1_stat_A1A2 <- abs(GR_mean_B1_A1A2 - LW_mean_B1_A1A2)
+GR_LW_mean_B1_stat_B1 <- abs(GR_mean_B1_B1 - LW_mean_B1_B1)
+GR_LW_mean_B1_stat_B2 <- abs(GR_mean_B1_B2 - LW_mean_B1_B2)
+
+GR_RC_mean_B1_stat_A1A2 <- abs(GR_mean_B1_A1A2 - RC_mean_B1)
+GR_RC_mean_B1_stat_B1 <- abs(GR_mean_B1_B1 - RC_mean_B1)
+GR_RC_mean_B1_stat_B2 <- abs(GR_mean_B1_B2 - RC_mean_B1)
+
+LW_RC_mean_B1_stat_A1A2 <- abs(LW_mean_B1_A1A2 - RC_mean_B1)
+LW_RC_mean_B1_stat_B1 <- abs(LW_mean_B1_B1 - RC_mean_B1)
+LW_RC_mean_B1_stat_B2 <- abs(LW_mean_B1_B2 - RC_mean_B1)
+
+# === Step 3. Perform the permutation test ===
+
+# Variable we will resample from
+GR_B1_variable <- readers_corpus$Freq_B1
+LW_B1_variable <- literature_corpus$Freq_B1
+RC_B1_variable <- reference_corpus$Freq_B1
+
+# Initialize a matrix to store the permutation data. Each column is a permutation sample of data.
+GR_B1_PermSamples <- matrix(0, nrow=GR_n, ncol=P)
+LW_B1_PermSamples <- matrix(0, nrow=LW_n, ncol=P)
+RC_B1_PermSamples <- matrix(0, nrow=RC_n, ncol=P)
+
+for(i in 1:P){
+  GR_B1_PermSamples[, i] <- sample(GR_B1_variable, size=GR_n, replace=FALSE)
+}
+
+for(i in 1:P){
+  LW_B1_PermSamples[, i] <- sample(LW_B1_variable, size=LW_n, replace=FALSE)
+}
+
+for(i in 1:P){
+  RC_B1_PermSamples[, i] <- sample(RC_B1_variable, size=RC_n, replace=FALSE)
+}
+
+# Initialize vectors to store the test stats
+Perm.test.stat_GR_LW_B1_A1A2 <- rep(0, P)
+Perm.test.stat_GR_LW_B1_B1 <- rep(0, P)
+Perm.test.stat_GR_LW_B1_B2 <- rep(0, P)
+
+Perm.test.stat_GR_RC_B1_A1A2 <- rep(0, P)
+Perm.test.stat_GR_RC_B1_B1 <- rep(0, P)
+Perm.test.stat_GR_RC_B1_B2 <- rep(0, P)
+
+Perm.test.stat_LW_RC_B1_A1A2 <- rep(0, P)
+Perm.test.stat_LW_RC_B1_B1 <- rep(0, P)
+Perm.test.stat_LW_RC_B1_B2 <- rep(0, P)
+
+# Loop through, and calculate test stats
+for(i in 1:P){
+  Perm.test.stat_GR_LW_B1_A1A2[i] <- abs(mean(GR_B1_PermSamples[
+    readers_corpus$Level=="Beginner", i]) - mean(LW_B1_PermSamples[
+      literature_corpus$Level=="Children's literature", i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_LW_B1_B1[i] <- abs(mean(GR_B1_PermSamples[
+    readers_corpus$Level=="Intermediate", i]) - mean(LW_B1_PermSamples[
+      literature_corpus$Level=="Young adult fiction", i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_LW_B1_B2[i] <- abs(mean(GR_B1_PermSamples[
+    readers_corpus$Level=="Advanced", i]) - mean(LW_B1_PermSamples[
+      literature_corpus$Level=="Adult literature", i]))
+}
+
+for(i in 1:P){
+  Perm.test.stat_GR_RC_B1_A1A2[i] <- abs(mean(GR_B1_PermSamples[
+    readers_corpus$Level=="Beginner", i]) - mean(RC_B1_PermSamples[
+      reference_corpus$group==1, i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_RC_B1_B1[i] <- abs(mean(GR_B1_PermSamples[
+    readers_corpus$Level=="Intermediate", i]) - mean(RC_B1_PermSamples[
+      reference_corpus$group==1, i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_RC_B1_B2[i] <- abs(mean(GR_B1_PermSamples[
+    readers_corpus$Level=="Advanced", i]) - mean(RC_B1_PermSamples[
+      reference_corpus$group==1, i]))
+}
+
+# === Calculate the permutation p-value ===
+
+# === GRs vs. LWs ===
+  
+# If there is no difference in the mean average B1 word frequencies of beginner GRs and LWs, we would observe a test statistic of 0.0028 or more by chance roughly 38.72% of the time.
+mean(Perm.test.stat_GR_LW_B1_A1A2 >= GR_LW_mean_B1_stat_A1A2)
+# If there is no difference in the mean average B1 word frequencies of intermediate GRs and LWs, we would observe a test statistic of 0.00057 or more by chance roughly 86.64% of the time.
+mean(Perm.test.stat_GR_LW_B1_B1 >= GR_LW_mean_B1_stat_B1)
+# If there is no difference in the mean average B1 word frequencies of advanced GRs and LWs, we would observe a test statistic of 0.0019 or more by chance roughly 62% of the time.
+mean(Perm.test.stat_GR_LW_B1_B2 >= GR_LW_mean_B1_stat_B2)
+
+# === GRs vs. RC ===
+
+# If there is no difference in the mean average B1 word frequencies of beginner GRs and RC, we would observe a test statistic of 0.0088 or more by chance roughly 8.6% of the time.
+mean(Perm.test.stat_GR_RC_B1_A1A2 >= GR_RC_mean_B1_stat_A1A2)
+# If there is no difference in the mean average B1 word frequencies of intermediate GRs and RC, we would observe a test statistic of 0.008 or more by chance roughly 16.7% of the time.
+mean(Perm.test.stat_GR_RC_B1_B1 >= GR_RC_mean_B1_stat_B1)
+# If there is no difference in the mean average B1 word frequencies of advanced GRs and RC, we would observe a test statistic of 0.002 or more by chance roughly 99.55% of the time.
+mean(Perm.test.stat_GR_RC_B1_B2 >= GR_RC_mean_B1_stat_B2)
+
+# === LW vs. RC ===
+
+# If there is no difference in the mean average B1 word frequencies of beginner LW and RC, we would observe a test statistic of 0.011 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_B1_A1A2 >= LW_RC_mean_B1_stat_A1A2)
+# If there is no difference in the mean average B1 word frequencies of intermediate LW and RC, we would observe a test statistic of 0.0086 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_B1_B1 >= LW_RC_mean_B1_stat_B1)
+# If there is no difference in the mean average B1 word frequencies of advanced LW and RC, we would observe a test statistic of 0.00014 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_B1_B2 >= LW_RC_mean_B1_stat_B2)
+
+# --------------------
+
+# 4) RELATIVE FREQUENCY OF THE GRADED VOCABULARY'S CONTEXT
+
+# === Step 1. Calculate the difference in sample means: ===
+
+GR_mean_ctxt_freq_A1A2 <- mean(readers_corpus$Ctxt_Freq[readers_corpus$Level=="Beginner"])
+GR_mean_ctxt_freq_B1 <- mean(readers_corpus$Ctxt_Freq[readers_corpus$Level=="Intermediate"])
+GR_mean_ctxt_freq_B2 <- mean(readers_corpus$Ctxt_Freq[readers_corpus$Level=="Advanced"])
+
+LW_mean_ctxt_freq_A1A2 <- mean(literature_corpus$Ctxt_Freq[literature_corpus$Level=="Children's literature"])
+LW_mean_ctxt_freq_B1 <- mean(literature_corpus$Ctxt_Freq[literature_corpus$Level=="Young adult fiction"])
+LW_mean_ctxt_freq_B2 <- mean(literature_corpus$Ctxt_Freq[literature_corpus$Level=="Adult literature"])
+
+RC_mean_ctxt_freq <- mean(reference_corpus$Ctxt_Freq)
+
+# === Step 2. Calculate the absolute difference in means ===
+
+GR_LW_mean_ctxt_freq_stat_A1A2 <- abs(GR_mean_ctxt_freq_A1A2 - LW_mean_ctxt_freq_A1A2)
+GR_LW_mean_ctxt_freq_stat_B1 <- abs(GR_mean_ctxt_freq_B1 - LW_mean_ctxt_freq_B1)
+GR_LW_mean_ctxt_freq_stat_B2 <- abs(GR_mean_ctxt_freq_B2 - LW_mean_ctxt_freq_B2)
+
+GR_RC_mean_ctxt_freq_stat_A1A2 <- abs(GR_mean_ctxt_freq_A1A2 - RC_mean_ctxt_freq)
+GR_RC_mean_ctxt_freq_stat_B1 <- abs(GR_mean_ctxt_freq_B1 - RC_mean_ctxt_freq)
+GR_RC_mean_ctxt_freq_stat_B2 <- abs(GR_mean_ctxt_freq_B2 - RC_mean_ctxt_freq)
+
+LW_RC_mean_ctxt_freq_stat_A1A2 <- abs(LW_mean_ctxt_freq_A1A2 - RC_mean_ctxt_freq)
+LW_RC_mean_ctxt_freq_stat_B1 <- abs(LW_mean_ctxt_freq_B1 - RC_mean_ctxt_freq)
+LW_RC_mean_ctxt_freq_stat_B2 <- abs(LW_mean_ctxt_freq_B2 - RC_mean_ctxt_freq)
+
+# === Step 3. Perform the permutation test ===
+
+# Variable we will resample from
+GR_ctxt_freq_variable <- readers_corpus$Ctxt_Freq
+LW_ctxt_freq_variable <- literature_corpus$Ctxt_Freq
+RC_ctxt_freq_variable <- reference_corpus$Ctxt_Freq
+
+# Initialize a matrix to store the permutation data. Each column is a permutation sample of data.
+GR_ctxt_freq_PermSamples <- matrix(0, nrow=GR_n, ncol=P)
+LW_ctxt_freq_PermSamples <- matrix(0, nrow=LW_n, ncol=P)
+RC_ctxt_freq_PermSamples <- matrix(0, nrow=RC_n, ncol=P)
+
+for(i in 1:P){
+  GR_ctxt_freq_PermSamples[, i] <- sample(GR_ctxt_freq_variable, size=GR_n, replace=FALSE)
+}
+
+for(i in 1:P){
+  LW_ctxt_freq_PermSamples[, i] <- sample(LW_ctxt_freq_variable, size=LW_n, replace=FALSE)
+}
+
+for(i in 1:P){
+  RC_ctxt_freq_PermSamples[, i] <- sample(RC_ctxt_freq_variable, size=RC_n, replace=FALSE)
+}
+
+# Initialize vectors to store the test stats
+Perm.test.stat_GR_LW_ctxt_freq_A1A2 <- rep(0, P)
+Perm.test.stat_GR_LW_ctxt_freq_B1 <- rep(0, P)
+Perm.test.stat_GR_LW_ctxt_freq_B2 <- rep(0, P)
+
+Perm.test.stat_GR_RC_ctxt_freq_A1A2 <- rep(0, P)
+Perm.test.stat_GR_RC_ctxt_freq_B1 <- rep(0, P)
+Perm.test.stat_GR_RC_ctxt_freq_B2 <- rep(0, P)
+
+Perm.test.stat_LW_RC_ctxt_freq_A1A2 <- rep(0, P)
+Perm.test.stat_LW_RC_ctxt_freq_B1 <- rep(0, P)
+Perm.test.stat_LW_RC_ctxt_freq_B2 <- rep(0, P)
+
+# Loop through, and calculate test stats
+for(i in 1:P){
+  Perm.test.stat_GR_LW_ctxt_freq_A1A2[i] <- abs(mean(GR_ctxt_freq_PermSamples[
+    readers_corpus$Level=="Beginner", i]) - mean(LW_ctxt_freq_PermSamples[
+      literature_corpus$Level=="Children's literature", i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_LW_ctxt_freq_B1[i] <- abs(mean(GR_ctxt_freq_PermSamples[
+    readers_corpus$Level=="Intermediate", i]) - mean(LW_ctxt_freq_PermSamples[
+      literature_corpus$Level=="Young adult fiction", i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_LW_ctxt_freq_B2[i] <- abs(mean(GR_ctxt_freq_PermSamples[
+    readers_corpus$Level=="Advanced", i]) - mean(LW_ctxt_freq_PermSamples[
+      literature_corpus$Level=="Adult literature", i]))
+}
+
+for(i in 1:P){
+  Perm.test.stat_GR_RC_ctxt_freq_A1A2[i] <- abs(mean(GR_ctxt_freq_PermSamples[
+    readers_corpus$Level=="Beginner", i]) - mean(RC_ctxt_freq_PermSamples[
+      reference_corpus$group==1, i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_RC_ctxt_freq_B1[i] <- abs(mean(GR_ctxt_freq_PermSamples[
+    readers_corpus$Level=="Intermediate", i]) - mean(RC_ctxt_freq_PermSamples[
+      reference_corpus$group==1, i]))
+}
+for(i in 1:P){
+  Perm.test.stat_GR_RC_ctxt_freq_B2[i] <- abs(mean(GR_ctxt_freq_PermSamples[
+    readers_corpus$Level=="Advanced", i]) - mean(RC_ctxt_freq_PermSamples[
+      reference_corpus$group==1, i]))
+}
+
+# === Calculate the permutation p-value ===
+
+# === GRs vs. LWs ===
+  
+# If there is no difference in the mean average graded vocabulary's context frequencies of beginner GRs and LWs, we would observe a test statistic of 0.00058 or more by chance roughly 1.24% of the time.
+mean(Perm.test.stat_GR_LW_ctxt_freq_A1A2 >= GR_LW_mean_ctxt_freq_stat_A1A2)
+# If there is no difference in the mean average graded vocabulary's context frequencies of intermediate GRs and LWs, we would observe a test statistic of 0.00048 or more by chance roughly 22.11% of the time.
+mean(Perm.test.stat_GR_LW_ctxt_freq_B1 >= GR_LW_mean_ctxt_freq_stat_B1)
+# If there is no difference in the mean average graded vocabulary's context frequencies of advanced GRs and LWs, we would observe a test statistic of 0.00081 or more by chance roughly 4.5% of the time.
+mean(Perm.test.stat_GR_LW_ctxt_freq_B2 >= GR_LW_mean_ctxt_freq_stat_B2)
+
+# === GRs vs. RC ===
+
+# If there is no difference in the mean average graded vocabulary's context frequencies of beginner GRs and RC, we would observe a test statistic of 0.0048 or more by chance roughly 84.58% of the time.
+mean(Perm.test.stat_GR_RC_ctxt_freq_A1A2 >= GR_RC_mean_ctxt_freq_stat_A1A2)
+# If there is no difference in the mean average graded vocabulary's context frequencies of intermediate GRs and RC, we would observe a test statistic of 0.0051 or more by chance roughly 21.78% of the time.
+mean(Perm.test.stat_GR_RC_ctxt_freq_B1 >= GR_RC_mean_ctxt_freq_stat_B1)
+# If there is no difference in the mean average graded vocabulary's context advanced of beginner GRs and RC, we would observe a test statistic of 0.005 or more by chance roughly 42.44% of the time.
+mean(Perm.test.stat_GR_RC_ctxt_freq_B2 >= GR_RC_mean_ctxt_freq_stat_B2)
+
+# === LWs vs. RC ===
+
+# If there is no difference in the mean average graded vocabulary's context frequencies of beginner LWs and RC, we would observe a test statistic of 0.0043 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_ctxt_freq_A1A2 >= LW_RC_mean_ctxt_freq_stat_A1A2)
+# If there is no difference in the mean average graded vocabulary's context frequencies of intermediate LWs and RC, we would observe a test statistic of 0.0056 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_ctxt_freq_B1 >= LW_RC_mean_ctxt_freq_stat_B1)
+# If there is no difference in the mean average graded vocabulary's context frequencies of advanced LWs and RC, we would observe a test statistic of 0.0058 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_ctxt_freq_B2 >= LW_RC_mean_ctxt_freq_stat_B2)
+
+
+# VISUALISATION OF THE MOST RELEVANT DIFFERENCES
+
+# -- Average depth of the graded vocabulary context parse trees --
+
+# Beginner vs. children's literature
+
+# - Graded readers vs. literary works
+# - Graded readers vs. reference corpus
+# - Literary works vs. reference corpus
+
+GR.LW.RC <- ggplot() +
+  geom_histogram(aes(x=readers_corpus$Ctxt_Avg_Depth[
+    readers_corpus$Level=="Beginner"], y=after_stat(density)), color = "white", fill = "#D14D72", bins = 100) +
+  geom_vline(aes(xintercept = GR_mean_ctxt_depth_A1A2), color = "black", linetype="dotdash", linewidth = 0.5) +
+  labs(x ='\nAverage depth of the parse trees of the sentences where the context of the graded vocabulary appears', y='Probability density\n', title = 'Comparison among all three corpora') +
+  geom_density(aes(x=readers_corpus$Ctxt_Avg_Depth[
+    readers_corpus$Level=="Beginner"]), color = "darkgray", linewidth = 1) +
+  annotate(geom="text", x=3.8, y=3.1, label="Beginner graded readers", size=5) +
+  geom_histogram(aes(x=literature_corpus$Ctxt_Avg_Depth[
+    literature_corpus$Level=="Children's literature"], y=after_stat(density)), color = "white", fill = "#FFABAB", alpha=0.6, bins = 100) +
+  geom_vline(aes(xintercept = LW_mean_ctxt_depth_A1A2), color = "black", linetype="dotdash", linewidth = 0.5) +
+  annotate(geom="text", x=4.7, y=1, label="Children's literature", size=5) +
+  geom_density(aes(x=literature_corpus$Ctxt_Avg_Depth[
+    literature_corpus$Level=="Children's literature"]), color = "darkgray", linewidth = 1) +
+  geom_histogram(aes(x=reference_corpus$Ctxt_Avg_Depth[
+    reference_corpus$group==1], y=after_stat(density)), color = "black", fill = "#FEF2F4", alpha=0.8, bins = 100) +
+    geom_vline(aes(xintercept = RC_mean_ctxt_depth), color = "black", linetype="dotdash", linewidth = 0.5) +
+    annotate(geom="text", x=7, y=0.6, label="Reference corpus", size=5) +
+    geom_density(aes(x=reference_corpus$Ctxt_Avg_Depth[
+    reference_corpus$group==1]),color = "darkgray", linewidth = 1) +
+  theme(plot.title = element_text(hjust = 0.5, size=18)) +
+  theme(axis.title.y = element_text(hjust = 0.5, size=14)) +
+  theme(axis.title.x = element_text(hjust = 0.5, size=14))
+
+GR.LW.RC
+
+```
+
