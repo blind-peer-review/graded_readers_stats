@@ -3,96 +3,60 @@ import time
 import numpy as np
 import pandas as pd
 from codetiming import Timer
+from pandas.core.common import flatten
 from sklearn import metrics
 from sklearn.metrics import accuracy_score, precision_score, recall_score, \
-    f1_score, classification_report, multilabel_confusion_matrix
+    f1_score, classification_report
 
 from graded_readers_stats import utils
+from graded_readers_stats.constants import (
+    COL_LEMMA,
+    COL_STANZA_DOC,
+    COL_LEVEL,
+)
 from graded_readers_stats.data import read_pandas_csv
+# from graded_readers_stats import logit
+from graded_readers_stats.preprocess import (
+    run,
+    text_analysis_pipeline_ner,
+    shrink_content_step,
+)
 
 
 def my_train_test_split(df, indices):
     return df.iloc[~df.index.isin(indices)], df.iloc[indices]
 
 
-def calc_accuracy(tn, fp, fn, tp) -> float:
-    if (tp + fp + tn + fn) == 0:
-        return 0
-    return (tp + tn) / (tp + fp + tn + fn)
-
-
-def calc_balanced_accuracy(tn, fp, fn, tp):
-    sensitivity = tp / (tp + fn)
-    specificity = tn / (tn + fp)
-    return (sensitivity + specificity) / 2
-
-
-def calc_precision(fp, tp) -> float:
-    if (tp + fp) == 0:
-        return 0
-    return tp / (tp + fp)
-
-
-def calc_recall(fn, tp) -> float:
-    if (tp + fn) == 0:
-        return 0
-    return tp / (tp + fn)
-
-
-def calc_f1(precision, recall) -> float:
-    if (precision + recall) == 0:
-        return 0
-    return 2 * (precision * recall) / (precision + recall)
-
-
-def my_classification_report(y_gold, y_pred, labels, cm_name=""):
-    cm = multilabel_confusion_matrix(y_gold, y_pred, labels=labels)
-    report = {}
-    for index, label in enumerate(labels):
-        tn, fp, fn, tp = cm[index].ravel()
-
-        if cm_name != "":
-            print(f"{cm_name} confusion matrix for {label}")
-            print(" tn fp")
-            print(" fn tp")
-            print()
-            print(f"{tn:>3}{fp:>3}")
-            print(f"{fn:>3}{tp:>3}")
-            print()
-
-        precision = calc_precision(fp, tp)
-        recall = calc_recall(fn, tp)
-        report[label] = {
-            "balanced": calc_balanced_accuracy(tn, fp, fn, tp),
-            "accuracy": calc_accuracy(tn, fp, fn, tp),
-            "precision": precision,
-            "recall": recall,
-            "f1": calc_f1(precision, recall)
-        }
-    return report
-
-
-def confusion_matrix(y_true, y_pred, name, column, labels):
+def confusion_matrix(y_train_true, y_train_pred,
+                     y_test_true, y_test_pred,
+                     column):
     print("---")
-    print(f"{name} data confusion matrix using '{column}' column")
+    print(f"Train data confusion matrix using '{column}' column")
     print("Matrix format:")
     print("[[TN FP]")
     print(" [FN TP]]")
-    print(f"1. {labels[0]}")
-    print(f"2. {labels[1]}")
-    print(f"3. {labels[2]}")
+    print("1. Inicial")
+    print("2. Intermedio")
+    print("3. Avanzado")
     print("---")
-    print(
-        metrics.multilabel_confusion_matrix(
-            y_true, y_pred[column], labels=labels
-        )
-    )
+    mx_train = metrics.multilabel_confusion_matrix(y_train_true, y_train_pred[column], labels=["Inicial", "Intermedio", "Avanzado"])
+    print(mx_train)
+    print("---")
+    print(f"Test data confusion matrix using '{column}' column")
+    print("Matrix format:")
+    print("[[TN FP]")
+    print(" [FN TP]]")
+    print("1. Inicial")
+    print("2. Intermedio")
+    print("3. Avanzado")
+    print("---")
+    mx_test = metrics.multilabel_confusion_matrix(y_test_true, y_test_pred[column], labels=["Inicial", "Intermedio", "Avanzado"])
+    print(mx_test)
+    # return f'{mx_train}\n---\n{mx_test}'
 
 
 def execute(args):
     corpus_path = args.corpus_path
-    labels = args.labels.split(",")
-    test_indices = list(map(int, args.indices.split(",")))
 
     print()
     print('BASELINES START')
@@ -103,43 +67,45 @@ def execute(args):
     timer_text = '{name}: {:0.0f} seconds'
     start_main = time.time()
 
-    ##############################################################################
-    #                                Preprocess                                  #
-    ##############################################################################
+##############################################################################
+#                                Preprocess                                  #
+##############################################################################
 
     with Timer(name='Load data', text=timer_text):
         texts_df = read_pandas_csv(corpus_path)
 
-    ##############################################################################
-    #                             Baselines
-    ##############################################################################
+##############################################################################
+#                             Baselines
+##############################################################################
 
     with Timer(name='Baselines', text=timer_text):
         # Instead of using random train-to-test split,
-        # we are using the random seed generated previously in R.
-        test_indices_readers = [
-            1, 2, 6, 7, 9, 21, 23, 26, 29, 30, 32, 33, 34, 36, 41, 42, 46
-        ]
-        test_indices_literature = [
-            0, 3, 8, 14, 17, 21, 23, 25, 26, 31, 34, 35, 42, 45, 46
-        ]
-        # test_indices = test_indices_readers
+        # we are using the same random value from R.
+        # This is because we want to synchronize the seed between R and Python.
+        test_indices_readers = [1, 2, 6, 7, 9, 21, 23, 26, 29, 30, 32, 33, 34, 36, 41, 42, 46]
+        test_indices_literature = []
+        test_indices = test_indices_readers
 
-        _, y_test_df = my_train_test_split(
+        y_train_df, y_test_df = my_train_test_split(
             texts_df, test_indices
         )
 
         # Create an empty data frame
+        y_train_pred_df = pd.DataFrame(y_train_df["Title"])
         y_test_pred_df = pd.DataFrame(y_test_df["Title"])
 
         # Most frequent class prediction
-        # The mode of a set of values is the value that appears most often.
-        # 0th element is the most frequent one.
+        y_train_pred_df["most_frequent"] = y_train_df["Level"].mode()[0]
         y_test_pred_df["most_frequent"] = y_test_df["Level"].mode()[0]
 
         # Weighted guessing
-        np.random.seed(42)
         probabilities = texts_df["Level"].value_counts(normalize=True)
+        np.random.seed(42)
+        y_train_pred_df["weighted"] = np.random.choice(
+            probabilities.index.tolist(),
+            size=len(y_train_pred_df),
+            p=probabilities
+        )
         y_test_pred_df["weighted"] = np.random.choice(
             probabilities.index.tolist(),
             size=len(y_test_pred_df),
@@ -147,70 +113,79 @@ def execute(args):
         )
 
         # 1000-fold randomization
-        random_count = 1000
-        result = {}
-        for label in labels:
-            result[label] = {
-                "balanced": 0,
-                "accuracy": 0,
-                "precision": 0,
-                "recall": 0,
-                "f1": 0,
-            }
-
-        y_gold = y_test_df["Level"]
-        for index in range(random_count):
-            y_rand_pred = np.random.choice(labels, size=len(y_test_df))
-            report = my_classification_report(
-                y_gold,
-                y_rand_pred,
-                labels
+        y_train_acc = 0
+        y_test_acc = 0
+        acc_count = 1000
+        for index in range(acc_count):
+            y_train_random_pred = np.random.choice(
+                probabilities.index.tolist(),
+                size=len(y_train_pred_df)
             )
-            # accumulate scores from each iteration
-            for label in labels:
-                result[label]["balanced"] += report[label]["balanced"]
-                result[label]["accuracy"] += report[label]["accuracy"]
-                result[label]["precision"] += report[label]["precision"]
-                result[label]["recall"] += report[label]["recall"]
-                result[label]["f1"] += report[label]["f1"]
+            y_train_acc += classification_report(
+                y_train_df["Level"],
+                y_train_random_pred,
+                output_dict=True,
+                zero_division=0
+            )["accuracy"]
 
-        # find averages
-        for label in labels:
-            result[label]["balanced"] /= random_count
-            result[label]["accuracy"] /= random_count
-            result[label]["precision"] /= random_count
-            result[label]["recall"] /= random_count
-            result[label]["f1"] /= random_count
+            y_test_random_pred = np.random.choice(
+                probabilities.index.tolist(),
+                size=len(y_test_pred_df)
+            )
+            y_test_acc += classification_report(
+                y_test_df["Level"],
+                y_test_random_pred,
+                output_dict=True,
+                zero_division=0
+            )["accuracy"]
+        y_train_acc_mean = y_train_acc / acc_count
+        y_test_acc_mean = y_test_acc / acc_count
+        print("---")
+        print(f"Train data 1000-fold mean accuracy: {y_train_acc_mean}")
+        print("---")
+        print(f"Test data 1000-fold mean accuracy: {y_test_acc_mean}")
+
+    # output = evaluation_and_conf_mx(
+        #     y_train_df["Level"], y_train_pred_df,
+        #     y_test_df["Level"], y_test_pred_df,
+        #     columns=["most_frequent", "weighted"]
+        # )
+        # print('\n'.join(output))
 
         for column in ["weighted", "most_frequent"]:
             print("---")
-            column_result = my_classification_report(
-                y_gold,
-                y_test_pred_df[column],
-                labels,
-                cm_name=column
+            print(f"Train data evaluation using '{column}' column")
+            print(
+                classification_report(
+                    y_train_df["Level"],
+                    y_train_pred_df[column],
+                    zero_division=0
+                )
             )
-            for label in labels:
-                print(f"{column} scores for {label}")
-                for key in column_result[label]:
-                    print(f"\t{key:>9} = {column_result[label][key]:.2f}")
+            print("---")
+            print(f"Test data evaluation using '{column}' column")
+            print(
+                classification_report(
+                    y_test_df["Level"],
+                    y_test_pred_df[column],
+                    zero_division=0
+                )
+            )
+            # print(
+            confusion_matrix(
+                y_train_df["Level"], y_train_pred_df,  # train data
+                y_test_df["Level"], y_test_pred_df,    # test data
+                column
+            )
+            # )
 
-        print("---")
-        for label in labels:
-            print(f"1000-fold randomization scores for {label}")
-            for key in result[label]:
-                print(f"\t{key:>9} = {result[label][key]:.2f}")
-
-        # confusion_matrix(
-        #         y_gold, y_test_pred_df,
-        #         name="Test",
-        #         column=column,
-        #         labels=labels
-        #     )
-
-    ##############################################################################
-    #                                   Done
-    ##############################################################################
+    with Timer(name='Export CSV', text=timer_text):
+        print("")
+        # file_name = corpus_path.split("/")[-1]
+        # df.to_csv(f'./output/logit-bow-{file_name}', index=False)
+##############################################################################
+#                                   Done
+##############################################################################
 
     print()
     utils.duration(start_main, 'Total time')

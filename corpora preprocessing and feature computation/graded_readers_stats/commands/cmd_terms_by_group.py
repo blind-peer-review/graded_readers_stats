@@ -37,7 +37,7 @@ def analyze(args):
     if max_terms:
         terms_df = terms_df[:max_terms]
     terms_df = run(terms_df, vocabulary_pipeline)
-    terms_df = terms_df.drop(columns=COL_STANZA_DOC)
+    terms_df = terms_df.drop(columns=COL_STANZA_DOC, errors='ignore')
     terms = [term for terms in terms_df[COL_LEMMA] for term in terms]
 
     for cur_path in corpus_path:
@@ -48,7 +48,7 @@ def analyze(args):
 
         with Timer(name='Preprocess', text=timer_text):
             texts_df = run(texts_df, text_analysis_pipeline_simple)
-            texts_df = texts_df.drop(columns=COL_STANZA_DOC)
+            texts_df = texts_df.drop(columns=COL_STANZA_DOC, errors='ignore')
 
         with Timer(name='Locate terms', text=timer_text):
             texts = texts_df[COL_LEMMA]
@@ -64,7 +64,7 @@ def analyze(args):
 
     with Timer(name='Export CSV', text=timer_text):
         terms_df = terms_df.join(pd.DataFrame(result))
-        terms_df = terms_df.drop(columns=["Topic", "Subtopic", "Lemma"])
+        terms_df = terms_df.drop(columns=["Topic", "Subtopic", "Lemma"], errors='ignore')
         terms_df.to_csv(f'./output/term_counts_by_text_group.csv', index=False)
 
     print()

@@ -130,7 +130,7 @@ def analyze(args):
             range(0, len(terms_df))
         )
         texts_df['TFIDF'] = texts_df["Freq"] * texts_df["IDF"]
-        # texts_df = texts_df.drop(columns="IDF")
+        # texts_df = texts_df.drop(columns="IDF", errors="ignore")
 
     with Timer(name='Tree', text=timer_text):
         texts_df["Tree"] = texts_tree_props_pipeline(storage, docs_locs)
@@ -181,7 +181,7 @@ def analyze(args):
     with Timer(name='Context TFIDF', text=timer_text):
         texts_df["Context IDF"] = calc_mean_doc_context_idfs(ctxs_locs_by_docs)
         texts_df['Context TFIDF'] = texts_df["Context freq"] * texts_df["Context IDF"]
-        texts_df = texts_df.drop(columns="Context IDF")
+        texts_df = texts_df.drop(columns="Context IDF", errors="ignore")
 
     with Timer(name='Context Tree', text=timer_text):
         texts_df['Context tree'] = list(
@@ -224,14 +224,13 @@ def analyze(args):
             COL_STANZA_DOC,
             "Raw text",
             "Lemma",
-        ])
-        if "Treebank file" in texts_df.columns:
-            texts_df = texts_df.drop(columns="Treebank file")
+            "Treebank file"
+        ], errors="ignore")
         terms_df = terms_df.drop(columns=[
             COL_STANZA_DOC,
             "Topic",
-            "Subtopic",
-        ])
+            "Subtopic"
+        ], errors="ignore")
         file_name = corpus_path.split("/")[-1]
         texts_df.to_csv(f'./output/{file_name}', index=False)
 

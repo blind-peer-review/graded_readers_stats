@@ -1,4 +1,6 @@
+import os.path
 import time
+from pathlib import Path
 
 import pandas as pd
 from codetiming import Timer
@@ -11,7 +13,8 @@ from graded_readers_stats.constants import (
     COL_LEVEL,
 )
 from graded_readers_stats.data import read_pandas_csv
-from graded_readers_stats.logit import logit
+from graded_readers_stats.logit_tfidf import logit_tfidf
+from graded_readers_stats.logit_word2vec import logit_word2vec
 from graded_readers_stats.preprocess import (
     run,
     text_analysis_pipeline_ner,
@@ -21,6 +24,8 @@ from graded_readers_stats.preprocess import (
 
 def execute(args):
     corpus_path = args.corpus_path
+    corpus_filename = Path(corpus_path).stem
+    cache_path = f'./data/cache/cmd-bow-{corpus_filename}.pickle'
     max_docs = args.max_docs
     shorten_content = args.shorten_content
     use_ner = args.strip_named_entities
@@ -40,46 +45,76 @@ def execute(args):
 ##############################################################################
 
     with Timer(name='Load data', text=timer_text):
-        texts_df = read_pandas_csv(corpus_path)
+        texts_df_already_preprocessed = False
+        if os.path.exists(cache_path):
+            texts_df = pd.read_pickle(cache_path)
+            texts_df_already_preprocessed = True
+        else:
+            texts_df = read_pandas_csv(corpus_path)
         if max_docs:
             texts_df = texts_df[:max_docs]
 
     with Timer(name='Preprocess', text=timer_text):
-        text_analysis_pipeline = text_analysis_pipeline_ner
-        if shorten_content:
-            text_analysis_pipeline.insert(1, shrink_content_step)
+        if not texts_df_already_preprocessed:
+            preprocessing_pipeline = text_analysis_pipeline_ner
+            if shorten_content:
+                preprocessing_pipeline.insert(1, shrink_content_step)
+            texts_df = run(texts_df, preprocessing_pipeline)
+            texts_df.to_pickle(cache_path)
 
-        texts_df = run(texts_df, text_analysis_pipeline)
+        X_sents_raw = []
+        y_sents = []
+        for doc, level in zip(texts_df[COL_LEMMA], texts_df[COL_LEVEL]):
+            X_sents_raw.extend(doc)
+            y_sents.extend([level] * len(doc))
+
         if use_ner:
+            # collect named entities from Stanza
             ner_items = texts_df[COL_STANZA_DOC]\
                 .apply(lambda x: [e.text for e in x.ents])\
-                .apply(lambda x: [w.lower() for w in x])
-            lemmas_dict = texts_df[COL_LEMMA]\
-                .apply(flatten)\
+                .apply(lambda x: [w.lower() for w in x]) \
+                .apply(lambda x: [w.split() for w in x]) \
+                .apply(flatten) \
                 .apply(list)
-            lemmas_series = pd.Series([
-                list(filter(lambda x: x not in ner_items[index], lemma))
-                for index, lemma in lemmas_dict.items()
-            ])
-            X = lemmas_series.apply(lambda x: ' '.join(x))
+            ner_items_all = set(flatten(ner_items))
+
+            # sentences
+            X_sents_filtered = [[w for w in s if w not in ner_items_all] for s in X_sents_raw]
+            X_sents = pd.Series([' '.join(s) for s in X_sents_filtered])
+
+            # documents
+            docs_flattened = texts_df[COL_LEMMA].apply(flatten).apply(list)
+            docs_filtered = docs_flattened.apply(lambda doc: [w for w in doc if w not in ner_items_all])
+            X = docs_filtered.apply(lambda x: ' '.join(x))
         else:
+            # no processing, use "as-is"
+            X_sents = pd.Series([' '.join(s) for s in X_sents_raw])
             X = texts_df[COL_LEMMA]\
                 .apply(flatten)\
                 .apply(list)\
                 .apply(lambda x: ' '.join(x))
+
         y = texts_df[COL_LEVEL]
-        # texts_df = texts_df.drop(columns=COL_STANZA_DOC)
+        y_sents = pd.Series(y_sents)
+
+        # texts_df = texts_df.drop(columns=COL_STANZA_DOC, errors='ignore')
 
 ##############################################################################
 #                             Logistic Regression
 ##############################################################################
 
-    with Timer(name='Logistic Regression', text=timer_text):
-        df = logit(X, y)
+    # with Timer(name='TF-IDF', text=timer_text):
+    #     df = logit_tfidf(X, y)
+    #     df.to_csv(f'./output/logit-bow-docs-{corpus_filename}.csv', index=False)
+    #     df = logit_tfidf(X_sents, y_sents)
+    #     df.to_csv(f'./output/logit-bow-sents-{corpus_filename}.csv', index=False)
 
-    with Timer(name='Export CSV', text=timer_text):
-        file_name = corpus_path.split("/")[-1]
-        df.to_csv(f'./output/logit-bow-{file_name}', index=False)
+    with Timer(name='Word2Vec', text=timer_text):
+        df = logit_word2vec(X, y)
+        df.to_csv(f'./output/logit-w2v-docs-{corpus_filename}.csv', index=False)
+        df = logit_word2vec(X_sents, y_sents)
+        df.to_csv(f'./output/logit-w2v-sents-{corpus_filename}.csv', index=False)
+
 ##############################################################################
 #                                   Done
 ##############################################################################

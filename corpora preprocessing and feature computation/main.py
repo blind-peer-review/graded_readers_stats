@@ -1,5 +1,6 @@
 import argparse
 
+from graded_readers_stats import _torch_patch
 from graded_readers_stats.commands import (
     cmd_analyze_documents,
     cmd_analyze_vocabulary,
@@ -160,24 +161,16 @@ subparser = subparsers.add_parser(
 subparser.add_argument(
     'corpus_path',
     help='file path to a CSV with file paths to texts')
-subparser.add_argument(
-    'labels',
-    help='comma separated level labels used to annotate the data e.g. '
-         'Inicial, Infantil, Intermedio, Avanzado, etc.')
-subparser.add_argument(
-    'indices',
-    help='comma separated list of indices used to select item as part of the '
-         'test set. We do that, because the random set is already done in R.')
 subparser.set_defaults(func=cmd_baselines.execute)
 
 ##############################################################################
 #                               Merge output
 ##############################################################################
 
-# subparser = subparsers.add_parser(
-#     'merge-output',
-#     help='Merge all CSV files into a single main.csv')
-# subparser.set_defaults(func=cmd_merge_output.merge_output)
+subparser = subparsers.add_parser(
+    'merge-output',
+    help='Merge all CSV files into a single main.csv')
+subparser.set_defaults(func=cmd_merge_output.merge_output)
 
 ##############################################################################
 #                                  MAIN

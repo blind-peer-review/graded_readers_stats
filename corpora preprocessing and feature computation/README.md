@@ -12,7 +12,7 @@ Please note that access to the complete data cannot be granted due to copyright 
 
 ## Requirements
 
-Python version 3.11
+Python version 3.10
 
 ## Installation
 
@@ -24,6 +24,7 @@ python -m venv env
 source env/bin/activate
 
 # download code dependencies
+pip install --upgrade pip setuptools wheel
 python -m pip install -r requirements.txt
 
 # download supporting files

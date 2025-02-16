@@ -1,12 +1,8 @@
 ---
-title: 'Deconstructing the Library of Babel: Analysis of linguistic complexity in
-  Spanish graded readers and literary works'
+title: "Deconstructing the Library of Babel: Analysis of linguistic complexity in Spanish graded readers and literary works"
 author: "Author 1"
 date: "2023-07-31"
-output:
-  html_document: default
-  word_document: default
-  pdf_document: default
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -36,6 +32,7 @@ library(corrplot)
 library(sjmisc)
 library(sjlabelled)
 library(ggridges)
+library(reshape2)
 ```
 
 **Loading data sets**
@@ -81,13 +78,39 @@ The original data sets have way too many columns. Now we are going to select onl
 # ================================ GRADED READERS DATA SET ================================
 
 # STEP 1. Select relevant columns
-readers_corpus <- dplyr::select(readers_corpus,
-                                c(1, 2, (11:13), 16, 18, 20, 23, (25:27), 255,
-                                  256, 258, 261, 263, 265, 267, 273, 372, 368,
-                                  374, 370, 346, 348, 350, 416, 418, 420, 422,
-                                  426, 428, 430, 651, 652, (657:659)))
+selected_columns <- c("Freq A1", "Freq A2", "Freq B1", "Freq B2",
+                      "TFIDF A1", "TFIDF A2", "TFIDF B1", "TFIDF B2",
+                      "Tree", "Context freq", "Context TFIDF", "Context tree",
+                      "deprel-mark DOC%", "deprel-advcl DOC%", "deprel-xcomp DOC%",
+                      "deprel-ccomp DOC%", "deprel-acl DOC%", "deprel-nmod DOC%",
+                      "deprel-conj DOC%", "deprel-appos DOC%",
+                      "upos-AUX-Tense-Pres DOC%", "upos-AUX-Tense-Past DOC%",
+                      "upos-AUX-Tense-Fut DOC%", "upos-AUX-Tense-Imp DOC%",
+                      "upos-AUX-Mood-Ind DOC%", "upos-AUX-Mood-Sub DOC%",
+                      "upos-AUX-Mood-Cnd DOC%", "upos-VERB-Tense-Pres DOC%",
+                      "upos-VERB-Tense-Past DOC%", "upos-VERB-Tense-Fut DOC%",
+                      "upos-VERB-Tense-Imp DOC%", "upos-VERB-Mood-Ind DOC%",
+                      "upos-VERB-Mood-Sub DOC%", "upos-VERB-Mood-Cnd DOC%",
+                      "Lexical density", "msttr", "mtld", "hdd", "Herdan")
 
-# STEP 2. Add up auxiliary and regular verb features in a single column
+readers_corpus <- readers_corpus %>% dplyr::select("Title", "Level",
+                                                   all_of(selected_columns))
+
+# STEP 2.1 Add up A1 and A2 vocabulary
+readers_corpus <- readers_corpus %>%
+  mutate(`Freq A1-A2` = `Freq A1` + `Freq A2`) %>%
+  select(1:(match("Freq A1", names(.)) - 1),  # Columns before "Freq A1"
+         `Freq A1-A2`,                         # New column
+         (match("Freq A2", names(.)) + 1):ncol(.))  # Columns after "Freq A2"
+
+readers_corpus <- readers_corpus %>%
+  mutate(`TFIDF A1-A2` = `TFIDF A1` + `TFIDF A2`) %>%
+  select(1:(match("TFIDF A1", names(.)) - 1),  # Columns before "Freq A1"
+         `TFIDF A1-A2`,                         # New column
+         (match("TFIDF A2", names(.)) + 1):ncol(.))  # Columns after "Freq A2"
+
+
+# STEP 2.2 Add up auxiliary and regular verb features in a single column
 readers_corpus$`upos-VERB-Mood-Ind DOC%` <-
   readers_corpus$`upos-AUX-Mood-Ind DOC%` + readers_corpus$`upos-VERB-Mood-Ind DOC%`
 readers_corpus$`upos-VERB-Mood-Sub DOC%` <-
@@ -109,13 +132,24 @@ readers_corpus <- dplyr::select(readers_corpus, -c(21:27))
 # ================================== LITERATURE DATA SET ==================================
 
 # STEP 1. Select relevant columns
-literature_corpus <- dplyr::select(literature_corpus,
-                                   c(1, 2, (11:13), 16, 18, 20, 23, (25:27), 253,
-                                     257, 256, 259, 260, 251, 262, 265, 384, 380,
-                                     386, 382, 358, 360, 362, 502, 500, 504, 506,
-                                     476, 478, 480, 637, 638, (643:645)))
+literature_corpus <- literature_corpus %>% dplyr::select("Title", "Level",
+                                                         all_of(selected_columns))
 
-# STEP 2. Add up auxiliary and regular verb features in a single column
+# STEP 2.1 Add up A1 and A2 vocabulary
+literature_corpus <- literature_corpus %>%
+  mutate(`Freq A1-A2` = `Freq A1` + `Freq A2`) %>%
+  select(1:(match("Freq A1", names(.)) - 1),  # Columns before "Freq A1"
+         `Freq A1-A2`,                         # New column
+         (match("Freq A2", names(.)) + 1):ncol(.))  # Columns after "Freq A2"
+
+literature_corpus <- literature_corpus %>%
+  mutate(`TFIDF A1-A2` = `TFIDF A1` + `TFIDF A2`) %>%
+  select(1:(match("TFIDF A1", names(.)) - 1),  # Columns before "Freq A1"
+         `TFIDF A1-A2`,                         # New column
+         (match("TFIDF A2", names(.)) + 1):ncol(.))  # Columns after "Freq A2"
+
+
+# STEP 2.2 Add up auxiliary and regular verb features in a single column
 literature_corpus$`upos-VERB-Mood-Ind DOC%` <-
   literature_corpus$`upos-AUX-Mood-Ind DOC%` + literature_corpus$`upos-VERB-Mood-Ind DOC%`
 literature_corpus$`upos-VERB-Mood-Sub DOC%` <-
@@ -137,13 +171,21 @@ literature_corpus <- dplyr::select(literature_corpus, -c(21:27))
 # =============================== REFERENCE CORPUS DATA SET ===============================
 
 # STEP 1. Select relevant columns
-reference_corpus <- dplyr::select(reference_corpus,
-                                  c((8:10), 13, 15, 17, 20, (22:24), 259, 260,
-                                    265, 262, 264, 258, 269, 248, 591, 595, 593,
-                                    613, 619, 617, 615, 449, 451, 453, 455, 425,
-                                    427, 431, 650, 651, (656:658)))
+reference_corpus <- reference_corpus %>% dplyr::select(all_of(selected_columns))
 
-# STEP 2. Add up auxiliary and regular verb features in a single column
+# STEP 2.1 Add up A1 and A2 vocabulary
+reference_corpus <- reference_corpus %>%
+  mutate(`Freq A1-A2` = `Freq A1` + `Freq A2`) %>%
+  select(`Freq A1-A2`,                         # New column
+         (match("Freq A2", names(.)) + 1):ncol(.))  # Columns after "Freq A2"
+
+reference_corpus <- reference_corpus %>%
+  mutate(`TFIDF A1-A2` = `TFIDF A1` + `TFIDF A2`) %>%
+  select(1:(match("TFIDF A1", names(.)) - 1),
+         `TFIDF A1-A2`,                         # New column
+         (match("TFIDF A2", names(.)) + 1):ncol(.))  # Columns after "Freq A2"
+
+# STEP 2.2 Add up auxiliary and regular verb features in a single column
 reference_corpus$`upos-VERB-Mood-Ind DOC%` <-
   reference_corpus$`upos-AUX-Mood-Ind DOC%` + reference_corpus$`upos-VERB-Mood-Ind DOC%`
 reference_corpus$`upos-VERB-Mood-Sub DOC%` <-
@@ -389,38 +431,73 @@ Sankey charts depicting the relative frequency of graded vocabulary occurrences 
 # 1. Collect all relevant information
 
 # === Graded readers ===
+readers_vocab_beginner <- readers_vocab_beginner %>%
+  mutate(Level = case_when(
+    Level %in% c("A1", "A2") ~ "A1-A2",  # Merge A1 and A2 into "A1-A2"
+    TRUE ~ Level  # Keep B1 and B2 unchanged
+  ))
 sankey_vocab_beginner <- dplyr::select(readers_vocab_beginner, c(2, 5))
 sankey_vocab_beginner$Work_type <- "Graded readers"
 sankey_vocab_beginner$Work_level <- "Beginner"
 sankey_vocab_beginner <- sankey_vocab_beginner %>% select(Work_type, Work_level, Level, Frequency)
 
+readers_vocab_intermediate <- readers_vocab_intermediate %>%
+  mutate(Level = case_when(
+    Level %in% c("A1", "A2") ~ "A1-A2",  # Merge A1 and A2 into "A1-A2"
+    TRUE ~ Level  # Keep B1 and B2 unchanged
+  ))
 sankey_vocab_intermediate <- dplyr::select(readers_vocab_intermediate, c(2, 5))
 sankey_vocab_intermediate$Work_type <- "Graded readers"
 sankey_vocab_intermediate$Work_level <- "Intermediate"
 sankey_vocab_intermediate <- sankey_vocab_intermediate %>% select(Work_type, Work_level, Level, Frequency)
 
+readers_vocab_advanced <- readers_vocab_advanced %>%
+  mutate(Level = case_when(
+    Level %in% c("A1", "A2") ~ "A1-A2",  # Merge A1 and A2 into "A1-A2"
+    TRUE ~ Level  # Keep B1 and B2 unchanged
+  ))
 sankey_vocab_advanced <- dplyr::select(readers_vocab_advanced, c(2, 5))
 sankey_vocab_advanced$Work_type <- "Graded readers"
 sankey_vocab_advanced$Work_level <- "Advanced"
 sankey_vocab_advanced <- sankey_vocab_advanced %>% select(Work_type, Work_level, Level, Frequency)
 
 # === Literary works ===
+literature_vocab_children <- literature_vocab_children %>%
+  mutate(Level = case_when(
+    Level %in% c("A1", "A2") ~ "A1-A2",  # Merge A1 and A2 into "A1-A2"
+    TRUE ~ Level  # Keep B1 and B2 unchanged
+  ))
 sankey_vocab_children <- dplyr::select(literature_vocab_children, c(2, 5))
 sankey_vocab_children$Work_type <- "Literary works"
 sankey_vocab_children$Work_level <- "Children's literature"
 sankey_vocab_children <- sankey_vocab_children %>% select(Work_type, Work_level, Level, Frequency)
 
+literature_vocab_youth <- literature_vocab_youth %>%
+  mutate(Level = case_when(
+    Level %in% c("A1", "A2") ~ "A1-A2",  # Merge A1 and A2 into "A1-A2"
+    TRUE ~ Level  # Keep B1 and B2 unchanged
+  ))
 sankey_vocab_youth <- dplyr::select(literature_vocab_youth, c(2, 5))
 sankey_vocab_youth$Work_type <- "Literary works"
 sankey_vocab_youth$Work_level <- "Young adult fiction"
 sankey_vocab_youth <- sankey_vocab_youth %>% select(Work_type, Work_level, Level, Frequency)
 
+literature_vocab_adult <- literature_vocab_adult %>%
+  mutate(Level = case_when(
+    Level %in% c("A1", "A2") ~ "A1-A2",  # Merge A1 and A2 into "A1-A2"
+    TRUE ~ Level  # Keep B1 and B2 unchanged
+  ))
 sankey_vocab_adult <- dplyr::select(literature_vocab_adult, c(2, 5))
 sankey_vocab_adult$Work_type <- "Literary works"
 sankey_vocab_adult$Work_level <- "Adult literature"
 sankey_vocab_adult <- sankey_vocab_adult %>% select(Work_type, Work_level, Level, Frequency)
 
 # === Reference corpus ===
+reference_vocab <- reference_vocab %>%
+  mutate(Level = case_when(
+    Level %in% c("A1", "A2") ~ "A1-A2",  # Merge A1 and A2 into "A1-A2"
+    TRUE ~ Level  # Keep B1 and B2 unchanged
+  ))
 sankey_vocab_reference <- dplyr::select(reference_vocab, c(2, 5))
 sankey_vocab_reference$Work_type <- "Corpus of general Spanish"
 sankey_vocab_reference$Work_level <- "Reference corpus"
@@ -587,9 +664,9 @@ my_color <- 'd3.scaleOrdinal()
   "#caf0f8", "#90e0ef", "#48cae4"
 ])'
 
-nodes$name[1][1] <- "Graded readers (40.79%)"
-nodes$name[2][1] <- "Literary works (39.82%)"
-nodes$name[9][1] <- "Reference corpus (11.45%)"
+nodes$name[1][1] <- "Graded readers (86.11%)"
+nodes$name[2][1] <- "Literary works (82.86%)"
+nodes$name[9][1] <- "Reference corpus (24.88%)"
 
 p <- sankeyNetwork(Links = links, Nodes = nodes,
                    Source = "IDsource", Target = "IDtarget",
@@ -788,20 +865,20 @@ RC_ctxt_avgD <- reference_corpus %>%
   theme(axis.title.y = element_blank()) +
   geom_boxplot(width = 0.2, outlier.color = "#000000", outlier.size = 0.7)
 
-GR_avgW <- GR_avgW + ylim(2.5, 12)
-GR_ctxt_avgW <- GR_ctxt_avgW + ylim(2.5, 12)
-GR_avgD <- GR_avgD + ylim(2.5, 7.5)
-GR_ctxt_avgD <- GR_ctxt_avgD + ylim(2.5, 7.5)
+GR_avgW <- GR_avgW + ylim(4, 13)
+GR_ctxt_avgW <- GR_ctxt_avgW + ylim(4, 13)
+GR_avgD <- GR_avgD + ylim(2.3, 7.5)
+GR_ctxt_avgD <- GR_ctxt_avgD + ylim(2.3, 7.5)
 
-LW_avgW <- LW_avgW + ylim(2, 15)
-LW_ctxt_avgW <- LW_ctxt_avgW + ylim(2, 15)
-LW_avgD <- LW_avgD + ylim(2, 9)
-LW_ctxt_avgD <- LW_ctxt_avgD + ylim(2, 9)
+LW_avgW <- LW_avgW + ylim(2.3, 15)
+LW_ctxt_avgW <- LW_ctxt_avgW + ylim(2.3, 15)
+LW_avgD <- LW_avgD + ylim(2.3, 9)
+LW_ctxt_avgD <- LW_ctxt_avgD + ylim(2.3, 9)
 
-RC_avgW <- RC_avgW + ylim(0, 25)
-RC_ctxt_avgW <- RC_ctxt_avgW + ylim(0, 25)
-RC_avgD <- RC_avgD + ylim(0, 15)
-RC_ctxt_avgD <- RC_ctxt_avgD + ylim(0, 15)
+RC_avgW <- RC_avgW + ylim(1.5, 23)
+RC_ctxt_avgW <- RC_ctxt_avgW + ylim(1.5, 23)
+RC_avgD <- RC_avgD + ylim(1.5, 23)
+RC_ctxt_avgD <- RC_ctxt_avgD + ylim(1.5, 23)
 
 grid.arrange(GR_avgW, GR_ctxt_avgW, GR_avgD, GR_ctxt_avgD, top = "\nGraded readers parse trees\n", nrow = 1)
 grid.arrange(LW_avgW, LW_ctxt_avgW, LW_avgD, LW_ctxt_avgD, top = "\n\nLiterary works parse trees\n", nrow = 1)
@@ -897,15 +974,15 @@ RC_density_cond <- ggplot(reference_corpus, aes(x = Freq_Cnd, y = group, fill = 
 
 GR_density_ind <- GR_density_ind + xlim(0, 0.16)
 LW_density_ind <- LW_density_ind + xlim(0, 0.16)
-RC_density_ind <- RC_density_ind + xlim(0, 0.16) + ylim(0, 200)
+RC_density_ind <- RC_density_ind + xlim(0, 0.16)
 
 GR_density_sub <- GR_density_sub + xlim(0, 0.025)
 LW_density_sub <- LW_density_sub + xlim(0, 0.025)
-RC_density_sub <- RC_density_sub + xlim(0, 0.025) + ylim(0, 200)
+RC_density_sub <- RC_density_sub + coord_cartesian(xlim = c(0, 0.025))
 
 GR_density_cond <- GR_density_cond + xlim(0, 0.013)
 LW_density_cond <- LW_density_cond + xlim(0, 0.013)
-RC_density_cond <- RC_density_cond + xlim(0, 0.013) + ylim(0, 200)
+RC_density_cond <- RC_density_cond + coord_cartesian(xlim = c(0, 0.013))
 
 grid.arrange(GR_density_ind, GR_density_sub, GR_density_cond, top = "\nGraded readers mood relative frequencies\n", nrow=1)
 
@@ -921,22 +998,50 @@ grid.arrange(RC_density_ind, RC_density_sub, RC_density_cond, top = "\nReference
 
 **Pairwise Spearman correlations**
 
-```{r correlations, fig.width=12, fig.height=6, fig.align='default'}
-par(mfrow=c(1,2))
+```{r correlations, fig.width=12, fig.height=24, fig.align='default'}
+par(mfrow=c(2,1))
 
 # === GRADED READERS ===
 readers_corr <- dplyr::select(readers_corpus, -c(1, 2))
 readers_corr <- cor(readers_corr, method = "spearman")
 readers_corr <- corrplot(readers_corr, type = "lower", order = "hclust",
-                         title = "Graded readers", mar=c(0,0,1,0), tl.cex = 0.5,
-                         tl.col = "black", tl.srt = 45)
+                         title = "Graded readers", mar=c(0,0,1,0), tl.cex = 1,
+                         tl.col = "black", tl.srt = 45, cex.main = 1.5)
+
+readers_corr_matrix <- dplyr::select(readers_corpus, -c(1, 2)) %>% cor(method = "spearman")
+readers_corr_long <- melt(readers_corr_matrix, varnames = c("Var1", "Var2"), value.name = "Correlation")
+readers_corr_long <- readers_corr_long %>% filter(Var1 != Var2)
+readers_corr_long <- readers_corr_long %>%
+  mutate(Var1_order = pmin(as.character(Var1), as.character(Var2)),
+         Var2_order = pmax(as.character(Var1), as.character(Var2))) %>%
+  distinct(Var1_order, Var2_order, .keep_all = TRUE)
+
+readers_strongest_positive <- readers_corr_long %>% filter(Correlation > 0) %>%
+  arrange(desc(Correlation))
+
+readers_strongest_negative <- readers_corr_long %>% filter(Correlation < 0) %>%
+  arrange(Correlation)
 
 # === LITERARY WORKS ===
 literature_corr <- dplyr::select(literature_corpus, -c(1, 2))
 literature_corr <- cor(literature_corr, method = "spearman")
 literature_corr <- corrplot(literature_corr, type = "lower", order = "hclust",
-                            title = "Literary works", mar=c(0,0,1,0), tl.cex = 0.5,
-                            tl.col = "black", tl.srt = 45)
+                            title = "Literary works", mar=c(0,0,1,0), tl.cex = 1,
+                            tl.col = "black", tl.srt = 45, cex.main = 1.5)
+
+literature_corr_matrix <- dplyr::select(literature_corpus, -c(1, 2)) %>% cor(method = "spearman")
+literature_corr_long <- melt(literature_corr_matrix, varnames = c("Var1", "Var2"), value.name = "Correlation")
+literature_corr_long <- literature_corr_long %>% filter(Var1 != Var2)
+literature_corr_long <- literature_corr_long %>%
+  mutate(Var1_order = pmin(as.character(Var1), as.character(Var2)),
+         Var2_order = pmax(as.character(Var1), as.character(Var2))) %>%
+  distinct(Var1_order, Var2_order, .keep_all = TRUE)
+
+literature_strongest_positive <- literature_corr_long %>% filter(Correlation > 0) %>%
+  arrange(desc(Correlation))
+
+literature_strongest_negative <- literature_corr_long %>% filter(Correlation < 0) %>%
+  arrange(Correlation)
 ```
 
 **RANDOM FORESTS**
@@ -946,7 +1051,7 @@ literature_corr <- corrplot(literature_corr, type = "lower", order = "hclust",
 
 # --- Step 1. Split the data into a training (70%) and testing (30%) sets using a stratified random
 # sampling approach ---
-set.seed(4)
+set.seed(93)
 
 readers_training <- readers_corpus %>%
   group_by(Level) %>%
@@ -955,9 +1060,9 @@ readers_training <- readers_corpus %>%
 readers_testing <- anti_join(readers_corpus, readers_training, by = "Title")
 
 # --- Step 2. Fit the random forest model ---
-set.seed(211)
+set.seed(1)
 
-readers_model <- randomForest(Level ~ . - Title, data = readers_training, mtry=6, ntree=60,
+readers_model <- randomForest(Level ~ . - Title, data = readers_training, mtry=6, ntree=183,
                               importance=TRUE, proximity=TRUE)
 readers_model
 
@@ -1023,7 +1128,7 @@ ggplot(data=readers_mds.data, aes(x=X, y=Y, label=Sample)) +
 
 # --- Step 1. Split the data into a training (70%) and testing (30%) sets using a stratified random
 # sampling approach ---
-set.seed(2001)
+set.seed(45)
 
 literature_training <- literature_corpus %>%
   group_by(Level) %>%
@@ -1032,9 +1137,9 @@ literature_training <- literature_corpus %>%
 literature_testing <- anti_join(literature_corpus, literature_training, by = "Title")
 
 #  --- Step 2. Fit the random forest model ---
-set.seed(211)
+set.seed(11)
 
-literature_model <- randomForest(Level ~ . - Title, data = literature_training, mtry=6, ntree=75, importance=TRUE, proximity=TRUE)
+literature_model <- randomForest(Level ~ . - Title, data = literature_training, mtry=6, ntree=131, importance=TRUE, proximity=TRUE)
 literature_model
 
 #  --- Step 3. Plot the out-of-bag error rate information ---
@@ -1058,7 +1163,7 @@ ggplot(data=literature_obb_error_data, aes(x=Trees, y=Error)) +
         axis.title.x=element_text(size=20),
         axis.text.y=element_text(size=18),
         axis.title.y=element_text(size=20)) +
-  ylim(0, 0.9)
+  ylim(0, 1)
 
 #  --- Step 4. Predict classes for the test set ---
 literature_predict <- predict(literature_model, literature_testing)
@@ -1093,6 +1198,162 @@ ggplot(data=literature_mds.data, aes(x=X, y=Y, label=Sample)) +
         axis.text.y=element_text(size=18),
         axis.title.y=element_text(size=20)) +
   theme(plot.title = element_text(hjust = 0.5, size=30)) 
+
+# === BASELINE CLASSIFIERS ===
+
+#  --- 1. Zero-rate ---
+
+# Find the most frequent class in readers_testing
+most_frequent_class_readers <- names(which.max(table(readers_testing$Level)))
+
+# Predict all instances as the most frequent class
+readers_zero_rate_pred <- factor(rep(most_frequent_class_readers, nrow(readers_testing)), 
+                                 levels = levels(readers_testing$Level))
+
+# Evaluate performance
+confusionMatrix(readers_zero_rate_pred, readers_testing$Level)
+
+# Repeat for literature_testing
+most_frequent_class_literature <- names(which.max(table(literature_testing$Level)))
+
+literature_zero_rate_pred <- factor(rep(most_frequent_class_literature, nrow(literature_testing)), 
+                                    levels = levels(literature_testing$Level))
+
+confusionMatrix(literature_zero_rate_pred, literature_testing$Level)
+
+#  --- 2. Weighted guessing ---
+set.seed(123)
+
+# Compute class probabilities based on readers_training
+class_probs_readers <- prop.table(table(readers_training$Level))
+
+# Predict based on these probabilities
+readers_weighted_pred <- factor(sample(names(class_probs_readers), 
+                                       size = nrow(readers_testing), 
+                                       replace = TRUE, 
+                                       prob = class_probs_readers),
+                                levels = levels(readers_testing$Level))
+
+# Evaluate performance
+confusionMatrix(readers_weighted_pred, readers_testing$Level)
+
+# Repeat for literature_testing
+class_probs_literature <- prop.table(table(literature_training$Level))
+
+literature_weighted_pred <- factor(sample(names(class_probs_literature), 
+                                          size = nrow(literature_testing), 
+                                          replace = TRUE, 
+                                          prob = class_probs_literature),
+                                   levels = levels(literature_testing$Level))
+
+confusionMatrix(literature_weighted_pred, literature_testing$Level)
+
+#  --- 3. 1,000-fold randomization ---
+
+set.seed(2)
+
+n_iter <- 1000
+metric_names <- c("Accuracy", "Kappa", "Sensitivity", "Specificity", 
+                  "Precision", "Recall", "F1", "Prevalence", 
+                  "Detection Rate", "Detection Prevalence", "Balanced Accuracy")
+
+# --- For Graded Readers ---
+levels_readers <- levels(readers_testing$Level)
+# Create a nested list to store metrics per gradation level
+random_metrics_readers <- list()
+for (lev in levels_readers) {
+  random_metrics_readers[[lev]] <- list()
+  for (metric in metric_names) {
+    random_metrics_readers[[lev]][[metric]] <- numeric(n_iter)
+  }
+}
+
+# For each iteration, randomly shuffle predictions and compute one-vs-all confusion matrices
+for (i in 1:n_iter) {
+  # Randomly shuffle class labels for the entire test set
+  random_labels <- sample(readers_testing$Level)
+  
+  # For each gradation level, compute a binary confusion matrix
+  for (lev in levels_readers) {
+    # Create binary predictions: TRUE if the random label equals the current level, FALSE otherwise
+    pred_binary <- factor(random_labels == lev, levels = c(FALSE, TRUE))
+    actual_binary <- factor(readers_testing$Level == lev, levels = c(FALSE, TRUE))
+    
+    # Compute confusion matrix for binary classification, specifying "TRUE" as the positive class
+    cm <- confusionMatrix(pred_binary, actual_binary, positive = "TRUE")
+    
+    # Store overall metrics from cm$overall and per-class metrics from cm$byClass
+    random_metrics_readers[[lev]][["Accuracy"]][i]            <- cm$overall["Accuracy"]
+    random_metrics_readers[[lev]][["Kappa"]][i]               <- cm$overall["Kappa"]
+    random_metrics_readers[[lev]][["Sensitivity"]][i]         <- cm$byClass["Sensitivity"]
+    random_metrics_readers[[lev]][["Specificity"]][i]         <- cm$byClass["Specificity"]
+    random_metrics_readers[[lev]][["Precision"]][i]           <- cm$byClass["Precision"]
+    random_metrics_readers[[lev]][["Recall"]][i]              <- cm$byClass["Recall"]
+    random_metrics_readers[[lev]][["F1"]][i]                  <- cm$byClass["F1"]
+    random_metrics_readers[[lev]][["Prevalence"]][i]          <- cm$byClass["Prevalence"]
+    random_metrics_readers[[lev]][["Detection Rate"]][i]      <- cm$byClass["Detection Rate"]
+    random_metrics_readers[[lev]][["Detection Prevalence"]][i] <- cm$byClass["Detection Prevalence"]
+    random_metrics_readers[[lev]][["Balanced Accuracy"]][i]   <- cm$byClass["Balanced Accuracy"]
+  }
+}
+
+# Compute summary statistics (mean and sd) for each metric per gradation
+summary_random_readers <- lapply(random_metrics_readers, function(class_metrics) {
+  sapply(class_metrics, function(x) c(mean = mean(x), sd = sd(x)))
+})
+
+# --- For Literary Works ---
+levels_literature <- levels(literature_testing$Level)
+random_metrics_literature <- list()
+for (lev in levels_literature) {
+  random_metrics_literature[[lev]] <- list()
+  for (metric in metric_names) {
+    random_metrics_literature[[lev]][[metric]] <- numeric(n_iter)
+  }
+}
+
+for (i in 1:n_iter) {
+  random_labels <- sample(literature_testing$Level)
+  
+  for (lev in levels_literature) {
+    pred_binary <- factor(random_labels == lev, levels = c(FALSE, TRUE))
+    actual_binary <- factor(literature_testing$Level == lev, levels = c(FALSE, TRUE))
+    
+    cm <- confusionMatrix(pred_binary, actual_binary, positive = "TRUE")
+    
+    random_metrics_literature[[lev]][["Accuracy"]][i]            <- cm$overall["Accuracy"]
+    random_metrics_literature[[lev]][["Kappa"]][i]               <- cm$overall["Kappa"]
+    random_metrics_literature[[lev]][["Sensitivity"]][i]         <- cm$byClass["Sensitivity"]
+    random_metrics_literature[[lev]][["Specificity"]][i]         <- cm$byClass["Specificity"]
+    random_metrics_literature[[lev]][["Precision"]][i]           <- cm$byClass["Precision"]
+    random_metrics_literature[[lev]][["Recall"]][i]              <- cm$byClass["Recall"]
+    random_metrics_literature[[lev]][["F1"]][i]                  <- cm$byClass["F1"]
+    random_metrics_literature[[lev]][["Prevalence"]][i]          <- cm$byClass["Prevalence"]
+    random_metrics_literature[[lev]][["Detection Rate"]][i]      <- cm$byClass["Detection Rate"]
+    random_metrics_literature[[lev]][["Detection Prevalence"]][i] <- cm$byClass["Detection Prevalence"]
+    random_metrics_literature[[lev]][["Balanced Accuracy"]][i]   <- cm$byClass["Balanced Accuracy"]
+  }
+}
+
+summary_random_literature <- lapply(random_metrics_literature, function(class_metrics) {
+  sapply(class_metrics, function(x) c(mean = mean(x), sd = sd(x)))
+})
+
+# --- Print the results ---
+cat("\n**1,000-Fold Randomization Results (Graded Readers)**\n")
+for (lev in levels_readers) {
+  cat("\n--", lev, "--\n")
+  print(summary_random_readers[[lev]])
+}
+
+cat("\n**1,000-Fold Randomization Results (Literary Works)**\n")
+for (lev in levels_literature) {
+  cat("\n--", lev, "--\n")
+  print(summary_random_literature[[lev]])
+}
+
+
+
 ```
 
 **PERMUTATION TESTS**
@@ -1131,8 +1392,6 @@ LW_RC_mean_ctxt_depth_stat_B2 <- abs(LW_mean_ctxt_depth_B2 - RC_mean_ctxt_depth)
 
 # === Step 3. Perform the permutation test ===
 
-set.seed(1979)
-
 # AVERAGE DEPTH OF THE CONTEXT TREES
 
 # Number of observations to sample
@@ -1153,13 +1412,19 @@ GR_ctxt_depth_PermSamples <- matrix(0, nrow=GR_n, ncol=P)
 LW_ctxt_depth_PermSamples <- matrix(0, nrow=LW_n, ncol=P)
 RC_ctxt_depth_PermSamples <- matrix(0, nrow=RC_n, ncol=P)
 
+set.seed(1979)
+
 for(i in 1:P){
   GR_ctxt_depth_PermSamples[, i] <- sample(GR_ctxt_depth_variable, size=GR_n, replace=FALSE)
 }
 
+set.seed(1979)
+
 for(i in 1:P){
   LW_ctxt_depth_PermSamples[, i] <- sample(LW_ctxt_depth_variable, size=LW_n, replace=FALSE)
 }
+
+set.seed(1979)
 
 for(i in 1:P){
   RC_ctxt_depth_PermSamples[, i] <- sample(RC_ctxt_depth_variable, size=RC_n, replace=FALSE)
@@ -1215,29 +1480,29 @@ for(i in 1:P){
 
 # === GRs vs. LWs ===
 
-# If there is no difference in the mean average depth of the context trees of beginner GRs and LWs, we would observe a test statistic of 1.062 or more by chance roughly 0.02% of the time.  
+# If there is no difference in the mean average depth of the context trees of beginner GRs and LWs, we would observe a test statistic of 1.091 or more by chance roughly 0% of the time.  
 mean(Perm.test.stat_GR_LW_ctxt_depth_A1A2 >= GR_LW_mean_ctxt_depth_stat_A1A2)
-# If there is no difference in the mean average depth of the context trees of intermediate GRs and LWs, we would observe a test statistic of 0.02 or more by chance roughly 98.1% of the time.
+# If there is no difference in the mean average depth of the context trees of intermediate GRs and LWs, we would observe a test statistic of 0.028 or more by chance roughly 98.14% of the time.
 mean(Perm.test.stat_GR_LW_ctxt_depth_B1 >= GR_LW_mean_ctxt_depth_stat_B1)
-# If there is no difference in the mean average depth of the context trees of advanced GRs and LWs, we would observe a test statistic of 0.254 or more by chance roughly 72.87% of the time.
+# If there is no difference in the mean average depth of the context trees of advanced GRs and LWs, we would observe a test statistic of 0.262 or more by chance roughly 74.50% of the time.
 mean(Perm.test.stat_GR_LW_ctxt_depth_B2 >= GR_LW_mean_ctxt_depth_stat_B2)
 
 # === GRs vs. RC ===
 
-# If there is no difference in the mean average depth of the context trees of beginner GRs and RC, we would observe a test statistic of 2.96 or more by chance roughly 0% of the time.
+# If there is no difference in the mean average depth of the context trees of beginner GRs and the RC, we would observe a test statistic of 2.999 or more by chance roughly 0% of the time.
 mean(Perm.test.stat_GR_RC_ctxt_depth_A1A2 >= GR_RC_mean_ctxt_depth_stat_A1A2)
-# If there is no difference in the mean average depth of the context trees of intermediate GRs and RC, we would observe a test statistic of 2.156 or more by chance roughly 73.2% of the time.
+# If there is no difference in the mean average depth of the context trees of intermediate GRs and the RC, we would observe a test statistic of 2.158 or more by chance roughly 77.81% of the time.
 mean(Perm.test.stat_GR_RC_ctxt_depth_B1 >= GR_RC_mean_ctxt_depth_stat_B1)
-# If there is no difference in the mean average depth of the context trees of advanced GRs and RC, we would observe a test statistic of 1.51 or more by chance roughly 99% of the time.
+# If there is no difference in the mean average depth of the context trees of advanced GRs and the RC, we would observe a test statistic of 1.559 or more by chance roughly 99.97% of the time.
 mean(Perm.test.stat_GR_RC_ctxt_depth_B2 >= GR_RC_mean_ctxt_depth_stat_B2)
 
 # === LW vs. RC ===
 
-# If there is no difference in the mean average depth of the context trees of beginner LW and RC, we would observe a test statistic of 1.9 or more by chance roughly 0% of the time.
+# If there is no difference in the mean average depth of the context trees of children's LW and the RC, we would observe a test statistic of 1.908 or more by chance roughly 0% of the time.
 mean(Perm.test.stat_LW_RC_ctxt_depth_A1A2 >= LW_RC_mean_ctxt_depth_stat_A1A2)
-# If there is no difference in the mean average depth of the context trees of intermediate LW and RC, we would observe a test statistic of 2.18 or more by chance roughly 0% of the time.
+# If there is no difference in the mean average depth of the context trees of young adult LW and the RC, we would observe a test statistic of 2.186 or more by chance roughly 0% of the time.
 mean(Perm.test.stat_LW_RC_ctxt_depth_B1 >= LW_RC_mean_ctxt_depth_stat_B1)
-# If there is no difference in the mean average depth of the context trees of advanced LW and RC, we would observe a test statistic of 1.256 or more by chance roughly 0% of the time.
+# If there is no difference in the mean average depth of the context trees of adult LW and the RC, we would observe a test statistic of 1.296 or more by chance roughly 0% of the time.
 mean(Perm.test.stat_LW_RC_ctxt_depth_B2 >= LW_RC_mean_ctxt_depth_stat_B2)
 
 # --------------------
@@ -1282,13 +1547,19 @@ GR_sub_PermSamples <- matrix(0, nrow=GR_n, ncol=P)
 LW_sub_PermSamples <- matrix(0, nrow=LW_n, ncol=P)
 RC_sub_PermSamples <- matrix(0, nrow=RC_n, ncol=P)
 
+set.seed(1979)
+
 for(i in 1:P){
   GR_sub_PermSamples[, i] <- sample(GR_sub_variable, size=GR_n, replace=FALSE)
 }
 
+set.seed(1979)
+
 for(i in 1:P){
   LW_sub_PermSamples[, i] <- sample(LW_sub_variable, size=LW_n, replace=FALSE)
 }
+
+set.seed(1979)
 
 for(i in 1:P){
   RC_sub_PermSamples[, i] <- sample(RC_sub_variable, size=RC_n, replace=FALSE)
@@ -1344,128 +1615,134 @@ for(i in 1:P){
 
 # === GRs vs. LWs ===
   
-# If there is no difference in the mean average subjunctive frequencies of beginner GRs and LWs, we would observe a test statistic of 0.0037 or more by chance roughly 1.16% of the time.
+# If there is no difference in the mean average subjunctive frequencies of beginner GRs and LWs, we would observe a test statistic of 0.0039 or more by chance roughly 0.57% of the time.
 mean(Perm.test.stat_GR_LW_sub_A1A2 >= GR_LW_mean_sub_stat_A1A2)
-# If there is no difference in the mean average subjunctive frequencies of intermediate GRs and LWs, we would observe a test statistic of 0.002 or more by chance roughly 50.47% of the time.
+# If there is no difference in the mean average subjunctive frequencies of intermediate GRs and LWs, we would observe a test statistic of 0.002 or more by chance roughly 53.95% of the time.
 mean(Perm.test.stat_GR_LW_sub_B1 >= GR_LW_mean_sub_stat_B1)
-# If there is no difference in the mean average subjunctive frequencies of advanced GRs and LWs, we would observe a test statistic of 0.001 or more by chance roughly 79.86% of the time.
+# If there is no difference in the mean average subjunctive frequencies of advanced GRs and LWs, we would observe a test statistic of 0.001 or more by chance roughly 77.23% of the time.
 mean(Perm.test.stat_GR_LW_sub_B2 >= GR_LW_mean_sub_stat_B2)
 
 # === GRs vs. RC ===
 
-# If there is no difference in the mean average subjunctive frequencies of beginner GRs and RC, we would observe a test statistic of 0.0038 or more by chance roughly 0% of the time.
+# If there is no difference in the mean average subjunctive frequencies of beginner GRs and RC, we would observe a test statistic of 0.0041 or more by chance roughly 0% of the time.
 mean(Perm.test.stat_GR_RC_sub_A1A2 >= GR_RC_mean_sub_stat_A1A2)
-# If there is no difference in the mean average subjunctive frequencies of intermediate GRs and RC, we would observe a test statistic of 0.0011 or more by chance roughly 62.55% of the time.
+# If there is no difference in the mean average subjunctive frequencies of intermediate GRs and RC, we would observe a test statistic of 0.0014 or more by chance roughly 61.44% of the time.
 mean(Perm.test.stat_GR_RC_sub_B1 >= GR_RC_mean_sub_stat_B1)
-# If there is no difference in the mean average subjunctive frequencies of advanced GRs and RC, we would observe a test statistic of 0.0013 or more by chance roughly 52.51% of the time.
+# If there is no difference in the mean average subjunctive frequencies of advanced GRs and RC, we would observe a test statistic of 0.0012 or more by chance roughly 68.73% of the time.
 mean(Perm.test.stat_GR_RC_sub_B2 >= GR_RC_mean_sub_stat_B2)
 
 # === LW vs. RC ===
 
-# If there is no difference in the mean average subjunctive frequencies of beginner LW and RC, we would observe a test statistic of 3.0127e-05 or more by chance roughly 0% of the time.
+# If there is no difference in the mean average subjunctive frequencies of beginner LW and RC, we would observe a test statistic of 0.00024 or more by chance roughly 0% of the time.
 mean(Perm.test.stat_LW_RC_sub_A1A2 >= LW_RC_mean_sub_stat_A1A2)
-# If there is no difference in the mean average subjunctive frequencies of intermediate LW and RC, we would observe a test statistic of 0.00083 or more by chance roughly 0% of the time.
+# If there is no difference in the mean average subjunctive frequencies of intermediate LW and RC, we would observe a test statistic of 0.0006 or more by chance roughly 0% of the time.
 mean(Perm.test.stat_LW_RC_sub_B1 >= LW_RC_mean_sub_stat_B1)
-# If there is no difference in the mean average subjunctive frequencies of advanced LW and RC, we would observe a test statistic of 0.0024 or more by chance roughly 0% of the time.
+# If there is no difference in the mean average subjunctive frequencies of advanced LW and RC, we would observe a test statistic of 0.0023 or more by chance roughly 0% of the time.
 mean(Perm.test.stat_LW_RC_sub_B2 >= LW_RC_mean_sub_stat_B2)
 
 # --------------------
 
-# 3) RELATIVE FREQUENCY OF B1 WORDS
+# 3) RELATIVE FREQUENCY OF A1-A2 WORDS
 
 # === Step 1. Calculate the difference in sample means: ===
 
-GR_mean_B1_A1A2 <- mean(readers_corpus$Freq_B1[readers_corpus$Level=="Beginner"])
-GR_mean_B1_B1 <- mean(readers_corpus$Freq_B1[readers_corpus$Level=="Intermediate"])
-GR_mean_B1_B2 <- mean(readers_corpus$Freq_B1[readers_corpus$Level=="Advanced"])
+GR_mean_A1A2_A1A2 <- mean(readers_corpus$Freq_A1A2[readers_corpus$Level=="Beginner"])
+GR_mean_A1A2_B1 <- mean(readers_corpus$Freq_A1A2[readers_corpus$Level=="Intermediate"])
+GR_mean_A1A2_B2 <- mean(readers_corpus$Freq_A1A2[readers_corpus$Level=="Advanced"])
 
-LW_mean_B1_A1A2 <- mean(literature_corpus$Freq_B1[literature_corpus$Level=="Children's literature"])
-LW_mean_B1_B1 <- mean(literature_corpus$Freq_B1[literature_corpus$Level=="Young adult fiction"])
-LW_mean_B1_B2 <- mean(literature_corpus$Freq_B1[literature_corpus$Level=="Adult literature"])
+LW_mean_A1A2_A1A2 <- mean(literature_corpus$Freq_A1A2[literature_corpus$Level=="Children's literature"])
+LW_mean_A1A2_B1 <- mean(literature_corpus$Freq_A1A2[literature_corpus$Level=="Young adult fiction"])
+LW_mean_A1A2_B2 <- mean(literature_corpus$Freq_A1A2[literature_corpus$Level=="Adult literature"])
 
-RC_mean_B1 <- mean(reference_corpus$Freq_B1)
+RC_mean_A1A2 <- mean(reference_corpus$Freq_A1A2)
 
 # === Step 2. Calculate the absolute difference in means ===
 
-GR_LW_mean_B1_stat_A1A2 <- abs(GR_mean_B1_A1A2 - LW_mean_B1_A1A2)
-GR_LW_mean_B1_stat_B1 <- abs(GR_mean_B1_B1 - LW_mean_B1_B1)
-GR_LW_mean_B1_stat_B2 <- abs(GR_mean_B1_B2 - LW_mean_B1_B2)
+GR_LW_mean_A1A2_stat_A1A2 <- abs(GR_mean_A1A2_A1A2 - LW_mean_A1A2_A1A2)
+GR_LW_mean_A1A2_stat_B1 <- abs(GR_mean_A1A2_B1 - LW_mean_A1A2_B1)
+GR_LW_mean_A1A2_stat_B2 <- abs(GR_mean_A1A2_B2 - LW_mean_A1A2_B2)
 
-GR_RC_mean_B1_stat_A1A2 <- abs(GR_mean_B1_A1A2 - RC_mean_B1)
-GR_RC_mean_B1_stat_B1 <- abs(GR_mean_B1_B1 - RC_mean_B1)
-GR_RC_mean_B1_stat_B2 <- abs(GR_mean_B1_B2 - RC_mean_B1)
+GR_RC_mean_A1A2_stat_A1A2 <- abs(GR_mean_A1A2_A1A2 - RC_mean_A1A2)
+GR_RC_mean_A1A2_stat_B1 <- abs(GR_mean_A1A2_B1 - RC_mean_A1A2)
+GR_RC_mean_A1A2_stat_B2 <- abs(GR_mean_A1A2_B2 - RC_mean_A1A2)
 
-LW_RC_mean_B1_stat_A1A2 <- abs(LW_mean_B1_A1A2 - RC_mean_B1)
-LW_RC_mean_B1_stat_B1 <- abs(LW_mean_B1_B1 - RC_mean_B1)
-LW_RC_mean_B1_stat_B2 <- abs(LW_mean_B1_B2 - RC_mean_B1)
+LW_RC_mean_A1A2_stat_A1A2 <- abs(LW_mean_A1A2_A1A2 - RC_mean_A1A2)
+LW_RC_mean_A1A2_stat_B1 <- abs(LW_mean_A1A2_B1 - RC_mean_A1A2)
+LW_RC_mean_A1A2_stat_B2 <- abs(LW_mean_A1A2_B2 - RC_mean_A1A2)
 
 # === Step 3. Perform the permutation test ===
 
 # Variable we will resample from
-GR_B1_variable <- readers_corpus$Freq_B1
-LW_B1_variable <- literature_corpus$Freq_B1
-RC_B1_variable <- reference_corpus$Freq_B1
+GR_A1A2_variable <- readers_corpus$Freq_A1A2
+LW_A1A2_variable <- literature_corpus$Freq_A1A2
+RC_A1A2_variable <- reference_corpus$Freq_A1A2
 
 # Initialize a matrix to store the permutation data. Each column is a permutation sample of data.
-GR_B1_PermSamples <- matrix(0, nrow=GR_n, ncol=P)
-LW_B1_PermSamples <- matrix(0, nrow=LW_n, ncol=P)
-RC_B1_PermSamples <- matrix(0, nrow=RC_n, ncol=P)
+GR_A1A2_PermSamples <- matrix(0, nrow=GR_n, ncol=P)
+LW_A1A2_PermSamples <- matrix(0, nrow=LW_n, ncol=P)
+RC_A1A2_PermSamples <- matrix(0, nrow=RC_n, ncol=P)
+
+set.seed(1979)
 
 for(i in 1:P){
-  GR_B1_PermSamples[, i] <- sample(GR_B1_variable, size=GR_n, replace=FALSE)
+  GR_A1A2_PermSamples[, i] <- sample(GR_A1A2_variable, size=GR_n, replace=FALSE)
 }
 
-for(i in 1:P){
-  LW_B1_PermSamples[, i] <- sample(LW_B1_variable, size=LW_n, replace=FALSE)
-}
+set.seed(1979)
 
 for(i in 1:P){
-  RC_B1_PermSamples[, i] <- sample(RC_B1_variable, size=RC_n, replace=FALSE)
+  LW_A1A2_PermSamples[, i] <- sample(LW_A1A2_variable, size=LW_n, replace=FALSE)
+}
+
+set.seed(1979)
+
+for(i in 1:P){
+  RC_A1A2_PermSamples[, i] <- sample(RC_A1A2_variable, size=RC_n, replace=FALSE)
 }
 
 # Initialize vectors to store the test stats
-Perm.test.stat_GR_LW_B1_A1A2 <- rep(0, P)
-Perm.test.stat_GR_LW_B1_B1 <- rep(0, P)
-Perm.test.stat_GR_LW_B1_B2 <- rep(0, P)
+Perm.test.stat_GR_LW_A1A2_A1A2 <- rep(0, P)
+Perm.test.stat_GR_LW_A1A2_B1 <- rep(0, P)
+Perm.test.stat_GR_LW_A1A2_B2 <- rep(0, P)
 
-Perm.test.stat_GR_RC_B1_A1A2 <- rep(0, P)
-Perm.test.stat_GR_RC_B1_B1 <- rep(0, P)
-Perm.test.stat_GR_RC_B1_B2 <- rep(0, P)
+Perm.test.stat_GR_RC_A1A2_A1A2 <- rep(0, P)
+Perm.test.stat_GR_RC_A1A2_B1 <- rep(0, P)
+Perm.test.stat_GR_RC_A1A2_B2 <- rep(0, P)
 
-Perm.test.stat_LW_RC_B1_A1A2 <- rep(0, P)
-Perm.test.stat_LW_RC_B1_B1 <- rep(0, P)
-Perm.test.stat_LW_RC_B1_B2 <- rep(0, P)
+Perm.test.stat_LW_RC_A1A2_A1A2 <- rep(0, P)
+Perm.test.stat_LW_RC_A1A2_B1 <- rep(0, P)
+Perm.test.stat_LW_RC_A1A2_B2 <- rep(0, P)
 
 # Loop through, and calculate test stats
 for(i in 1:P){
-  Perm.test.stat_GR_LW_B1_A1A2[i] <- abs(mean(GR_B1_PermSamples[
-    readers_corpus$Level=="Beginner", i]) - mean(LW_B1_PermSamples[
+  Perm.test.stat_GR_LW_A1A2_A1A2[i] <- abs(mean(GR_A1A2_PermSamples[
+    readers_corpus$Level=="Beginner", i]) - mean(LW_A1A2_PermSamples[
       literature_corpus$Level=="Children's literature", i]))
 }
 for(i in 1:P){
-  Perm.test.stat_GR_LW_B1_B1[i] <- abs(mean(GR_B1_PermSamples[
-    readers_corpus$Level=="Intermediate", i]) - mean(LW_B1_PermSamples[
+  Perm.test.stat_GR_LW_A1A2_B1[i] <- abs(mean(GR_A1A2_PermSamples[
+    readers_corpus$Level=="Intermediate", i]) - mean(LW_A1A2_PermSamples[
       literature_corpus$Level=="Young adult fiction", i]))
 }
 for(i in 1:P){
-  Perm.test.stat_GR_LW_B1_B2[i] <- abs(mean(GR_B1_PermSamples[
-    readers_corpus$Level=="Advanced", i]) - mean(LW_B1_PermSamples[
+  Perm.test.stat_GR_LW_A1A2_B2[i] <- abs(mean(GR_A1A2_PermSamples[
+    readers_corpus$Level=="Advanced", i]) - mean(LW_A1A2_PermSamples[
       literature_corpus$Level=="Adult literature", i]))
 }
 
 for(i in 1:P){
-  Perm.test.stat_GR_RC_B1_A1A2[i] <- abs(mean(GR_B1_PermSamples[
-    readers_corpus$Level=="Beginner", i]) - mean(RC_B1_PermSamples[
+  Perm.test.stat_GR_RC_A1A2_A1A2[i] <- abs(mean(GR_A1A2_PermSamples[
+    readers_corpus$Level=="Beginner", i]) - mean(RC_A1A2_PermSamples[
       reference_corpus$group==1, i]))
 }
 for(i in 1:P){
-  Perm.test.stat_GR_RC_B1_B1[i] <- abs(mean(GR_B1_PermSamples[
-    readers_corpus$Level=="Intermediate", i]) - mean(RC_B1_PermSamples[
+  Perm.test.stat_GR_RC_A1A2_B1[i] <- abs(mean(GR_A1A2_PermSamples[
+    readers_corpus$Level=="Intermediate", i]) - mean(RC_A1A2_PermSamples[
       reference_corpus$group==1, i]))
 }
 for(i in 1:P){
-  Perm.test.stat_GR_RC_B1_B2[i] <- abs(mean(GR_B1_PermSamples[
-    readers_corpus$Level=="Advanced", i]) - mean(RC_B1_PermSamples[
+  Perm.test.stat_GR_RC_A1A2_B2[i] <- abs(mean(GR_A1A2_PermSamples[
+    readers_corpus$Level=="Advanced", i]) - mean(RC_A1A2_PermSamples[
       reference_corpus$group==1, i]))
 }
 
@@ -1473,128 +1750,134 @@ for(i in 1:P){
 
 # === GRs vs. LWs ===
   
-# If there is no difference in the mean average B1 word frequencies of beginner GRs and LWs, we would observe a test statistic of 0.0028 or more by chance roughly 38.72% of the time.
-mean(Perm.test.stat_GR_LW_B1_A1A2 >= GR_LW_mean_B1_stat_A1A2)
-# If there is no difference in the mean average B1 word frequencies of intermediate GRs and LWs, we would observe a test statistic of 0.00057 or more by chance roughly 86.64% of the time.
-mean(Perm.test.stat_GR_LW_B1_B1 >= GR_LW_mean_B1_stat_B1)
-# If there is no difference in the mean average B1 word frequencies of advanced GRs and LWs, we would observe a test statistic of 0.0019 or more by chance roughly 62% of the time.
-mean(Perm.test.stat_GR_LW_B1_B2 >= GR_LW_mean_B1_stat_B2)
+# If there is no difference in the mean average A1-A2 word frequencies of beginner GRs and LWs, we would observe a test statistic of 0.033 or more by chance roughly 0.15% of the time.
+mean(Perm.test.stat_GR_LW_A1A2_A1A2 >= GR_LW_mean_A1A2_stat_A1A2)
+# If there is no difference in the mean average A1-A2 word frequencies of intermediate GRs and LWs, we would observe a test statistic of 0.014 or more by chance roughly 59.33% of the time.
+mean(Perm.test.stat_GR_LW_A1A2_B1 >= GR_LW_mean_A1A2_stat_B1)
+# If there is no difference in the mean average A1-A2 word frequencies of advanced GRs and LWs, we would observe a test statistic of 0.013 or more by chance roughly 62.89% of the time.
+mean(Perm.test.stat_GR_LW_A1A2_B2 >= GR_LW_mean_A1A2_stat_B2)
 
 # === GRs vs. RC ===
 
-# If there is no difference in the mean average B1 word frequencies of beginner GRs and RC, we would observe a test statistic of 0.0088 or more by chance roughly 8.6% of the time.
-mean(Perm.test.stat_GR_RC_B1_A1A2 >= GR_RC_mean_B1_stat_A1A2)
-# If there is no difference in the mean average B1 word frequencies of intermediate GRs and RC, we would observe a test statistic of 0.008 or more by chance roughly 16.7% of the time.
-mean(Perm.test.stat_GR_RC_B1_B1 >= GR_RC_mean_B1_stat_B1)
-# If there is no difference in the mean average B1 word frequencies of advanced GRs and RC, we would observe a test statistic of 0.002 or more by chance roughly 99.55% of the time.
-mean(Perm.test.stat_GR_RC_B1_B2 >= GR_RC_mean_B1_stat_B2)
+# If there is no difference in the mean average A1-A2 word frequencies of beginner GRs and the RC, we would observe a test statistic of 0.103 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_GR_RC_A1A2_A1A2 >= GR_RC_mean_A1A2_stat_A1A2)
+# If there is no difference in the mean average A1-A2 word frequencies of intermediate GRs and the RC, we would observe a test statistic of 0.079 or more by chance roughly 49.38% of the time.
+mean(Perm.test.stat_GR_RC_A1A2_B1 >= GR_RC_mean_A1A2_stat_B1)
+# If there is no difference in the mean average A1-A2 word frequencies of advanced GRs and the RC, we would observe a test statistic of 0.048 or more by chance roughly 100% of the time.
+mean(Perm.test.stat_GR_RC_A1A2_B2 >= GR_RC_mean_A1A2_stat_B2)
 
 # === LW vs. RC ===
 
-# If there is no difference in the mean average B1 word frequencies of beginner LW and RC, we would observe a test statistic of 0.011 or more by chance roughly 0% of the time.
-mean(Perm.test.stat_LW_RC_B1_A1A2 >= LW_RC_mean_B1_stat_A1A2)
-# If there is no difference in the mean average B1 word frequencies of intermediate LW and RC, we would observe a test statistic of 0.0086 or more by chance roughly 0% of the time.
-mean(Perm.test.stat_LW_RC_B1_B1 >= LW_RC_mean_B1_stat_B1)
-# If there is no difference in the mean average B1 word frequencies of advanced LW and RC, we would observe a test statistic of 0.00014 or more by chance roughly 0% of the time.
-mean(Perm.test.stat_LW_RC_B1_B2 >= LW_RC_mean_B1_stat_B2)
+# If there is no difference in the mean average A1-A2 word frequencies of children LWs and the RC, we would observe a test statistic of 0.070 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_A1A2_A1A2 >= LW_RC_mean_A1A2_stat_A1A2)
+# If there is no difference in the mean average A1-A2 word frequencies of young adult LWs and the RC, we would observe a test statistic of 0.065 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_A1A2_B1 >= LW_RC_mean_A1A2_stat_B1)
+# If there is no difference in the mean average A1-A2 word frequencies of adult LW and the RC, we would observe a test statistic of 0.035 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_A1A2_B2 >= LW_RC_mean_A1A2_stat_B2)
 
 # --------------------
 
-# 4) RELATIVE FREQUENCY OF THE GRADED VOCABULARY'S CONTEXT
+# 4) TFIDF OF THE GRADED VOCABULARY'S CONTEXT
 
 # === Step 1. Calculate the difference in sample means: ===
 
-GR_mean_ctxt_freq_A1A2 <- mean(readers_corpus$Ctxt_Freq[readers_corpus$Level=="Beginner"])
-GR_mean_ctxt_freq_B1 <- mean(readers_corpus$Ctxt_Freq[readers_corpus$Level=="Intermediate"])
-GR_mean_ctxt_freq_B2 <- mean(readers_corpus$Ctxt_Freq[readers_corpus$Level=="Advanced"])
+GR_mean_ctxt_TFIDF_A1A2 <- mean(readers_corpus$Ctxt_TFIDF[readers_corpus$Level=="Beginner"])
+GR_mean_ctxt_TFIDF_B1 <- mean(readers_corpus$Ctxt_TFIDF[readers_corpus$Level=="Intermediate"])
+GR_mean_ctxt_TFIDF_B2 <- mean(readers_corpus$Ctxt_TFIDF[readers_corpus$Level=="Advanced"])
 
-LW_mean_ctxt_freq_A1A2 <- mean(literature_corpus$Ctxt_Freq[literature_corpus$Level=="Children's literature"])
-LW_mean_ctxt_freq_B1 <- mean(literature_corpus$Ctxt_Freq[literature_corpus$Level=="Young adult fiction"])
-LW_mean_ctxt_freq_B2 <- mean(literature_corpus$Ctxt_Freq[literature_corpus$Level=="Adult literature"])
+LW_mean_ctxt_TFIDF_A1A2 <- mean(literature_corpus$Ctxt_TFIDF[literature_corpus$Level=="Children's literature"])
+LW_mean_ctxt_TFIDF_B1 <- mean(literature_corpus$Ctxt_TFIDF[literature_corpus$Level=="Young adult fiction"])
+LW_mean_ctxt_TFIDF_B2 <- mean(literature_corpus$Ctxt_TFIDF[literature_corpus$Level=="Adult literature"])
 
-RC_mean_ctxt_freq <- mean(reference_corpus$Ctxt_Freq)
+RC_mean_ctxt_TFIDF <- mean(reference_corpus$Ctxt_TFIDF)
 
 # === Step 2. Calculate the absolute difference in means ===
 
-GR_LW_mean_ctxt_freq_stat_A1A2 <- abs(GR_mean_ctxt_freq_A1A2 - LW_mean_ctxt_freq_A1A2)
-GR_LW_mean_ctxt_freq_stat_B1 <- abs(GR_mean_ctxt_freq_B1 - LW_mean_ctxt_freq_B1)
-GR_LW_mean_ctxt_freq_stat_B2 <- abs(GR_mean_ctxt_freq_B2 - LW_mean_ctxt_freq_B2)
+GR_LW_mean_ctxt_TFIDF_stat_A1A2 <- abs(GR_mean_ctxt_TFIDF_A1A2 - LW_mean_ctxt_TFIDF_A1A2)
+GR_LW_mean_ctxt_TFIDF_stat_B1 <- abs(GR_mean_ctxt_TFIDF_B1 - LW_mean_ctxt_TFIDF_B1)
+GR_LW_mean_ctxt_TFIDF_stat_B2 <- abs(GR_mean_ctxt_TFIDF_B2 - LW_mean_ctxt_TFIDF_B2)
 
-GR_RC_mean_ctxt_freq_stat_A1A2 <- abs(GR_mean_ctxt_freq_A1A2 - RC_mean_ctxt_freq)
-GR_RC_mean_ctxt_freq_stat_B1 <- abs(GR_mean_ctxt_freq_B1 - RC_mean_ctxt_freq)
-GR_RC_mean_ctxt_freq_stat_B2 <- abs(GR_mean_ctxt_freq_B2 - RC_mean_ctxt_freq)
+GR_RC_mean_ctxt_TFIDF_stat_A1A2 <- abs(GR_mean_ctxt_TFIDF_A1A2 - RC_mean_ctxt_TFIDF)
+GR_RC_mean_ctxt_TFIDF_stat_B1 <- abs(GR_mean_ctxt_TFIDF_B1 - RC_mean_ctxt_TFIDF)
+GR_RC_mean_ctxt_TFIDF_stat_B2 <- abs(GR_mean_ctxt_TFIDF_B2 - RC_mean_ctxt_TFIDF)
 
-LW_RC_mean_ctxt_freq_stat_A1A2 <- abs(LW_mean_ctxt_freq_A1A2 - RC_mean_ctxt_freq)
-LW_RC_mean_ctxt_freq_stat_B1 <- abs(LW_mean_ctxt_freq_B1 - RC_mean_ctxt_freq)
-LW_RC_mean_ctxt_freq_stat_B2 <- abs(LW_mean_ctxt_freq_B2 - RC_mean_ctxt_freq)
+LW_RC_mean_ctxt_TFIDF_stat_A1A2 <- abs(LW_mean_ctxt_TFIDF_A1A2 - RC_mean_ctxt_TFIDF)
+LW_RC_mean_ctxt_TFIDF_stat_B1 <- abs(LW_mean_ctxt_TFIDF_B1 - RC_mean_ctxt_TFIDF)
+LW_RC_mean_ctxt_TFIDF_stat_B2 <- abs(LW_mean_ctxt_TFIDF_B2 - RC_mean_ctxt_TFIDF)
 
 # === Step 3. Perform the permutation test ===
 
 # Variable we will resample from
-GR_ctxt_freq_variable <- readers_corpus$Ctxt_Freq
-LW_ctxt_freq_variable <- literature_corpus$Ctxt_Freq
-RC_ctxt_freq_variable <- reference_corpus$Ctxt_Freq
+GR_ctxt_TFIDF_variable <- readers_corpus$Ctxt_TFIDF
+LW_ctxt_TFIDF_variable <- literature_corpus$Ctxt_TFIDF
+RC_ctxt_TFIDF_variable <- reference_corpus$Ctxt_TFIDF
 
 # Initialize a matrix to store the permutation data. Each column is a permutation sample of data.
-GR_ctxt_freq_PermSamples <- matrix(0, nrow=GR_n, ncol=P)
-LW_ctxt_freq_PermSamples <- matrix(0, nrow=LW_n, ncol=P)
-RC_ctxt_freq_PermSamples <- matrix(0, nrow=RC_n, ncol=P)
+GR_ctxt_TFIDF_PermSamples <- matrix(0, nrow=GR_n, ncol=P)
+LW_ctxt_TFIDF_PermSamples <- matrix(0, nrow=LW_n, ncol=P)
+RC_ctxt_TFIDF_PermSamples <- matrix(0, nrow=RC_n, ncol=P)
+
+set.seed(1979)
 
 for(i in 1:P){
-  GR_ctxt_freq_PermSamples[, i] <- sample(GR_ctxt_freq_variable, size=GR_n, replace=FALSE)
+  GR_ctxt_TFIDF_PermSamples[, i] <- sample(GR_ctxt_TFIDF_variable, size=GR_n, replace=FALSE)
 }
 
-for(i in 1:P){
-  LW_ctxt_freq_PermSamples[, i] <- sample(LW_ctxt_freq_variable, size=LW_n, replace=FALSE)
-}
+set.seed(1979)
 
 for(i in 1:P){
-  RC_ctxt_freq_PermSamples[, i] <- sample(RC_ctxt_freq_variable, size=RC_n, replace=FALSE)
+  LW_ctxt_TFIDF_PermSamples[, i] <- sample(LW_ctxt_TFIDF_variable, size=LW_n, replace=FALSE)
+}
+
+set.seed(1979)
+
+for(i in 1:P){
+  RC_ctxt_TFIDF_PermSamples[, i] <- sample(RC_ctxt_TFIDF_variable, size=RC_n, replace=FALSE)
 }
 
 # Initialize vectors to store the test stats
-Perm.test.stat_GR_LW_ctxt_freq_A1A2 <- rep(0, P)
-Perm.test.stat_GR_LW_ctxt_freq_B1 <- rep(0, P)
-Perm.test.stat_GR_LW_ctxt_freq_B2 <- rep(0, P)
+Perm.test.stat_GR_LW_ctxt_TFIDF_A1A2 <- rep(0, P)
+Perm.test.stat_GR_LW_ctxt_TFIDF_B1 <- rep(0, P)
+Perm.test.stat_GR_LW_ctxt_TFIDF_B2 <- rep(0, P)
 
-Perm.test.stat_GR_RC_ctxt_freq_A1A2 <- rep(0, P)
-Perm.test.stat_GR_RC_ctxt_freq_B1 <- rep(0, P)
-Perm.test.stat_GR_RC_ctxt_freq_B2 <- rep(0, P)
+Perm.test.stat_GR_RC_ctxt_TFIDF_A1A2 <- rep(0, P)
+Perm.test.stat_GR_RC_ctxt_TFIDF_B1 <- rep(0, P)
+Perm.test.stat_GR_RC_ctxt_TFIDF_B2 <- rep(0, P)
 
-Perm.test.stat_LW_RC_ctxt_freq_A1A2 <- rep(0, P)
-Perm.test.stat_LW_RC_ctxt_freq_B1 <- rep(0, P)
-Perm.test.stat_LW_RC_ctxt_freq_B2 <- rep(0, P)
+Perm.test.stat_LW_RC_ctxt_TFIDF_A1A2 <- rep(0, P)
+Perm.test.stat_LW_RC_ctxt_TFIDF_B1 <- rep(0, P)
+Perm.test.stat_LW_RC_ctxt_TFIDF_B2 <- rep(0, P)
 
 # Loop through, and calculate test stats
 for(i in 1:P){
-  Perm.test.stat_GR_LW_ctxt_freq_A1A2[i] <- abs(mean(GR_ctxt_freq_PermSamples[
-    readers_corpus$Level=="Beginner", i]) - mean(LW_ctxt_freq_PermSamples[
+  Perm.test.stat_GR_LW_ctxt_TFIDF_A1A2[i] <- abs(mean(GR_ctxt_TFIDF_PermSamples[
+    readers_corpus$Level=="Beginner", i]) - mean(LW_ctxt_TFIDF_PermSamples[
       literature_corpus$Level=="Children's literature", i]))
 }
 for(i in 1:P){
-  Perm.test.stat_GR_LW_ctxt_freq_B1[i] <- abs(mean(GR_ctxt_freq_PermSamples[
-    readers_corpus$Level=="Intermediate", i]) - mean(LW_ctxt_freq_PermSamples[
+  Perm.test.stat_GR_LW_ctxt_TFIDF_B1[i] <- abs(mean(GR_ctxt_TFIDF_PermSamples[
+    readers_corpus$Level=="Intermediate", i]) - mean(LW_ctxt_TFIDF_PermSamples[
       literature_corpus$Level=="Young adult fiction", i]))
 }
 for(i in 1:P){
-  Perm.test.stat_GR_LW_ctxt_freq_B2[i] <- abs(mean(GR_ctxt_freq_PermSamples[
-    readers_corpus$Level=="Advanced", i]) - mean(LW_ctxt_freq_PermSamples[
+  Perm.test.stat_GR_LW_ctxt_TFIDF_B2[i] <- abs(mean(GR_ctxt_TFIDF_PermSamples[
+    readers_corpus$Level=="Advanced", i]) - mean(LW_ctxt_TFIDF_PermSamples[
       literature_corpus$Level=="Adult literature", i]))
 }
 
 for(i in 1:P){
-  Perm.test.stat_GR_RC_ctxt_freq_A1A2[i] <- abs(mean(GR_ctxt_freq_PermSamples[
-    readers_corpus$Level=="Beginner", i]) - mean(RC_ctxt_freq_PermSamples[
+  Perm.test.stat_GR_RC_ctxt_TFIDF_A1A2[i] <- abs(mean(GR_ctxt_TFIDF_PermSamples[
+    readers_corpus$Level=="Beginner", i]) - mean(RC_ctxt_TFIDF_PermSamples[
       reference_corpus$group==1, i]))
 }
 for(i in 1:P){
-  Perm.test.stat_GR_RC_ctxt_freq_B1[i] <- abs(mean(GR_ctxt_freq_PermSamples[
-    readers_corpus$Level=="Intermediate", i]) - mean(RC_ctxt_freq_PermSamples[
+  Perm.test.stat_GR_RC_ctxt_TFIDF_B1[i] <- abs(mean(GR_ctxt_TFIDF_PermSamples[
+    readers_corpus$Level=="Intermediate", i]) - mean(RC_ctxt_TFIDF_PermSamples[
       reference_corpus$group==1, i]))
 }
 for(i in 1:P){
-  Perm.test.stat_GR_RC_ctxt_freq_B2[i] <- abs(mean(GR_ctxt_freq_PermSamples[
-    readers_corpus$Level=="Advanced", i]) - mean(RC_ctxt_freq_PermSamples[
+  Perm.test.stat_GR_RC_ctxt_TFIDF_B2[i] <- abs(mean(GR_ctxt_TFIDF_PermSamples[
+    readers_corpus$Level=="Advanced", i]) - mean(RC_ctxt_TFIDF_PermSamples[
       reference_corpus$group==1, i]))
 }
 
@@ -1602,30 +1885,30 @@ for(i in 1:P){
 
 # === GRs vs. LWs ===
   
-# If there is no difference in the mean average graded vocabulary's context frequencies of beginner GRs and LWs, we would observe a test statistic of 0.00058 or more by chance roughly 1.24% of the time.
-mean(Perm.test.stat_GR_LW_ctxt_freq_A1A2 >= GR_LW_mean_ctxt_freq_stat_A1A2)
-# If there is no difference in the mean average graded vocabulary's context frequencies of intermediate GRs and LWs, we would observe a test statistic of 0.00048 or more by chance roughly 22.11% of the time.
-mean(Perm.test.stat_GR_LW_ctxt_freq_B1 >= GR_LW_mean_ctxt_freq_stat_B1)
-# If there is no difference in the mean average graded vocabulary's context frequencies of advanced GRs and LWs, we would observe a test statistic of 0.00081 or more by chance roughly 4.5% of the time.
-mean(Perm.test.stat_GR_LW_ctxt_freq_B2 >= GR_LW_mean_ctxt_freq_stat_B2)
+# If there is no difference in the mean average graded vocabulary's context TFIDF of beginner GRs and LWs, we would observe a test statistic of 0.00028 or more by chance roughly 0.86% of the time.
+mean(Perm.test.stat_GR_LW_ctxt_TFIDF_A1A2 >= GR_LW_mean_ctxt_TFIDF_stat_A1A2)
+# If there is no difference in the mean average graded vocabulary's context TFIDF of intermediate GRs and LWs, we would observe a test statistic of 0.00025 or more by chance roughly 11.41% of the time.
+mean(Perm.test.stat_GR_LW_ctxt_TFIDF_B1 >= GR_LW_mean_ctxt_TFIDF_stat_B1)
+# If there is no difference in the mean average graded vocabulary's context TFIDF of advanced GRs and LWs, we would observe a test statistic of 0.00053 or more by chance roughly 0.13% of the time.
+mean(Perm.test.stat_GR_LW_ctxt_TFIDF_B2 >= GR_LW_mean_ctxt_TFIDF_stat_B2)
 
 # === GRs vs. RC ===
 
-# If there is no difference in the mean average graded vocabulary's context frequencies of beginner GRs and RC, we would observe a test statistic of 0.0048 or more by chance roughly 84.58% of the time.
-mean(Perm.test.stat_GR_RC_ctxt_freq_A1A2 >= GR_RC_mean_ctxt_freq_stat_A1A2)
-# If there is no difference in the mean average graded vocabulary's context frequencies of intermediate GRs and RC, we would observe a test statistic of 0.0051 or more by chance roughly 21.78% of the time.
-mean(Perm.test.stat_GR_RC_ctxt_freq_B1 >= GR_RC_mean_ctxt_freq_stat_B1)
-# If there is no difference in the mean average graded vocabulary's context advanced of beginner GRs and RC, we would observe a test statistic of 0.005 or more by chance roughly 42.44% of the time.
-mean(Perm.test.stat_GR_RC_ctxt_freq_B2 >= GR_RC_mean_ctxt_freq_stat_B2)
+# If there is no difference in the mean average graded vocabulary's context TFIDF of beginner GRs and the RC, we would observe a test statistic of 0.0072 or more by chance roughly 27.25% of the time.
+mean(Perm.test.stat_GR_RC_ctxt_TFIDF_A1A2 >= GR_RC_mean_ctxt_TFIDF_stat_A1A2)
+# If there is no difference in the mean average graded vocabulary's context TFIDF of intermediate GRs and the RC, we would observe a test statistic of 0.0072 or more by chance roughly 22.36% of the time.
+mean(Perm.test.stat_GR_RC_ctxt_TFIDF_B1 >= GR_RC_mean_ctxt_TFIDF_stat_B1)
+# If there is no difference in the mean average graded vocabulary's context TFIDF of advanced GRs and the RC, we would observe a test statistic of 0.0070 or more by chance roughly 92.58% of the time.
+mean(Perm.test.stat_GR_RC_ctxt_TFIDF_B2 >= GR_RC_mean_ctxt_TFIDF_stat_B2)
 
 # === LWs vs. RC ===
 
-# If there is no difference in the mean average graded vocabulary's context frequencies of beginner LWs and RC, we would observe a test statistic of 0.0043 or more by chance roughly 0% of the time.
-mean(Perm.test.stat_LW_RC_ctxt_freq_A1A2 >= LW_RC_mean_ctxt_freq_stat_A1A2)
-# If there is no difference in the mean average graded vocabulary's context frequencies of intermediate LWs and RC, we would observe a test statistic of 0.0056 or more by chance roughly 0% of the time.
-mean(Perm.test.stat_LW_RC_ctxt_freq_B1 >= LW_RC_mean_ctxt_freq_stat_B1)
-# If there is no difference in the mean average graded vocabulary's context frequencies of advanced LWs and RC, we would observe a test statistic of 0.0058 or more by chance roughly 0% of the time.
-mean(Perm.test.stat_LW_RC_ctxt_freq_B2 >= LW_RC_mean_ctxt_freq_stat_B2)
+# If there is no difference in the mean average graded vocabulary's context TFIDF of beginner LWs and the RC, we would observe a test statistic of 0.0069 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_ctxt_TFIDF_A1A2 >= LW_RC_mean_ctxt_TFIDF_stat_A1A2)
+# If there is no difference in the mean average graded vocabulary's context TFIDF of intermediate LWs and the RC, we would observe a test statistic of 0.0075 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_ctxt_TFIDF_B1 >= LW_RC_mean_ctxt_TFIDF_stat_B1)
+# If there is no difference in the mean average graded vocabulary's context TFIDF of advanced LWs and the RC, we would observe a test statistic of 0.0076 or more by chance roughly 0% of the time.
+mean(Perm.test.stat_LW_RC_ctxt_TFIDF_B2 >= LW_RC_mean_ctxt_TFIDF_stat_B2)
 
 
 # VISUALISATION OF THE MOST RELEVANT DIFFERENCES

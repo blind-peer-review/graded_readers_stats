@@ -11,7 +11,7 @@ echo
 echo "Generating word cloud images..."
 cd graded_readers_stats/bow_overlap || exit
 # set PYTHONPATH to find our `graded_readers_stats.*` modules
-PYTHONPATH=../../ ../../env/bin/python bow_overlap_2.py
+PYTHONPATH=../../ ../../env/bin/python bow_overlap.py
 echo "Finished generating word cloud images..."
 echo
 
@@ -35,7 +35,7 @@ magick convert \
 -background white \
 -flatten output/neg/output.jpg
 
-magick \
+magick convert \
 legend_neg.jpg output/neg/output.jpg -geometry +150+420 -composite \
 labels.png -composite output/neg/final_neg.jpg
 
@@ -56,7 +56,7 @@ magick convert \
 -background white \
 -flatten output/pos/output.jpg
 
-magick \
+magick convert \
 legend_pos.jpg output/pos/output.jpg -geometry +150+420 -composite \
 labels.png -composite output/pos/final_pos.jpg
 

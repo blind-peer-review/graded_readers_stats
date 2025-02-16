@@ -1,9 +1,11 @@
 ##############################################################################
 #                            CORPUS PREPROCESSING                            #
 ##############################################################################
+import string
 
 import stanza as st
 from nltk.corpus import stopwords, names
+from stanza import DownloadMethod
 
 from graded_readers_stats import data
 from graded_readers_stats._typing import *
@@ -62,7 +64,8 @@ def make_stanza_docs_simple(texts):
     if nlp_es_simple is None:
         nlp_es_simple = st.Pipeline(
             lang='es',
-            processors='tokenize,lemma'
+            processors='tokenize,mwt,lemma',
+            download_method=DownloadMethod.REUSE_RESOURCES
         )
 
     documents = [st.Document([], text=d) for d in texts]
@@ -75,7 +78,8 @@ def make_stanza_docs_ner(texts):
     if nlp_es_simple is None:
         nlp_es_simple = st.Pipeline(
             lang='es',
-            processors='tokenize,lemma,ner'
+            processors='tokenize,mwt,lemma,ner',
+            download_method=DownloadMethod.REUSE_RESOURCES
         )
 
     documents = [st.Document([], text=d) for d in texts]
@@ -89,7 +93,8 @@ def make_stanza_docs(texts):
     if nlp_es is None:
         nlp_es = st.Pipeline(
             lang='es',
-            processors='tokenize,mwt,lemma,pos,depparse'
+            processors='tokenize,mwt,lemma,pos,depparse',
+            download_method=DownloadMethod.REUSE_RESOURCES
         )
 
     """Processes a list of strings and returns it as a list of lists (docs)
@@ -122,12 +127,46 @@ def normalize(column):
             for texts in column]
 
 
+with open('./data/stopwords/names_male.txt') as f:
+    names1 = f.read().splitlines()
+with open('./data/stopwords/names_female.txt') as f:
+    names2 = f.read().splitlines()
+
+
+def remove_names(column):
+    return [[[word
+              for word in sent
+              if word not in names1 and word not in names2]
+             for sent in texts]
+            for texts in column]
+
+
+def remove_numbers(column):
+    return [[[word
+              for word in sent
+              if not word.isnumeric()]
+             for sent in texts]
+            for texts in column]
+
+
+def remove_punctuation(column):
+    blacklist = string.punctuation + r'¡¿–—−...'
+    return [[[word
+              for word in sent
+              if word not in blacklist]
+             for sent in texts]
+            for texts in column]
+
+
 def remove_stopwords(column):
     blacklist = stopwords.words("spanish") \
+                + stopwords.words("catalan") \
                 + names.words("male.txt") \
                 + names.words("female.txt") \
                 + ["pedro", "leo", "leopoldo", "leotoldo", "hans", "vázquez",
-                   "ivanovna", "luis", "mary", "richard", "santiago", "505"]
+                   "ivanovna", "luis", "mary", "richard", "santiago", "505",
+                   'nse', 'des',
+                   'y', 'o', 'e', 'u', 'a']
     return [[[word
               for word in sent
               if word not in blacklist]
@@ -308,6 +347,9 @@ text_analysis_pipeline_ner = [
     (get_fields, COL_STANZA_DOC, COL_LEMMA, ('lemma',)),
     (normalize, COL_LEMMA, COL_LEMMA),
     (remove_stopwords, COL_LEMMA, COL_LEMMA),
+    (remove_punctuation, COL_LEMMA, COL_LEMMA),
+    (remove_numbers, COL_LEMMA, COL_LEMMA),
+    (remove_names, COL_LEMMA, COL_LEMMA),
 ]
 text_analysis_pipeline = [
     (read_files, COL_TEXT_FILE, COL_RAW_TEXT),

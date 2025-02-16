@@ -39,6 +39,6 @@ def download_native_corpus(args):
     })
 
     df["Text file"] = df["Treebank file"].apply(save_tbf_to_file)
-    df = df.drop(columns=["Treebank file"])
+    df = df.drop(columns=["Treebank file"], errors="ignore")
     df.to_csv('data/native/native.csv', index=False, sep=';')
     print('Download finished successfully!')

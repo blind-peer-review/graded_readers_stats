@@ -93,6 +93,25 @@ def read_pandas_csv(path: str, sep=";") -> pd.DataFrame:
     return pd.read_csv(path, sep=sep)
 
 
+def get_cache_path(script_name: str, file_name: str) -> str:
+    last_component = script_name.split('.')[-1]
+    return f'./data/cache/{last_component}-{file_name}'
+
+
+def save_df_to_cache(dataframe: pd.DataFrame, path: str) -> None:
+    dataframe.to_pickle(path)
+    print(f'DataFrame with columns {dataframe.columns} saved to {path}!')
+
+
+def load_df_from_pickle(path: str) -> pd.DataFrame:
+    if os.path.exists(path):
+        print(f'Loaded DataFrame from {path}')
+        return pd.read_pickle(path)
+    else:
+        print(f'No DataFrame at {path}. Returning empty DataFrame!')
+        return pd.DataFrame()
+
+
 def load_native_corpus(*args) -> pd.DataFrame:
     """Loads the native corpus from the NLTK library."""
     from nltk.corpus import cess_esp

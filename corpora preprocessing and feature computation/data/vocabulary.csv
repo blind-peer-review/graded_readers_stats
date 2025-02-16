@@ -1,31 +1,8586 @@
-Lexical item;Level;Topic;Subtopic
-Pelo;A1-A2;Individuo: dimensión física;Partes del cuerpo
-Hacer ejercicio;A1-A2;Individuo: dimensión física;Acciones y posiciones que se realizan con el cuerpo
-Rstar triste;A1-A2;Individuo: dimensión perceptiva y anímica;Sentimientos y estados de ánimo
-Tener calor;A1-A2;Individuo: dimensión perceptiva y anímica;Sensaciones y percepciones físicas
-Soltero;A1-A2;Identidad personal;Datos personales
-Escuela de idiomas;A1-A2;Educación;Centros e instituciones educativas
-Escuchar la radio;A1-A2;Ocio;Tiempo libre y entretenimiento
-Navegar por Internet;A1-A2;Información y medios de comunicación;Internet
-Aire acondicionado;A1-A2;Vivienda;Características de la vivienda
-Castillo;A1-A2;Geografía y naturaleza;Espacios urbanos o rústicos
-Tener tiempo libre;B1;Ocio;Tiempo libre y entretenimiento
-Contestador automático;B1;Información y medios de comunicación;Teléfono
-Portero;B1;Vivienda;Características de la vivienda
-Quemadura;B1;Salud e higiene;Heridas y traumatismos
-Zapatilla;B1;Salud e higiene;Higiene
-Recepcionista;B1;"Viajes; alojamiento y transporte";Alojamiento
-Pagar en metálico;B1;Economía e industria;Comercio
-Biólogo;B1;Ciencia y tecnología;Biología
-Congreso;B1;"Gobierno; política y sociedad";Política y gobierno
-Sacar una foto;B1;Actividades artísticas;Fotografía
-Salir de fiesta ;B2;Ocio;Tiempo libre y entretenimiento
-Llamar a cobro revertido;B2;Información y medios de comunicación;Teléfono
-Bombilla;B2;Vivienda;Objetos domésticos
-Tener ansiedad;B2;Salud e higiene;Síntomas
-Colorete;B2;Salud e higiene;Estética
-Poner el intermitente;B2;"Viajes; alojamiento y transporte";Sistema de transporte
-Accionista;B2;Economía e industria;Finanzas y bolsa
-Microscopio;B2;Ciencia y tecnología;Física y química
-Cometer un delito;B2;"Gobierno; política y sociedad";Ley y justicia
-Impacto medioambiental;B2;Geografía y naturaleza;Problemas medioambientales y desastres naturales
+Lexical item;Level
+ácido;B1
+áfrica;B1
+águila;B1
+álbum;B1
+álbum de fotos;B1
+álgebra;B2
+ángulo;B2
+ángulo recto;B2
+árbitro;B1
+árbol;A1
+árbol frutal;B1
+área;B2
+área de conocimiento;B2
+área de descanso;B2
+área de estudio;B2
+área de servicio;B1
+área protegida;B2
+área virgen;B2
+ático;B2
+átomo;B2
+época;B1
+éxito;A2
+índice;B1
+índice de mortalidad;B2
+índice de natalidad;B2
+índice de población;B2
+íntimo;B2
+íntimo amigo;B2
+írsele el santo al cielo;B2
+óleo;B2
+ópera;A2
+órgano;B2
+órgano sensorial;B2
+a cobro revertido;B2
+a disgusto;B2
+a fuego lento;B2
+a hombros;B2
+a la derecha;A1
+a la derecha de;A1
+a la izquierda;A1
+a la izquierda de;A1
+a la plancha;A2
+a máquina;B2
+a mano;B2
+a medias;B2
+a ordenador;B2
+a pie;A1
+a su cargo;B2
+a tiempo completo;A2
+a tiempo parcial;A2
+año lectivo;B2
+abandonar;B1
+abandonar los estudios;B2
+abdominales;B1
+abeja;B1
+abiertamente;B2
+abierto;A2
+abogado;A1
+abogado criminalista;B2
+abogado defensor;B2
+abogado laboralista;B2
+abono orgánico;B2
+abortar;B2
+aborto;B2
+abrazar;B1
+abrazarse;B1
+abrebotellas;B2
+abrelatas;B2
+abrigo;A2
+abril;A1
+abrir;B1
+abrir el buzón;B1
+abrir la correspondencia;B2
+abrir un documento;B1
+abrir un regalo;B1
+abrir una botella;B1
+abrir una cuenta;B1
+abrirse una cuenta de correo electrónico;B1
+abrochar;A2
+abrocharse;A2
+abrocharse el cinturón;A2
+absolutamente;B1
+absoluto;B1
+abstención;B2
+abstenerse;B2
+abstracto;B2
+abuelo;A1
+abundancia;B2
+abundancia de;B2
+aburrido;B1
+aburrimiento;B1
+aburrirse;B1
+acabar;A2
+acabar el bachillerato;B1
+acabar un doctorado;B1
+acabar un máster;B1
+acabar una carrera;B1
+acabar una relación;B1
+academia;A2
+academia de ballet;A2
+academia de idiomas;A2
+academia de música;A2
+acampada;B2
+acampar;B2
+acariciar;B2
+acceder;B1
+acceder a un enlace;B2
+acceder a una página de internet;B1
+acceder a una página web;B1
+acción;B2
+accidente;A2
+accidente aéreo;B2
+accidente de coche;B1
+accidente de tráfico;B1
+accionista;B2
+aceite;A2
+aceite de girasol;B1
+aceite de oliva;B1
+aceite vegetal;B1
+aceitera;B2
+aceituna;B1
+acelerar;B1
+aceptar;B1
+acera;A1
+acertar;B2
+acierto;B2
+acogedor;B2
+acoger;B2
+acomodador;B2
+acomplejado;B2
+acorde con sus capacidades;B2
+acostarse;A2
+actitud;B1
+actitud agradable;B1
+actitud extraña;B1
+actitud positiva;B1
+actividad;A1
+actividad callejera;B2
+actividad en grupos;B1
+actividad en parejas;B1
+actividad individual;B1
+actividad industrial;B2
+acto;B2
+acto académico;B2
+acto formal;B2
+acto informal;B2
+acto oficial;B2
+acto religioso;B2
+acto sencillo;B2
+acto solemne;B2
+actor;A1
+actriz;A1
+actuación;B2
+actualizar;B2
+actuar;B2
+actuar correctamente;B2
+acuático;B1
+acuíferos;B2
+acuarela;B2
+acuario;B1
+acudir;B1
+acumular;B2
+acusado;B1
+acusar;B1
+acuse de recibo;B2
+adaptación;B2
+adelantar;B2
+adelgazar;B1
+además;A2
+adiós;A1
+aditivos;B2
+adivinar;A2
+adjudicar;B2
+adjuntar;B1
+adjuntar un documento;B1
+administración;B1
+administrador;B2
+administrativo;B1
+admiración;B2
+admirado;B2
+admirar;A2
+admitir;B1
+adolescencia;B1
+adolescente;A2
+adoptar;B2
+adoptar un niño;B1
+adoptivo;B2
+adorar;B2
+adorno;B2
+adquirir experiencia;B1
+ADSL;B2
+adulto;B1
+aeropuerto;A1
+afectuosamente;B2
+afeitarse;A2
+afición;A2
+aficionado;B2
+afrontar;B2
+afueras;B1
+agachado;B2
+agacharse;B2
+agencia;B1
+agencia de fotografía;B1
+agencia de prensa;B1
+agencia de viajes;A2
+agenda;A2
+agente;B2
+agente de policía;B2
+agilizar;B2
+agnóstico;B2
+agobiado;B2
+agobiarse;B2
+agosto;A1
+agotado;B1
+agotar;B2
+agotarse;B2
+agotarse los recursos naturales;B2
+agotarse un libro;B2
+agrícola;B2
+agradable;A2
+agradecido;B2
+agresividad;B2
+agricultor;A2
+agricultura;B1
+agricultura ecológica;B2
+agrio;B2
+agua;A1
+agua con gas;A1
+agua del grifo;B2
+agua mineral;A1
+agua mineral con gas;A1
+agua mineral sin gas;A1
+agua oxigenada;B1
+agua potable;B2
+agua sin gas;A1
+aguantar;B2
+aguja;B2
+agujero;B1
+agujero de la capa de ozono;B1
+ahogar;B1
+ahorrar;B2
+ahorrar dinero;B2
+ahorro;B1
+ahorro energético;B2
+aire;A2
+aire acondicionado;A1
+ajardinado;B2
+ajedrez;A2
+ajo;A2
+ajustado;B2
+ajustar;B1
+ajustarse;B2
+al contado;B2
+al dedillo;B2
+al lado;A1
+al lado de;A1
+al vapor;B2
+alérgico;A2
+ala delta;B1
+alarma;B2
+alas de pavo;B2
+alas de pollo;B2
+albañil;B2
+albañilería;B2
+albahaca;B2
+albergue;B2
+albornoz;B2
+alcalde;B1
+alcanzar;B1
+alcohólico;B2
+alcohol;B1
+alegato;B2
+alegría;B1
+alegrarse;B1
+alegre;A1
+alemán;A1
+alergia;A2
+alfiler;B2
+alfombra;A2
+alfombrilla;A2
+alga;B2
+algodón;B1
+aliñado;B1
+aliñar;B1
+aliñar una ensalada;B1
+aliado;B2
+alianza de oro;B2
+alianza de plata;B2
+alimentación;B1
+alimentación equilibrada;B1
+alimentación sana;B1
+alimentar;B1
+alimentarse;B1
+alimento;B1
+alimento básico;B2
+alimento bajo en azúcar;B2
+alimento bajo en calorías;B2
+alimento bajo en sal;B2
+alimento congelado;B2
+alimento dietético;B2
+alimento fresco;B2
+alimento ligero;B1
+alimento nutritivo;B2
+alimento orgánico;B2
+alimento pesado;B1
+alimento rico en calcio;B2
+alimento rico en calorías;B2
+alimento rico en fibra;B2
+alimento rico en hierro;B2
+alimento rico en proteínas;B2
+alimento rico en vitaminas;B2
+alimentos transgénicos;B2
+alisar;B1
+aliviado;B2
+alivio;B2
+alma;B2
+almacén;B2
+almacenar;B2
+almeja;B2
+almendra;B2
+almohada;A2
+alojamiento;A2
+alojarse;B1
+alojarse en un apartamento;B2
+alojarse en un bungaló;B2
+alojarse en un hotel;B2
+alojarse en una cabaña;B2
+alpinismo;B2
+alquilar;B1
+alquilar un apartamento;B2
+alquilar un bungaló;B2
+alquilar un piso;A1
+alquilar una cabaña;B2
+alquilar una película;B1
+alquiler;B1
+alrededores;B2
+altavoz;B2
+alternar;B2
+alternativo;B2
+altitud;B2
+alto;B1
+altura;B1
+alubia;B1
+aluminio;B2
+alumnado;B2
+alumno;A1
+alumno brillante;B2
+alumno conflictivo;B2
+alumno de la escuela;A2
+alumno del instituto;A2
+alumno estudioso;B2
+alzar;B1
+américa;A1
+ama de casa;A1
+amabilidad;B1
+amable;A2
+amar;B2
+amargo;B1
+amarillo;A1
+ambición;B2
+ambicioso;B2
+ambiente;B1
+ambiente íntimo;B2
+ambiente acogedor;B2
+ambiente cálido;B2
+ambiente clásico;B1
+ambiente fresco;B2
+ambiente moderno;B1
+ambulancia;A2
+ambulatorio;B2
+amigo;A1
+amigo íntimo;B2
+amigo de la infancia;B1
+amigo de la universidad;B1
+amigo de toda la vida;B2
+amistad;B1
+amoldarse;B2
+amor;B1
+amor propio;B2
+ampliación;B2
+ampliar;B1
+ampliar un contrato;B2
+amueblado;A2
+amueblar;B1
+amueblar una habitación;B2
+análisis;B1
+análisis de orina;B1
+análisis de sangre;B1
+anécdota;B2
+analgésico;B2
+analizar;B2
+analizar un tema;B2
+analizar un texto;B2
+anarquía;B2
+ancho;B2
+anchura;B1
+anciano;B1
+andén;B1
+andar;A2
+anestesia;B2
+anestesiar;B2
+anestesista;B2
+angustia;B2
+angustiarse;B2
+anillo;A1
+anillo de oro;B1
+anillo de plata;B1
+animal;A1
+animal acuático;B1
+animal de compañía;B1
+animal doméstico;B1
+animal marino;B2
+animal salvaje;B1
+animal terrestre;B2
+animal volador;B2
+animar;B2
+aniversario;B1
+aniversario de boda;B1
+anorak;B2
+ansiedad;B2
+antecedente;B2
+antibiótico;B1
+anticiclón;B2
+anticipar;B2
+anticipo;B2
+anticuado;B1
+antiguo amigo;B2
+antiguo testamento;B2
+antiinflamatorio;B2
+antipático;A1
+antivirus;B1
+anual;B2
+anular;B1
+anular un billete;B1
+anular una reserva;B1
+anunciar;B2
+anunciar un vuelo;B2
+anuncio;A2
+anuncio de trabajo;B1
+apagar;A2
+apagar la luz;A2
+apagar la sed;B2
+apagar un electrodoméstico;B1
+apagarse;B2
+apagarse una estrella;B2
+aparato;B1
+aparato digestivo;B2
+aparcamiento;A1
+aparcar;B1
+aparcar en zona azul;B2
+aparcar en zona prohibida;B2
+aparcar en zona verde;B2
+aparejador;B2
+apartado de correos;B1
+apartamento;A1
+apasionado;B2
+apellidarse;A2
+apellido;A1
+apenado;B2
+aperitivo;A2
+apetecible;B2
+apetito;B2
+aplaudir;B2
+aplazar;B1
+aplicar;A2
+aplicar una crema;B2
+aplicar una fórmula;B2
+aportar;B2
+apostar;B2
+apoyar;B2
+apreciar;B2
+aprecio;B2
+aprender;A1
+aprender de memoria;B1
+aprender una fórmula;A2
+aprender una regla;A2
+aprendizaje;B2
+apretado;B2
+apretar;A2
+apretar el botón;B2
+apretar el zapato;B2
+apretar la cintura;B2
+aprobar;A2
+aprobar el curso;B1
+aprobar un control;B1
+aprobar un examen;A2
+aprobar un examen oral;B1
+aprobar un test escrito;B1
+aprobar una ley;B2
+aprovechar;B1
+aprovechar los recursos naturales;B2
+aproximarse;B1
+apto;A2
+apto para todos los públicos;B2
+apuesta;B2
+apuntar;B2
+apuntarse;B2
+apuntarse a una lista de distribución;B2
+apuntarse en una lista de distribución;B2
+apuntes;B1
+araña;A2
+arañar;B2
+arar;B1
+arbusto;B2
+archivar;B1
+archivar documentos;B1
+archivo;B1
+arcoíris;A2
+arena;B1
+argentino;A1
+argumento;B2
+arma;A2
+armario;A1
+armario de baño;A1
+armarse un lío;B2
+armonía;B2
+aroma;A2
+aroma relajante;B2
+arquitecto;A2
+arquitectura;B1
+arrancar;B2
+arrastrar;B2
+arreglar;B1
+arreglar el coche;B1
+arreglar la casa;B2
+arreglar un aparato eléctrico;B2
+arreglar un enchufe;B2
+arreglar un interruptor;B2
+arreglar un pinchazo;B2
+arreglo;B2
+arrendador;B2
+arrendatario;B2
+arroba;A1
+arrogancia;B2
+arrogante;B1
+arroz;A2
+arroz con leche;B2
+arruga;A2
+arrugado;B2
+arrugar;A2
+arrugarse;B1
+arruinar;B2
+artículo;B2
+artículo de fondo;B2
+artículo de opinión;B2
+artículo gratis;B2
+artístico;B1
+arte;A2
+arte abstracto;B2
+arte barroco;B2
+arte callejero;B2
+arte clásico;B1
+arte contemporáneo;B2
+arte cubista;B2
+arte expresionista;B2
+arte futurista;B2
+arte gótico;B2
+arte impresionista;B2
+arte modernista;B2
+arte moderno;B1
+arte oriental;B2
+arte realista;B2
+arte románico;B2
+arteria;B2
+artes escénicas;B2
+artes plásticas;B2
+articulación;B1
+artista;A2
+asado;B1
+asar;B1
+ascender a jefe de sección;B2
+ascender a responsable de unidad;B2
+ascender a subdirector;B2
+ascensor;A1
+asentarse;A2
+asentir;B2
+aseo;A2
+aseos públicos;B1
+asesinar;B2
+asesinar a alguien;B2
+asesinato;B2
+asesino;B1
+asia;B1
+asiento;B1
+asiento de un cine;B1
+asiento de un teatro;B1
+asignatura;B1
+asignatura común;B2
+asignatura obligatoria;B2
+asignatura optativa;B2
+asignatura pendiente;B2
+asignatura práctica;B1
+asignatura teórica;B1
+asimilar;B2
+asistencia domiciliaria;B2
+asistencia médica;B2
+asistencia sanitaria;B2
+asistente;B1
+asistente social;B2
+asistir;B1
+asistir a un cóctel;B2
+asistir a un funeral;B2
+asistir a una celebración;B2
+asistir a una fiesta de disfraces;B2
+asociación;B2
+asociación de antiguos alumnos;B2
+asociación de profesores;B2
+aspecto;B1
+aspersor;B2
+aspirador;B1
+aspirina;B1
+astrónomo;B2
+astrología;B2
+astronauta;B1
+astronomía;B2
+asumir;B2
+asustar;B2
+asustarse;B2
+atún;A2
+atómico;B2
+atacar;B2
+atacar un virus;B2
+ataque al corazón;B2
+ataque de ansiedad;B2
+ataque epiléptico;B2
+atasco;B1
+ateísmo;B2
+atención;B1
+atención al cliente;B2
+atención de urgencias;B2
+atención especializada;B2
+atención primaria;B2
+atender;A2
+atender a personas mayores;B1
+atender a un enfermo;B2
+atender clientes;B1
+atender una llamada;B1
+atender una mesa;B2
+atender usuarios;B1
+atenerse;B2
+atentado;B2
+atentado terrorista;B1
+atentar contra alguien;B2
+atento;B2
+ateo;B1
+aterrizaje;B2
+aterrizar;B1
+atleta;A1
+atletismo;B1
+atmósfera;B1
+atracar;B1
+atraco;B1
+atravesar;B1
+atravesar el océano;B2
+atravesar el país;B2
+atropellar;B1
+atropello;B1
+audición;B2
+audio;B1
+audioconferencia;B2
+aula;A2
+aula multimedia;B1
+aumentar;A2
+aumentar el número de desempleados;B2
+aumentar el precio;B1
+aumentar la familia;B2
+aumentar la velocidad;B2
+aumento;A2
+aumento de la mortalidad;B2
+aumento de la natalidad;B2
+aumento de la población;B2
+autobús;A1
+autobús interurbano;B2
+autobús urbano;B2
+autobiografía;B1
+autoevaluación;B2
+autopista;B1
+autopista de peaje;B2
+autor;B2
+autor futurista;B2
+autor impresionista;B2
+autor modernista;B2
+autor teatral;B2
+autoservicio;B2
+autovía;B2
+auxiliar de vuelo;B1
+avance;B2
+avance científico;B2
+avance tecnológico;B2
+avanzar;B1
+avanzar con una ficha;B2
+ave;B1
+avellana;B2
+avenida;A1
+avería;B1
+avergonzado;B2
+avergonzarse;B2
+averiado;B1
+averiarse un electrodoméstico;B2
+avestruz;B1
+avión;A1
+avisar;B2
+ayuda;B1
+ayuda económica;B1
+ayuda en carretera;B2
+ayudante;B1
+ayudar;B1
+ayunar;B2
+ayuntamiento;A2
+azúcar;A2
+azúcar alto;B2
+azafata;A2
+azar;B2
+azotar;B2
+azucarero;B1
+azul;A1
+báscula;A2
+béisbol;B1
+bañador;A2
+bañarse;A1
+bañera;A2
+bañera de hidromasaje;B2
+baño;A1
+baño público;B1
+bacalao;A2
+bacalao al pilpil;B2
+bache;B2
+bachiller;B1
+bachillerato;B1
+bailar;A1
+bailarín;B1
+baile;B1
+bajar;A2
+bajar el desempleo;B2
+bajar el interés;B1
+bajar el paro;B2
+bajar el precio;B1
+bajar el sueldo;B1
+bajar la bolsa;B2
+bajar la cabeza;B1
+bajar la marea;B2
+bajar la temperatura;B1
+bajar las manos;B1
+bajar los brazos;B1
+bajar un programa;B1
+bajarse;A2
+bajarse de un autobús;B1
+bajarse de un avión;B1
+bajarse de un barco;B1
+bajarse de un coche;B1
+bajarse de un tren;B1
+bajarse de una bicicleta;B1
+bajarse de una moto;B1
+bajarse música;B1
+bajarse un archivo;B1
+bajarse un programa;B1
+bajito;A2
+bajo;B1
+bajo en azúcar;B2
+bajo en calorías;B2
+bajo en sal;B2
+balón;B1
+balón de baloncesto;B1
+balón de fútbol;B1
+bala;B2
+ballena;B1
+ballet;B1
+balneario;B2
+baloncestista;B1
+baloncesto;A2
+balonmano;B2
+banco;A1
+banda ancha;B1
+banda armada;B2
+banda de criminales;B2
+banda de delincuentes;B2
+banda organizada;B2
+banda sonora;B2
+banda terrorista;B2
+bandeja;A2
+bandera;A1
+bandera amarilla;B2
+bandera roja;B2
+bandera verde;B2
+banquete;B1
+bar;A1
+baraja;B2
+barajar;B2
+barato;A1
+barba;A1
+barbilla;B2
+barca;B1
+barco;A1
+barco de pasajeros;B2
+barco de pesca;B1
+barco de vela;B2
+barco pesquero;B2
+barman;B2
+barnizar;B2
+barra;B1
+barra de labios;B1
+barra de pan;A2
+barra de un bar;B1
+barrer;B1
+barrer las calles;B2
+barriga;B1
+barrio;A2
+barrio comercial;B1
+barrio industrial;B1
+barrio residencial;B1
+barro;B2
+basado;B2
+basar;B1
+basarse;B2
+basarse en un estudio;B2
+basarse en una investigación;B2
+base;B1
+base de datos;B1
+bastón;B1
+basura;B1
+basurero municipal;B2
+bata;B2
+batalla;B2
+bate;B1
+bateador;B1
+batería;B1
+batería de teléfono;B1
+batidora;B2
+batir huevos;B1
+bautizar;B2
+bautizo;B2
+bebé;A2
+beber;A1
+bebida;A1
+bebida con alcohol;A2
+bebida con hielo;A2
+bebida sin alcohol;A2
+bebida sin hielo;A2
+beca;B1
+becario;B1
+beisbolista;B1
+belleza;B2
+bendecir;B2
+bendición;B2
+beneficioso;B2
+berenjena;B1
+besar;B1
+besarse;B1
+biólogo;B1
+biblia;B1
+biblioteca;A1
+biblioteca municipal;A2
+biblioteca pública;A2
+bicicleta;A1
+bidé;A2
+bien comunicado;A1
+bien orientado;B2
+bigote;A1
+bilingüe;B2
+billar;B1
+billete;A1
+billete de ida;A2
+billete de ida y vuelta;A2
+billete de lotería;B2
+billete de vuelta;A2
+biografía;B1
+biológico;B2
+biología;B1
+biomasa;B2
+biosfera;B2
+biquini;A2
+bisabuelo;B2
+bisexual;B1
+bisnieto;B2
+bisutería;B1
+bizcocho;B1
+blanco;A1
+blanco y negro;B1
+blando;B1
+bloque de pisos;B1
+bloquear;A2
+bloquearse el ordenador;B2
+blusa;A2
+boca;A1
+boca de metro;A2
+bocadillo;A1
+boda;B1
+boda civil;B1
+boda religiosa;B1
+bodas de oro;B2
+bodas de plata;B1
+bodegón;B2
+bol;B2
+bolígrafo;A1
+Bolivia;A2
+boliviano;A2
+bollería;B2
+bollería industrial;B2
+bolsa;B1
+bolsa de aseo;B1
+bolsa de la compra;B1
+bolsa de naranjas;A2
+bolsa de viaje;B1
+bolso;A1
+bomba;B1
+bombero;A1
+bombilla;B2
+bombo;B2
+bono;A2
+borrador;A2
+borrar;A2
+borrasca;B2
+bosque;A2
+bostezar;B2
+botón;A2
+botón de disparo;B1
+bota;B1
+botar;A2
+botas;A2
+botas de montaña;A2
+bote de mermelada;A2
+bote de tomate;A2
+botella;A2
+botella de leche;A2
+botiquín;B1
+braga;A2
+bravo;B2
+brazo;A2
+brecha;B2
+bricolaje;B1
+brillante;B2
+brillar;B2
+brillar una estrella;B2
+brindar;B2
+brindis;B1
+bronce;B2
+bronquitis;B2
+brotar;B1
+bruscamente;B2
+brusco;B2
+bruto;B2
+buceador;B1
+bucear;B1
+budismo;B2
+budista;A1
+buen amigo;B1
+buen gusto;B2
+buen sueldo;B2
+buen tiempo;A2
+buena distribución;B2
+buena persona;B1
+buenas maneras;B2
+buenas noches;A1
+buenas vistas;B1
+bueno;A2
+buenos días;A1
+buenos modales;B2
+bufé;B2
+bufé libre;B2
+bufanda;A2
+bufete;B1
+buhardilla;B2
+buitre;B1
+bungaló;B2
+burlarse;B1
+burocracia;B1
+buscador;B1
+buscar;A1
+buscar alojamiento;A2
+buscar datos;B1
+buscar diferencias;B1
+buscar documentos;B1
+buscar en un diccionario;B1
+buscar en un libro;B1
+buscar imágenes;B1
+buscar información;B1
+buscar piso;A2
+buscar trabajo;B1
+buscar una palabra;B1
+butaca;B2
+buzón;B1
+buzón de correos;B1
+buzón de voz;B1
+buzoneo;B2
+cálculo;B2
+cámara;A2
+cámara de comercio;B2
+cámara de fotos;A2
+cámara digital;B1
+cámara lenta;B2
+cáncer;B2
+cárcel;B1
+cáscara de huevo;B1
+célula;B2
+céntimo;A1
+céntimo de euro;A1
+céntrico;B1
+césped;B1
+círculo;B1
+cúbico;B1
+cóctel;B2
+código;B1
+código postal;A1
+cómic;B1
+cómico;B1
+cómo estás;A1
+cómoda;A2
+cómodo;B1
+cónsul;B1
+cónyuge;B2
+cañón;B2
+cañería;B2
+caída;A2
+cabaña;B1
+caballo;A2
+caber;B1
+cabeza;A2
+cabeza de ajo;A2
+cabina;A2
+cabina de ducha;B2
+cabina de teléfono;A2
+cabina telefónica;A2
+cable;B2
+cabo;B2
+cacahuete;B1
+cacao;A2
+cacao en polvo;B2
+cacharro;B2
+cadáver;B2
+cadena;A2
+cadena de oro;B2
+cadena de plata;B2
+cadena nacional;B1
+cadena pública;B1
+cadena privada;B1
+cadena regional;B1
+caducado;B2
+caer;B1
+caer bien;B1
+caer bien a;B1
+caer mal;B1
+caer mal a;B1
+caer un chaparrón;B2
+caer una helada;B2
+caer una nevada;B2
+caer una tormenta;B2
+caerse;B1
+caerse bien;B1
+caerse las hojas;B1
+caerse mal;B1
+café;B1
+café con leche;A1
+café cortado;A1
+café solo;A1
+cafetería;A2
+cafetera;B1
+cajón;A1
+caja;A1
+caja de galletas;A2
+caja fuerte;B2
+cajero;A2
+cajero automático;A2
+cala;A2
+calabacín;B1
+calcetín;A2
+calcio;B2
+calcular;B2
+calcular un porcentaje;B2
+calcular un porcentaje con precisión;B2
+calcular un porcentaje mentalmente;B2
+calcular una cantidad;B2
+calcular una cantidad con precisión;B2
+calcular una cantidad mentalmente;B2
+caldera;B1
+calderilla;B2
+calefacción;B1
+calendario;A2
+calendario electoral;B2
+calentamiento;B1
+calentamiento global;B2
+calentar;B1
+calentar agua;B2
+calentar una salsa;B2
+caliente;B1
+calificación;B2
+callado;B2
+calle;A1
+calle comercial;A2
+calle mayor;A2
+calle peatonal;A2
+callejón;B1
+callejero;B1
+calmante;B2
+calor;A1
+caloría;B1
+calorías vacías;B2
+calurosamente;B2
+calvo;A2
+calzada;A2
+calzador;B2
+calzar;B1
+calzoncillo;A2
+cama;A1
+cama de matrimonio;A2
+cama individual;A2
+cama supletoria;B2
+camarero;A1
+cambiar;A2
+cambiar de apellido;B2
+cambiar de aspecto;B2
+cambiar de cadena;B1
+cambiar de canal;B1
+cambiar de chaqueta;B2
+cambiar de compañero;B1
+cambiar de dirección;B1
+cambiar de emisora;B1
+cambiar de libro;B1
+cambiar de nombre;B2
+cambiar de peinado;B2
+cambiar de sitio;B1
+cambiar de tema;B1
+cambiar dinero;A1
+cambiar el aceite;B2
+cambiar el tamaño de letra;B2
+cambiar el tipo de letra;B2
+cambiar la configuración;B2
+cambiar las sábanas;A2
+cambiar un billete;B1
+cambiar una pieza;B2
+cambiar una rueda;B2
+cambiarse;B1
+cambiarse de casa;A2
+cambiarse de sitio;B1
+cambio;B1
+cambio climático;B1
+cambio de imagen;B2
+cambio de sentido;B2
+camión;B1
+camión de mudanzas;B1
+camilla;B2
+caminar;A2
+camino;B1
+camisón;B2
+camisa;A1
+camiseta;A1
+campaña;B1
+campaña electoral;B2
+campaña publicitaria;B2
+campeón;B2
+campeonato;B2
+campesino;B1
+campin;A2
+campo;A1
+campo de fútbol;B1
+campus;B1
+cana;B2
+canal;B1
+canal nacional;B1
+canal público;B1
+canal privado;B1
+canal regional;B1
+canasta;A2
+cancelación;A2
+cancelar;B2
+cancelar un cóctel;B2
+cancelar un espectáculo;B2
+cancelar un funeral;B2
+cancelar un vuelo;B2
+cancelar una celebración;B2
+cancelar una fiesta de disfraces;B2
+cancelar una reserva;A2
+cancha;A2
+canción;A2
+candidato;B2
+canguro;B1
+canica;B2
+canon;B2
+cansado;A2
+cansancio;B2
+cansarse;B1
+cantante;A1
+cantar;A1
+capítulo;B1
+capa;A2
+capa de ozono;B2
+capacidad;B1
+capacidad de análisis;B2
+capaz;B1
+capitán;B1
+capricornio;B2
+captar;B2
+carácter;A2
+cara;A2
+caramelo;B1
+carbón;B2
+carbohidrato;B1
+cardiología;B1
+carecer;B2
+cargador;B1
+cargar;A2
+cargar la batería;B1
+cargo;B2
+cariño;B2
+carné;A1
+carné de conducir;A1
+carné de identidad;A1
+carné por puntos;B2
+carne;A1
+carne a la brasa;B2
+carne a la plancha;B1
+carne asada;B2
+carne con patatas;A2
+carne de cerdo;A2
+carne de cordero;A2
+carne de pollo;A2
+carne de ternera;A2
+carne frita;B1
+carne guisada;B2
+carne hervida;B1
+carnicería;A2
+carnicero;A2
+caro;A1
+carpeta;B1
+carpintería;B2
+carpintero;B2
+carrera;B1
+carrera ciclista;B1
+carrera de coches;B1
+carrera de motos;B1
+carretera;A1
+carretera comarcal;B2
+carretera nacional;B2
+carretera principal;B2
+carretera secundaria;B2
+carril;B1
+carril bici;B1
+carril bus;B1
+carrito;B1
+carrito de la compra;B1
+carro;B1
+carro de la compra;B1
+cartón;B1
+cartón reciclado;B1
+carta;A1
+carta al director;B2
+carta certificada;B2
+carta confidencial;B2
+carta de despido;B2
+carta de presentación;B1
+carta de reclamación;B2
+carta de recomendación;B2
+carta de solicitud de trabajo;B2
+carta formal;B1
+carta oficial;B2
+carta personal;B1
+carta privada;B2
+carta urgente;B2
+cartel;B1
+cartelera;B1
+cartera;A1
+cartero;B1
+cartero comercial;B2
+cartucho;B2
+cartucho de tinta;B2
+cartulina;B2
+casa;A1
+casa de campo;B2
+casa rural;B1
+casado;A1
+casarse;A2
+cascada;B2
+casco;B1
+casco antiguo;B1
+casco histórico;B1
+casco homologado;B2
+casero;B1
+casilla;B1
+castillo;A2
+casting;B2
+catálogo;B1
+catástrofe;B1
+catástrofe natural;B2
+católico;B1
+catedrático;B2
+catedral;A2
+categoría;B1
+cateto;B2
+catolicismo;B2
+cauce;B2
+caudal de un río;B2
+causa;B1
+cava;A2
+cazador;B1
+cazadora;A2
+cazo;B1
+cazuela;B2
+cazuela de barro;B2
+CD-ROM;A2
+cebolla;A2
+cebra;B1
+ceda el paso;B2
+ceder;B1
+ceder el paso;B1
+ceja;B1
+celebración;B2
+celebrar;B1
+celebrar elecciones;B2
+celebrar las elecciones;B2
+celebrar misa;B2
+celebrar un bautizo;B2
+celebrar un cóctel;B2
+celebrar un funeral;B2
+celebrar una boda;B1
+celebrar una fiesta de disfraces;B2
+celo;B2
+celular;B1
+cemento;B2
+cena;A1
+cenar;A1
+censura;B2
+centésimo;A2
+centímetro;B1
+centímetro cúbico;B1
+centímetro cuadrado;B1
+central;A1
+central de seguridad;B2
+centro;A1
+centro comercial;A1
+centro de belleza;B2
+centro de flores;B1
+centro de recursos;B1
+centro de salud;B1
+cepillar;B1
+cepillarse el pelo;B2
+cepillarse las uñas;B2
+cepillarse los dientes;A2
+cepillo;B1
+cepillo de dientes;A2
+cerámica;B1
+cera;B1
+cerdo;A2
+cereal;A2
+cerebro;B2
+ceremonia;B1
+ceremonia formal;B2
+ceremonia informal;B2
+ceremonia sencilla;B2
+cereza;B1
+cerrar;A1
+cerrar un documento;B1
+cerrar un sobre;B1
+cerrar una cuenta;B1
+certamen;B2
+certificado;A2
+certificar un paquete;B2
+certificar una carta;B2
+cerveza;A1
+cerveza de barril;B2
+cesárea;B2
+cesta;B1
+cesta de la compra;B1
+chándal;B1
+chalé;A2
+chaleco;A1
+chaleco homologado;B2
+champán;A2
+champú;A2
+chaparrón;B2
+chaqueta;B1
+charlar;A1
+charlar sobre un tema;B1
+chat;A2
+chatear;A2
+chef;A2
+cheque;A2
+cheque de viaje;B1
+cheque postal;B2
+chequeo;B2
+chico;A1
+chile;A2
+chileno;A2
+chimenea;A2
+chocar;B2
+chocar contra algo;B2
+chocolate;A2
+chorizo;B1
+chuche;A2
+chuleta;B1
+chuleta de cerdo;B1
+chupar;B2
+cibercafé;B1
+cicatriz;B2
+ciclismo;B2
+ciclista;A2
+ciclo;B1
+ciego;B2
+cielo;A2
+cielo cubierto;A2
+cielo despejado;A2
+cien;A1
+ciencia;A2
+científico;A2
+ciento;A2
+cifra;B2
+cima;B2
+cincel;B2
+cinco;A1
+cinco sentidos;B2
+cincuenta;A1
+cine;A1
+cine en blanco y negro;B1
+cine en color;B1
+cinturón;A1
+cinturón de seguridad;B1
+cinturón homologado;B2
+cintura;B1
+circo;A1
+circuito laboral;B2
+circulación;B1
+circulación de mercancías;B2
+circular;B1
+circular en coche;B2
+cirugía;B2
+cirujano;B1
+cisterna;B2
+cita;A2
+citar;B1
+citar para una entrevista;B2
+citar para una entrevista de trabajo;B2
+citar textualmente;B2
+ciudad;A1
+ciudad abierta;A2
+ciudad antigua;A2
+ciudad cosmopolita;A2
+ciudad industrial;A2
+ciudad moderna;A2
+ciudad monumental;B2
+ciudad universitaria;A2
+ciudadano;B1
+civil;B2
+cláusula;B1
+cláusula del contrato;B2
+cláusula del convenio colectivo;B2
+clínica;B1
+clínica veterinaria;B2
+clara de huevo;B1
+clarinete;B1
+clarinetista;B1
+claroscuro;B2
+clase;A1
+clase de español;A1
+clase de historia;A1
+clase de matemáticas;A1
+clase práctica;B1
+clase social;B2
+clase teórica;B1
+clase trabajadora;B2
+clasicismo;B2
+clasificado;B2
+clasificar;B1
+clasificar documentos;B1
+clasificarse;B2
+clasificarse para el campeonato;B2
+clasificarse para la eliminatoria;B2
+clasificarse para la final;B2
+clasificarse para la semifinal;B2
+clausurar;B1
+cliente;A2
+clientela;B2
+clima;A1
+clima caluroso;B2
+clima continental;B2
+clima desértico;B2
+clima húmedo;B1
+clima lluvioso;B2
+clima mediterráneo;B2
+clima seco;B1
+clima suave;B2
+clima templado;B2
+clima tropical;B2
+clip;B2
+club;B1
+coartada;B2
+cobardía;B2
+cobarde;B2
+cobertizo;B1
+cobertura;B1
+cobrar;B1
+cobrar comisiones;B2
+cobrar dietas;B2
+cobrar dinero;B2
+cobrar el recibo de la luz;B2
+cobrar el recibo del agua;B2
+cobrar el subsidio;B2
+cobrar el subsidio de desempleo;B2
+cobrar intereses;B1
+cobrar la factura;B2
+cobrar la factura de la luz;B2
+cobrar la factura del agua;B2
+cobrar un anticipo;B2
+cobrar un cheque;B2
+cobrar un salario fijo;B2
+cobrar un sueldo;B2
+cobrar un sueldo razonable;B2
+cobrar un sueldo ridículo;B2
+cobrar una hora extra;B2
+cobrar una indemnización;B2
+cobrar una nómina;B2
+cobrar una paga extra;B2
+cobro;B2
+cocer;B1
+cocer a fuego lento;B2
+cocer al baño maría;B2
+cocer al vapor;B2
+cocer arroz;B1
+cocer pasta;B1
+coche;A1
+coche de carreras;B2
+coche oficial;B2
+coche particular;B2
+cocido;B1
+cocina;A1
+cocina andaluza;B1
+cocina de gas;A2
+cocina eléctrica;A2
+cocina india;B1
+cocina internacional;B1
+cocinar;A2
+cocinar un alimento;B2
+cocinar un plato;B2
+cocinero;A2
+cocodrilo;B1
+codo;B1
+coger;A2
+coger el avión;A2
+coger el metro;A2
+coger el teléfono;B1
+coger el tren;A2
+coger un barco;A2
+coger un catarro;B2
+coger un taxi;A2
+coger un virus;B2
+cohete;B1
+COI;B2
+cojín;A1
+colaboración;B1
+colaborar;B1
+colaborar como voluntario;B1
+colar;B1
+colchón;A2
+colchoneta;B1
+colección;B1
+coleccionar;B1
+coleccionar monedas;B1
+coleccionar sellos;B1
+colega;B1
+colegio;A1
+colegio bilingüe;B2
+colegio concertado;B1
+colegio electoral;B2
+colegio laico;B2
+colegio público;B1
+colegio privado;B1
+colegio religioso;B2
+colesterol;B1
+colesterol alto;B2
+colgante de oro;B2
+colgante de plata;B2
+colgar;B1
+colgar el teléfono;B1
+colgar un documento;B1
+colgar un documento en internet;B1
+colgar un texto en internet;B1
+colgar una foto;B1
+colgar una foto en internet;B1
+colgar una fotografía en internet;B1
+colina;B2
+collar;B1
+colmena;B1
+colocar;A2
+colocarse;B2
+colombia;A2
+colombiano;A2
+colonia;A2
+color;B1
+colorante;B2
+colorete;B2
+colorido;B2
+columna;B2
+columpiarse;B2
+columpio;B2
+común;B2
+comba;B2
+combinar;B1
+combustible;B2
+comedia;B1
+comedor;A2
+comentar;B2
+comentario;B1
+comer;A1
+comer a la carta;B2
+comer de menú;B2
+comer excesivamente;B2
+comer moderadamente;B2
+comer una ficha;B2
+comercial;A2
+comercialización;B2
+comerciante;B2
+comercio;B1
+comercio de mercancías;B2
+comercio exterior;B2
+comercio ilegal;B2
+comercio interior;B2
+comercio internacional;B2
+comercio justo;B2
+comercio legal;B2
+comestible;B2
+cometa;B2
+cometer;A2
+cometer un delito;B2
+cometer un delito de agresión;B2
+cometer un delito de malos tratos;B2
+cometer un delito de tráfico de drogas;B2
+cometer un error;A2
+comible;B2
+comida;A1
+comida abundante;B2
+comida casera;B1
+comida china;A2
+comida de familia;B1
+comida de navidad;B1
+comida de negocios;B1
+comida escasa;B2
+comida japonesa;A2
+comida ligera;B1
+comida pesada;B1
+comida rápida;A2
+comida tradicional;B1
+comisaría;A2
+comisaría de policía;A2
+comisario;B1
+comisión;B1
+comité;B1
+comité de empresa;B2
+comité olímpico internacional;B2
+como hermanos;B2
+como una cabra;B2
+compás;B2
+compañía;B1
+compañía de agua;B2
+compañía de danza;B2
+compañía de danza clásica;B2
+compañía de danza contemporánea;B2
+compañía de gas;B2
+compañía de seguros;B2
+compañía de teléfono;B2
+compañía eléctrica;B2
+compañía telefónica;B2
+compañero;A1
+compañero de clase;A2
+compañero de juego;A1
+compañero de piso;A2
+compañero de trabajo;A2
+comparar;B1
+compartimento;B2
+compartir;A2
+compartir piso;A2
+compasión;B2
+competencia;B2
+competente;B2
+competición;B2
+competidor;B2
+complejo;A2
+complejo de inferioridad;B2
+complejo de superioridad;B2
+complementos;B1
+completar;A2
+completar los estudios;B2
+complexión;B2
+componer;B2
+componer un poema;B2
+componer una canción;B2
+comportamiento;B1
+comportamiento discriminatorio;B2
+comportamiento prudente;B2
+comportarse;B1
+comportarse bien;B2
+comportarse fatal;B2
+comportarse mal;B2
+composición;B1
+compositor;B1
+compra;B1
+compra compulsiva;B2
+comprador;A1
+comprar;A1
+comprar a plazos;B1
+comprar por catálogo;B2
+comprar por internet;B1
+comprar un apartamento;A1
+comprar un billete de ida;A1
+comprar un billete de ida y vuelta;A1
+comprar un piso;A1
+comprar un producto;A2
+comprar una entrada;A2
+comprar una entrada por internet;A2
+comprar una entrada por teléfono;A2
+comprender;A1
+comprimir;B2
+comprobar;B1
+comprometerse;B1
+compromiso;B1
+compromiso electoral;B2
+compuesto;B2
+compuesto químico;B2
+computadora;A2
+comulgar;B2
+comunión;B2
+comunicación;A2
+comunicación a través del ordenador;B2
+comunicación audiovisual;B2
+comunicación de última hora;B2
+comunicación escrita;B2
+comunicación extraoficial;B2
+comunicación fiable;B2
+comunicación oficial;B2
+comunicación radiofónica;B2
+comunicación telefónica;B2
+comunicar;A2
+comunicarse;B1
+comunicarse por carta;B1
+comunicarse por correo;B1
+comunicarse por correo electrónico;B1
+comunicarse por teléfono;B1
+comunicarse por videoconferencia;B2
+comunidad;B1
+comunidad autónoma;B1
+comunidad de vecinos;B1
+comunismo;B2
+comunista;B1
+comunitario;B2
+con IVA;A2
+con mucho gusto;A1
+con tarjeta;B1
+conceder;B2
+conceder un crédito;B2
+conceder un préstamo;B2
+conceder una beca;B2
+conceder una hipoteca;B2
+conceder una plaza;B2
+conciencia;B2
+concierto;A1
+concierto de música;A2
+concierto de música clásica;A2
+concierto de rock;A2
+conciliación;B2
+concurso;B1
+concurso literario;B2
+condenar;B2
+condenar a [cardinal] años de cárcel;B2
+condenar a pena de muerte;B2
+condiciones de financiación;B2
+condiciones de pago;B2
+condimentar;B1
+conducción;B1
+conducir;B1
+conducta discriminatoria;B2
+conducta prudente;B2
+conductor;A1
+conectar;A2
+conectar un electrodoméstico;B1
+conectarse;B1
+conectarse a internet;B1
+conejo;B1
+conexión;B2
+conexión de teléfono;B2
+conexión telefónica;B2
+conferencia;B1
+conferenciante;B2
+confesar;B2
+confesarse;B2
+confidencial;B2
+configurar;B2
+confirmar;B2
+confirmar una hipótesis;B2
+confortable;B1
+congelador;B1
+congelados;B1
+congelar;B1
+congelarse;B1
+congreso;B1
+conjunto;B2
+conjunto arquitectónico;B2
+conjunto escultórico;B2
+conjunto monumental;B2
+conjunto pictórico;B2
+conmemorar;B2
+conmemorar un aniversario;B2
+conmemorar una fecha;B2
+conocer;B1
+conocer bien;B2
+conocer de vista;B2
+conocer el dato;B2
+conocer por casualidad;B2
+conocer un dato;B2
+conocer un rumor;B2
+conocerse bien;B2
+conocerse de vista;B2
+conocerse por casualidad;B2
+conocimiento;B2
+conseguir;A2
+conseguir créditos;B2
+conseguir la copa;B2
+conseguir una beca;B2
+conseguir una medalla;B2
+consentir;B2
+conserje;B1
+conserva;B1
+conservador;B1
+conservante;B2
+conservar;B1
+conservar el medio ambiente;B1
+conservar la naturaleza;B1
+conservarse;B2
+conservarse joven;B2
+conservarse mal;B2
+consigna;B2
+consola;B1
+consolidar;B2
+consonante;A2
+constancia;B2
+constante;B2
+constatar;B2
+constelación;B2
+constitución;B1
+constituir;B2
+construcción;B1
+constructor;B2
+constructora;B2
+construir;B2
+construir un acueducto;B1
+construir un edificio;B2
+construir una casa;B1
+construir una mezquita;B1
+construir una muralla;B1
+construir una sinagoga;B1
+consulado;B1
+consulta;B1
+consulta del dentista;B2
+consulta del ginecólogo;B2
+consulta del médico;B2
+consultar;B1
+consultar en internet;B2
+consultar en un libro;B2
+consultar en una enciclopedia;B2
+consultar en una gramática;B2
+consultar internet;B2
+consultar la programación;B1
+consultar un libro;B2
+consultar un mapa;A2
+consultar un plano;A2
+consultar una enciclopedia;B2
+consultar una gramática;B2
+consultar una página de internet;B1
+consultar una página web;B1
+consultorio;B2
+consumidor;B2
+consumismo;B2
+consumo;B2
+contacto;B2
+contagiar;B2
+contagiar un catarro;B2
+contagiar un virus;B2
+contagiarse;B2
+contaminación;B1
+contaminante;B1
+contaminar;B2
+contar;B1
+contar la historia de;B1
+contemporáneo;B2
+contenedor;B1
+contenedor de basuras;B2
+contenedor de papel;B1
+contenedor de plástico;B2
+contenedor de reciclaje;B1
+contenedor de vidrio;B1
+contener;A2
+contento;B1
+contento como unas castañuelas;B2
+contestador;B1
+contestador automático;B1
+contestar;A2
+contestar al teléfono;A2
+continental;B2
+continente;A2
+continuar;A2
+continuar los estudios;B2
+contra reembolso;B2
+contrabajo;B2
+contractura;B2
+contradecir;B2
+contraer;B2
+contraindicaciones;B2
+contraindicado;B2
+contraseña;B1
+contrastar;B2
+contratado;B2
+contratar;B1
+contratar ADSL;B2
+contratar la tarifa plana;B2
+contratar tarifa plana;B2
+contratar un seguro;B1
+contratar un seguro de hogar;B1
+contratar un viaje;B1
+contrato;B1
+contrato basura;B2
+contrato de prácticas;B2
+contrato definido;B2
+contrato fijo;B1
+contrato indefinido;B2
+contrato temporal;B1
+control;B1
+control anual;B2
+control cuatrimestral;B2
+control de orina;B1
+control de sangre;B1
+control de seguridad;A2
+control final;B2
+control parcial;B2
+controlar;A2
+controlar la respiración;B1
+convalidar;B2
+conversación;A1
+conversación en línea;B1
+conversación telefónica;B1
+convertir;B1
+convivencia;B1
+convivir;B1
+convivir con el novio;B1
+convivir con la pareja;B1
+convocar;B2
+convocar elecciones;B2
+convocar las elecciones;B2
+cooperación;B2
+cooperar;B2
+cooperativa;B2
+coordinar;B1
+coordinar un departamento;B2
+coordinar un equipo;B2
+coordinar un equipo de trabajo;B2
+coordinar un proyecto;B2
+copa;A2
+copa de champán;B1
+copa de vino;A2
+copia;B2
+copia oculta;B1
+copiar;A2
+corán;B1
+corazón;B1
+corazonada;B2
+corbata;A2
+corcho;B2
+corcho de la botella;B2
+cordero;A2
+cordial;B2
+cordialmente;B2
+cordillera;B2
+coreografía;B2
+corona;A2
+corona de flores;B2
+coronar;B2
+corporal;B2
+corral;B2
+corregir;B1
+corregir los deberes;B1
+corregir un ejercicio;B1
+corregir un examen;B1
+corregir una redacción;B1
+correo;A1
+correo aéreo;B2
+correo certificado;B2
+correo electrónico;A1
+correo ordinario;B1
+correo postal;B1
+correr;A1
+correr las cortinas;B2
+correr ríos de tinta;B2
+correr riesgos;B2
+correspondencia;B2
+corresponder;B2
+correspondiente;B2
+corresponsal;B2
+corriente;B1
+corriente de un río;B2
+corroborar;B2
+corrupción;B1
+cortaúñas;B2
+cortar;B1
+cortar el pan;B1
+cortar en dados;B2
+cortar en dados finos;B2
+cortar en dados gruesos;B2
+cortar en dados pequeños;B2
+cortar en tacos;B2
+cortar en tacos finos;B2
+cortar en tacos gruesos;B2
+cortar en tacos pequeños;B2
+cortar en trozos;B2
+cortar en trozos finos;B2
+cortar en trozos gruesos;B2
+cortar en trozos pequeños;B2
+cortar la carne;B1
+cortar la comunicación;B1
+cortar la línea;B2
+cortar una flor;B1
+cortar una palabra;B1
+cortarse;B1
+cortarse el pelo;B1
+cortarse la comunicación;B1
+cortarse la digestión;B2
+cortarse las uñas;B2
+cortarse un dedo;B1
+cortarse una mano;B1
+corte;B1
+corte de pelo;B1
+cortejo;B2
+cortesía;B1
+corteza;B2
+cortina;A2
+cortina de baño;A2
+corto;B2
+corto metraje;B2
+cortometraje;B2
+cosecha;B2
+coser;B1
+cosido;B2
+cosmética;B2
+cosmética natural;B2
+cosmético;B2
+costa;A2
+costa rica;A2
+costarricense;A2
+costero;B2
+costilla;B2
+costilla de cordero;B1
+cotilla;B2
+cotización a la seguridad social;B2
+cotizar;B2
+cotizar a la seguridad social;B2
+cráter;B1
+crédito;B2
+crítica;B2
+crítico;B2
+crítico de arte;B2
+crítico de cine;B2
+crónica;B2
+crónica deportiva;B2
+creación;B2
+creador;B2
+crear;B1
+creatividad;B2
+crecer;A2
+crecer el número de desempleados;B2
+crecer feliz;B1
+crecer fuerte;B1
+crecer la familia;B2
+crecer sano;B1
+crecimiento de la mortalidad;B2
+crecimiento de la natalidad;B2
+crecimiento de la población;B2
+crecimiento demográfico;B2
+crecimiento industrial;B2
+creer;A1
+creer en alá;A2
+creer en dios;A2
+creer en la reencarnación;A2
+crema;A2
+crema hidratante;B2
+crema limpiadora;B2
+crema nutritiva;B2
+crema pastelera;B2
+crema solar;B2
+crema suavizante;B2
+cremallera;B2
+creyente;B1
+criar;A2
+criminal;B2
+crisis;B1
+crisis financiera;B2
+cristalería;B2
+cristianismo;B2
+cristiano;A1
+criterio;B2
+croqueta;B1
+cruce;B2
+cruce peligroso;B2
+crucero;B2
+crucigrama;B1
+crudo;B1
+cruz;A1
+cruz roja;A2
+cruzar;A2
+cruzar el océano;B2
+cruzar el país;B2
+cruzar la frontera;B2
+cruzar las piernas;B2
+cruzar los brazos;B2
+cuñado;B2
+cuaderno;A2
+cuadrado;B1
+cuadragésimo;A2
+cuadriculado;B2
+cuadro;A2
+cualificado;B2
+cuarenta;A1
+cuarto;A1
+cuarto de baño;A1
+cuarto poder;B2
+cuatro;A1
+cuatrocientos;A1
+cuba;A2
+cubano;A2
+cubiertos;A2
+cubilete;B2
+cubismo;B2
+cubo;B1
+cubo de fregar;B1
+cubrir;A2
+cubrir un accidente;B2
+cubrir una prestación;B2
+cuchara;A2
+cuchilla;B1
+cuchilla de afeitar;B1
+cuchillo;A2
+cuello;A2
+cuenco;B2
+cuenta;A2
+cuenta ahorro;B1
+cuenta corriente;B2
+cuenta vivienda;B1
+cuento;A2
+cuerda;B1
+cuero;A2
+cuerpo;A2
+cuerpo de policía;B2
+cuidado;B2
+cuidar;B1
+cuidar a un enfermo;B1
+cuidar el medio ambiente;B1
+cuidar el medioambiente;B1
+cuidar la naturaleza;B1
+cuidarse;B1
+culebrón;B1
+culpable;B2
+cultivar;B1
+cultivo;B1
+cultura;B1
+cumbre;B2
+cumpleaños;B1
+cumplir;B1
+cumplir años;B1
+cuota;B1
+cura;B2
+curar;B2
+curar a un enfermo;B1
+curar la herida;B2
+curar una herida;B2
+curarse;B2
+curarse una herida;B2
+curativo;B2
+curiosidad;B2
+curioso;B2
+currículum;B1
+cursar;B1
+cursar estudios;B1
+curso;B1
+curso a distancia;B2
+curso de formación;B1
+curso de iniciación;B2
+curso de perfeccionamiento;B2
+curso elemental;B2
+curso intensivo;B2
+curso obligatorio;B2
+curso optativo;B2
+curso presencial;B2
+curso virtual;B2
+cursor;B2
+curva;B2
+curva peligrosa;B2
+cutis;B2
+décimo;A2
+día de fiesta;A2
+día de permiso;B2
+día del espectador;B1
+día festivo;B2
+día laborable;B2
+día libre;B2
+dúplex;B1
+dócil;B2
+dañino;B2
+dado;B2
+danza;A2
+danza clásica;B2
+danza contemporánea;B2
+dar;A2
+dar a la calle;B2
+dar a luz;B2
+dar a un patio;B2
+dar al jardín;B2
+dar amistad;B2
+dar apoyo;B2
+dar asco;B2
+dar cariño;B2
+dar clases;A2
+dar comprensión;B2
+dar créditos;B2
+dar de alta;B1
+dar de alta el agua;B2
+dar de alta el gas;B2
+dar de alta el teléfono;B2
+dar de alta la línea;B2
+dar de alta la línea telefónica;B2
+dar de alta la luz;B2
+dar de baja;B1
+dar de baja el agua;B2
+dar de baja el gas;B2
+dar de baja el teléfono;B2
+dar de baja la línea;B2
+dar de baja la línea telefónica;B2
+dar de baja la luz;B2
+dar el alta;B1
+dar el alta médica;B1
+dar en la diana;B2
+dar flor;B2
+dar fruto;B2
+dar igual;B2
+dar información;B1
+dar lástima;B1
+dar línea;B2
+dar la baja;B1
+dar la baja médica;B1
+dar la mano;B1
+dar la vez;B2
+dar la vuelta al mundo;B2
+dar mal servicio;B2
+dar miedo;B1
+dar pánico;B2
+dar pena;B1
+dar pereza;B2
+dar puntos;B2
+dar puntos en una herida;B2
+dar sed;B2
+dar terror;B2
+dar un abrazo;B1
+dar un banquete;B2
+dar un beso;B1
+dar un buen servicio;B2
+dar un desmayo;B2
+dar un discurso;B2
+dar un golpe;B1
+dar un golpe de estado;B2
+dar un infarto;B2
+dar un mal servicio;B2
+dar un paseo;B1
+dar un puñetazo;B2
+dar una beca;B1
+dar una clase;B1
+dar una despedida de soltero;B1
+dar una fiesta;A2
+dar una fiesta de fin de curso;B1
+dar una noticia;B1
+dar una parálisis;B2
+dar una patada;B2
+dar una propina;A2
+dar una reacción alérgica;B2
+dar una receta;B1
+dar una receta médica;B1
+dar una rueda de prensa;B2
+dar una señal;B2
+dar una torta;B2
+darse de sí;B2
+darse dos besos;B2
+darse rímel;B1
+darse un baño;B2
+darse un baño caliente;B2
+darse un baño de espuma;B2
+darse un baño frío;B2
+darse un baño relajante;B2
+darse un buen tute;B2
+darse un golpe;B1
+darse un masaje;B1
+darse un masaje relajante;B2
+darse un masaje terapéutico;B2
+darse una crema;B1
+darse una ducha;B2
+darse una ducha caliente;B2
+darse una ducha fría;B2
+darse una ducha rápida;B2
+dato;B2
+datos personales;B2
+de boca en boca;B2
+de cuadros;B1
+de día;A2
+de espaldas;B2
+de fama internacional;B2
+de frente;B2
+de lujo;B1
+de memoria;B1
+de nada;A1
+de noche;A2
+de perfil;B2
+de pie;B2
+de rayas;B1
+de rodillas;B2
+debajo;A1
+debajo de;A1
+debate;B1
+debatir;B2
+debatir un tema;B2
+deber;A1
+deber dinero;B1
+deber el recibo de la luz;B2
+deber el recibo del agua;B2
+deber la factura de la luz;B2
+deber la factura del agua;B2
+deberes;A1
+debilidad;B2
+debutar;B2
+decaído;B2
+decaer;B2
+decimoctavo;A2
+decimocuarto;A2
+decimonoveno;A2
+decimoquinto;A2
+decimoséptimo;A2
+decimosexto;A2
+decimotercero;A2
+decir;A1
+decir misa;B2
+decir unas palabras;B2
+declaración de la renta;B2
+declaración oficial;B2
+declarar;B1
+declarar culpable;B1
+declarar inocente;B1
+declarar la guerra;B2
+declararse;B2
+decoración;B1
+decorado;B2
+decorar;B1
+decretar;B2
+dedicarse;A1
+dedicarse a;A1
+dedo;A2
+deducción;B2
+deducir;B2
+deducir una regla;B2
+defender;B2
+defender una tesis;B2
+defensor;A2
+deforestación;B2
+degradar;B2
+degustación;B2
+dejar;B1
+dejar dinero;B2
+dejar la cama hecha;B2
+dejar la casa limpia;B2
+dejar la casa recogida;B2
+dejar la mesa puesta;B2
+dejar los estudios;B2
+dejar propina;A2
+dejar un mensaje;B1
+dejar un recado;B1
+dejar una nota;A2
+dejar una propina;A2
+dejar una señal;B2
+delantal;B1
+delegado;B2
+delegado de curso;B2
+delfín;B1
+delgado;A2
+delicioso;B2
+delincuente;B2
+delito;B2
+demócrata;B1
+demanda;B1
+demanda de empleo;B1
+democracia;B1
+demostrar;A2
+demostrar una hipótesis;B2
+denotar;B2
+densidad;B2
+densidad de población;B2
+dentífrico;B1
+dentista;B1
+dentro;A1
+dentro de;A1
+denuncia;B1
+denunciar;B2
+denunciar el delito fiscal;B2
+departamento;B1
+departamento comercial;B1
+departamento de administración;B1
+departamento de contabilidad;B1
+departamento de investigación y desarrollo;B1
+departamento de marketing;B1
+departamento de producción;B1
+departamento de recursos humanos;B1
+departamento financiero;B1
+dependiente;A2
+depilarse;B1
+depilarse las cejas;B1
+depilarse las piernas;B1
+deporte;A1
+deporte de competición;B2
+deporte de equipo;B2
+deporte de invierno;B2
+deporte de riesgo;B2
+deportista;B1
+deportivas;A2
+depositar en cuenta;B2
+depresión;B1
+deprimido;B2
+deprimirse;B1
+depuradora;B2
+derecho;A2
+derecho civil;B2
+derecho penal;B2
+derechos básicos;B2
+derechos constitucionales;B2
+derechos del ciudadano;B2
+derechos humanos;B2
+dermatología;B1
+derribar;B2
+derrochar;B2
+derruido;B2
+derruir;B2
+desértico;B2
+desactivar;B2
+desafío;B2
+desafiar;B2
+desahucio;B2
+desalojo;B2
+desanimado;B2
+desarrollar;B2
+desarrollar un estilo;B2
+desarrollar un servicio;B2
+desarrollar un trabajo;B2
+desarrollar una función;B2
+desarrollar una técnica;B2
+desarrollar una tarea;B2
+desarrollo;B1
+desarrollo industrial;B2
+desarrollo sostenible;B1
+desastre;B1
+desastre natural;B1
+desatender;B2
+desayunar;A1
+desayuno;A1
+descansar;B1
+descanso;B1
+descargar;B1
+descargarse;B1
+descargarse música;B1
+descargarse un archivo;B1
+descargarse un programa;B1
+descolgar el teléfono;B1
+descoserse;B2
+descosido;B2
+describir;B2
+descubrimiento;B1
+descuento;B1
+desembarcar;B2
+desempaquetar;B2
+desempleado;B1
+desempleo;B1
+desenchufar;B1
+desenchufar un electrodoméstico;B1
+desengañar;B2
+desengaño;B2
+desenredarse;B2
+desenvolver;B2
+desertización;B2
+desfile;B2
+deshacer;A2
+deshielo;B2
+deshojar una flor;B2
+desierto;A2
+desigualdad;B2
+desilusionado;B2
+desilusionar;B2
+desinfectante;B2
+desinstalar;B1
+desmayo;B2
+desmontar;B2
+desmontar la tienda de campaña;B2
+desobedecer;B1
+desobedecer a los padres;B1
+desobediente;B1
+desodorante;A2
+desorientación;B2
+desorientado;B2
+despacho;A2
+despedida;B1
+despedida de soltero;B1
+despedir;B1
+despedirse;B1
+despedirse afectuosamente;B2
+despedirse calurosamente;B2
+despegar;B1
+despegue;B1
+desperdicios;B2
+despertador;A2
+despertar;A2
+despido;B2
+desplazado;B2
+desplazamiento;B1
+desprecio;B2
+desproporción;B2
+desproporcionado;B2
+destinatario;B1
+destino;A2
+destrozado;B2
+desvelar;B2
+desviar;B2
+desviar una llamada;B1
+detectar;B2
+detener;B2
+detener a un delincuente;B2
+detener a un sospechoso;B2
+detener por un delito;B2
+detener por un delito de agresión;B2
+detener por un delito de malos tratos;B2
+detener por un delito de tráfico de drogas;B2
+detenerse;B2
+detergente;B1
+determinar;B2
+detestar;B2
+deuda;B1
+deudor;B2
+devolución;B2
+devolver;A2
+devolver la matrícula;B1
+devolver una llamada;B1
+devorar;B2
+diálogo;B2
+diésel;B1
+diabético;B2
+diabetes;B2
+diagnóstico;B2
+diagnosticar;B2
+diagonal;B2
+diapositiva;B2
+diariamente;B2
+diario;B1
+diarrea;B1
+dibujar;A2
+dibujar un esquema;B2
+dibujar un plano;B2
+dibujar un proyecto;B2
+dibujo;A2
+diccionario;A1
+diciembre;A1
+dictador;B2
+dictadura;B1
+didáctico;B2
+diecinueve;A1
+dieciocho;A1
+dieciséis;A1
+diecisiete;A1
+diente;B1
+dientes amarillentos;B2
+dientes blancos;B2
+dientes sanos;B2
+dieta;B1
+dieta alta en calorías;B1
+dieta baja en calorías;B1
+dieta equilibrada;B1
+dieta mediterránea;B1
+dietas;B2
+diez;A1
+diferencia;A2
+diferenciar;B2
+diferenciarse;B2
+digerir;B2
+digital;B1
+digitalizar;B2
+dinero;A1
+dinero en efectivo;B1
+dinero en metálico;B1
+diplomático;B2
+diploma;A2
+diplomacia;B2
+diplomado;B1
+diputado;B2
+dirección;A1
+dirección única;B2
+dirección de correo electrónico;A2
+dirección de internet;A2
+dirección electrónica;A2
+dirección obligatoria;B2
+dirección prohibida;B2
+directo;A2
+director;A1
+director de orquesta;B1
+director de recursos humanos;B1
+director de RR. HH.;B1
+director de tesis;B2
+dirigir;B2
+discapacidad;B2
+discapacitado;B2
+disco;B1
+disco duro;B2
+discoteca;B1
+discreto;B2
+discriminación;B2
+disculpar;A1
+discurso electoral;B2
+discusión;B1
+discutir;B1
+discutir con los hermanos;B1
+discutir con los hijos;B1
+discutir con los padres;B1
+discutir un tema;B2
+diseñador;B1
+diseñar;B1
+disfrazado;B2
+disfrazarse;B2
+disfrutar;B2
+disfrutar de una beca;B2
+disfrutar de una comida;B2
+disfrutar una comida;B2
+disgustado;B2
+disminución;B1
+disminución de la mortalidad;B2
+disminución de la natalidad;B2
+disminución de la población;B2
+disminuir;B1
+disminuir el número de desempleados;B2
+disminuir el precio;B1
+disolver;B1
+disparar;B2
+disponibilidad;B1
+disponibilidad total;B1
+dispositivo;B1
+disputar;B2
+distancia;B1
+distender;B2
+distraer;B2
+distribución;B2
+distribución de la riqueza;B2
+distribuir;B2
+distribuir un libro;B2
+distribuir un producto;B2
+distrito;B1
+diversión;B2
+divertido;B1
+divertirse;B1
+dividir;B1
+divorciado;B1
+divorciarse;B1
+divorcio;B1
+DNI;B1
+do;B2
+doblaje;B2
+doblar;B1
+doblar la cintura;B1
+doce;A1
+docena;A2
+doctor;B1
+doctorado;B1
+doctorarse;B2
+doctrina;B2
+documental;B1
+documento;B1
+documento nacional de identidad;B1
+doler;A2
+doler el cuello;A2
+doler la cabeza;A2
+dolido;B2
+dolor;B2
+dolor de cabeza;A2
+dolor de espalda;A2
+dolor de estómago;A2
+doloroso;B2
+domar;B2
+domiciliar;B2
+domiciliar un pago;B2
+domiciliar un recibo;B2
+dominar;B2
+domingo;A1
+dominicano;A2
+dominio público;B2
+donar;B1
+dorada;B2
+dorado;B1
+dorar;B1
+dorar la cebolla;B2
+dormir;A1
+dormitorio;A1
+dormitorio de invitados;A2
+dos;A1
+dos por el precio de uno;B2
+dos por uno;B2
+doscientos;A1
+dosis;B1
+dosis diaria;B2
+dosis mínima;B2
+dosis recomendada;B2
+drama;B1
+dramaturgo;B2
+ducha;A1
+ducharse;A1
+dueño;B1
+dulce;B1
+duodécimo;A2
+duplicado;B2
+durar;B1
+dureza;B2
+duro;B1
+DVD;A1
+echar;B1
+echar un vistazo;B2
+echar una carta;B1
+echar una película;B2
+echarse unas gotas;B1
+eclipsar;B2
+eclipse;B1
+eclipse de luna;B2
+eclipse de sol;B2
+eclipse parcial;B2
+eclipse total;B2
+ecografía;B2
+ecológico;B1
+ecología;B1
+ecologista;B1
+economía;B1
+economista;B1
+ecosistema;B2
+ecuador;A2
+ecuatorial;B2
+ecuatoriano;A2
+edad;A1
+edición;B2
+edificación;B2
+edificar;B2
+edificio;A1
+edificio de apartamentos;B1
+editar;B1
+editar un libro;B2
+editor;B2
+editorial;B1
+edredón;A2
+educación;A2
+educación a adultos;B2
+educación infantil;B1
+educación laica;B2
+educación pública;B2
+educación primaria;B1
+educación privada;B2
+educación religiosa;B2
+educación secundaria;B1
+educación secundaria obligatoria;B1
+educación superior;B2
+educación universitaria;B2
+educar;B1
+educar a un hijo;B1
+educarse;B2
+educativo;B2
+efecto;A2
+efecto invernadero;B2
+efectos especiales;B2
+efectos secundarios;B2
+efectuar;B2
+eficaz;B2
+egoísmo;B2
+egoísta;A2
+ejército;A2
+ejército profesional;B2
+ejecutar;B2
+ejecutivo;A2
+ejemplo;B1
+ejercer;B2
+ejercer como abogado;B2
+ejercer como veterinario;B2
+ejercer de abogado;B2
+ejercer de veterinario;B2
+ejercer un oficio;B2
+ejercer una función;B2
+ejercer una profesión;B2
+ejercicio;A1
+ejercicio físico;A2
+el centro;A1
+el gusto es mío;A1
+el menú;A1
+el papa;B1
+el salvador;A2
+elaboración;B2
+elasticidad;B2
+elecciones;B1
+elecciones autonómicas;B2
+elecciones generales;B2
+elecciones locales;B2
+elecciones municipales;B2
+electorado;B2
+electrónico;B1
+electricidad;B1
+electricista;B2
+electrodoméstico;B1
+elefante;B1
+elegante;B1
+elegir;A2
+elegir un compañero;B1
+elegir un libro;B1
+elegir un tema;B1
+elemento;B2
+elemento químico;B1
+eliminar;B2
+eliminar un documento;B1
+eliminar un virus;B2
+eliminar virus;B2
+embajada;B1
+embajador;B1
+embarazo;B2
+embarcar;B2
+embargar;B2
+emborracharse;B2
+embotellamiento;B1
+embutido;B1
+emigración;B2
+emigrante;B1
+emisión;B2
+emisiones tóxicas;B2
+emisora;B1
+emitir;B2
+emoción;B2
+emocionarse;B2
+empadronado;B2
+empanado;B2
+empanar;B2
+empaquetar;B2
+emparejar;B2
+empaste;B2
+empatar;B1
+empate;B2
+empeñar;B2
+empeño;B2
+empeorar;B1
+empezar;A2
+empezar el bachillerato;B1
+empezar un doctorado;B1
+empezar un máster;B1
+empezar una carrera;B1
+empezar una relación;B1
+empleado de banca;B1
+empleado de correos;B1
+emplear;B1
+empleo;B1
+empleo fijo;B2
+empleo remunerado;B2
+emprender;B2
+empresa;A1
+empresa de mensajería;B2
+empresa de mudanzas;B1
+empresa de trabajo temporal;B2
+empresario;A2
+en absoluto;B2
+en autobús;A1
+en avión;A1
+en barco;A1
+en blanco;B1
+en blanco y negro;B1
+en buen estado;A2
+en buenas condiciones;B2
+en coche;A1
+en color;B1
+en coma;B2
+en crecimiento;B2
+en crisis;B2
+en efectivo;B1
+en el centro;A1
+en extinción;B2
+en familia;B2
+en forma;B2
+en grupos;A1
+en guerra;B1
+en huelga;B2
+en malas condiciones;B2
+en metálico;B1
+en metro;A1
+en obras;B2
+en parejas;A1
+en paro;A1
+en peligro de extinción;B2
+en polvo;B2
+en prácticas;B2
+en seco;B2
+en taxi;A1
+en tren;A1
+en urgencias;B2
+enamorado;B1
+enamoramiento;B1
+enamorarse;B1
+encabezar;B2
+encantado de conocerle;A1
+encantar;A2
+encender;A2
+encender el horno;B1
+encender la luz;A2
+encender un electrodoméstico;B1
+encendido;B1
+encerrar;B2
+enchufar;B1
+enchufar un electrodoméstico;B1
+enchufe;B2
+enciclopedia;B1
+encima;A1
+encoger;B2
+encontrar;A2
+encontrar pruebas;B2
+encontrar una pista;B2
+encontrarse;B1
+encontrarse bien;B1
+encontrarse fatal;B1
+encontrarse mal;B1
+encontrarse regular;B1
+encuadrar;B2
+enemigo;B2
+energía;B1
+energía alternativa;B1
+energía eólica;B2
+energía eléctrica;B2
+energía nuclear;B2
+energía solar;B2
+energías renovables;B2
+enero;A1
+enfadado;B2
+enfadarse;B1
+enfado;B1
+enfermedad;B1
+enfermedad contagiosa;B2
+enfermedad crónica;B2
+enfermedad grave;B2
+enfermedad hereditaria;B2
+enfermedad leve;B2
+enfermedad mental;B2
+enfermedad terminal;B2
+enfermero;A1
+enfermo;B1
+enfocar;B2
+enfrentar;B2
+enfrentarse;B2
+enfrente;A1
+enfriar;B1
+enfriarse;B2
+engañar;B1
+enganchado;B2
+engordar;B1
+enlace;B2
+enmarcar;B2
+enredarse;B2
+ensaimada;B2
+ensalada;A1
+ensaladera;B2
+ensayar;B1
+enseñanza;B1
+enseñanza a adultos;B2
+enseñanza a distancia;B2
+enseñanza pública;B2
+enseñanza presencial;B2
+enseñanza primaria;B2
+enseñanza privada;B2
+enseñanza secundaria;B2
+enseñanza superior;B2
+enseñanza universitaria;B2
+enseñanza virtual;B2
+enseñar;B1
+entender;A1
+entender las reglas del juego;B2
+enterarse;B2
+enterarse de una noticia;B2
+enterarse de una noticia por casualidad;B2
+enterarse de una noticia por la prensa;B2
+enterarse por casualidad;B2
+enterarse por la prensa;B2
+entero;B1
+enterrar;B2
+entorno;B2
+entrada;A2
+entrada de mercancías;B2
+entrante;B1
+entrar;A1
+entrar en guerra;B2
+entrar en un enlace;B2
+entrar en una página de internet;B1
+entrar en una página web;B1
+entrar un virus;B2
+entre;A1
+entrega;B2
+entregar;B2
+entregar en mano;B2
+entregar la correspondencia;B2
+entregar un mensaje;B2
+entregar un paquete;B2
+entregar un telegrama;B2
+entregar una carta;B2
+entrenador;B1
+entrenamiento;B2
+entrenar;A2
+entrenarse;B2
+entretenerse;B1
+entretenimiento;B1
+entrevista;A2
+entrevista de trabajo;B1
+entrevistado;B1
+entrevistador;B1
+envío;B2
+envasado;B2
+envasar;B2
+envase;B1
+envejecer;B2
+enviado especial;B2
+enviar;A2
+enviar con acuse de recibo;B2
+enviar dinero;B2
+enviar el currículum;A2
+enviar la correspondencia;B2
+enviar un correo electrónico;A2
+enviar un fax;A2
+enviar un mensaje;B1
+enviar un mensaje electrónico;A2
+enviar un paquete;B1
+enviar una carta;A2
+enviar una carta certificada;B1
+enviar una carta de presentación;B1
+enviar una copia;B1
+enviar una copia oculta;B1
+enviar una postal;A2
+envidia;B1
+envolver;B1
+envolver un regalo;B1
+epicentro;B1
+epidemia;B2
+episodio;B1
+equilibrado;B1
+equilibrar;B1
+equilibrio;B2
+equilibrio climático;B2
+equipaje;B1
+equipaje de mano;B1
+equipo;B2
+equipo de baloncesto;B1
+equipo de fútbol;B1
+equipo de música;B1
+equipo informático;B2
+equipo local;B1
+equipo visitante;B1
+equivocarse;B1
+error;A1
+erupción;B1
+escáner;B2
+escalón;B2
+escala;B1
+escalador;B1
+escalar;B2
+escalera;A1
+escalera de incendios;B2
+escaleras mecánicas;B1
+escalofrío;B2
+escaparate;B2
+escasez;B2
+escayola;B2
+escayolar;B2
+escena;B2
+escenario;B1
+escenificar;B2
+escenificar una obra teatral;B2
+escoba;B1
+escobilla;B2
+escoger;B1
+escoger un compañero;B1
+escoger un libro;B1
+escoger un tema;B1
+esconder;B1
+esconderse;B2
+escondite;B2
+escribir;A1
+escribir el currículum;A2
+escribir un mensaje electrónico;A1
+escribir una carta;A1
+escribir una carta de presentación;B1
+escribir una nota;A2
+escribir una postal;A1
+escritor;A2
+escritorio;B2
+escuchar;A1
+escuchar la radio;A1
+escuchar música;A1
+escuchar un programa de radio;A2
+escuchar una canción;A1
+escuela;A1
+escuela de ballet;A2
+escuela de idiomas;A2
+escuela de música;A2
+escuela pública;B1
+escuela privada;B1
+escuela superior;B2
+esculpir;B2
+escultor;B1
+escultura;B1
+escultura de barro;B2
+escultura de bronce;B2
+escultura de mármol;B2
+escupir;B2
+esencia;B2
+espíritu;B2
+españa;A1
+español;A1
+espacio;B1
+espacio publicitario;B2
+espacio urbano;B1
+espacioso;B2
+espada;B2
+espaguetis;A1
+espalda;A2
+espantar;B2
+espantoso;B2
+esparadrapo;B2
+especialista;B1
+especias;B1
+especie;B2
+especie autóctona;B2
+especie protegida;B2
+espectáculo;B1
+espectáculo deportivo;B2
+espectador;B1
+espejo;B1
+esperar;A2
+esperar un hijo;B1
+espinacas;B1
+esponja;B1
+esposo;B1
+espuma;B1
+espuma de afeitar;B1
+esquí;B1
+esquí alpino;B1
+esquí de fondo;B1
+esqueleto;B2
+esquema;B1
+esquiador;B1
+esquiar;A2
+esquina;A2
+estética;B2
+estético;B2
+estómago;A2
+estabilidad;B1
+estabilidad laboral;B1
+establecer;B2
+establecer comunicación;B2
+establecer el contacto;B2
+establecer la comunicación;B2
+establecimiento;B2
+estación;A2
+estación de autobuses;A2
+estación de metro;A2
+estación de tren;A2
+estación del año;B1
+estación espacial;B2
+estadística;B2
+estadio;B2
+estadio municipal;B2
+estado;B1
+estado civil;A1
+estado gaseoso;B1
+estado líquido;B1
+estado sólido;B1
+estallar;B1
+estallido;B2
+estampado;B2
+estampado de flores;B1
+estanco;A2
+estantería;A1
+estar;A1
+estar a dieta;B2
+estar a la moda;B1
+estar a régimen;B2
+estar aburrido;B1
+estar acomplejado;B2
+estar acusado;B2
+estar acusado de un delito;B2
+estar acusado de un delito de agresión;B2
+estar acusado de un delito de malos tratos;B2
+estar acusado de un delito de tráfico de drogas;B2
+estar agachado;B2
+estar agotado;B1
+estar asustado;B1
+estar bien;B1
+estar bien educado;B2
+estar bien informado;B1
+estar borracho;B1
+estar buena;B2
+estar caducado;B1
+estar caducado el pasaporte;B2
+estar caducado el permiso de residencia;B2
+estar caliente;B2
+estar calvo;A2
+estar cansado;A2
+estar casado;B1
+estar castigado;B2
+estar completo;B1
+estar comunicando;B1
+estar conectado;B1
+estar consciente;B2
+estar contento;A2
+estar de alquiler;B2
+estar de auxiliar;B1
+estar de baja;B2
+estar de baja por enfermedad;B2
+estar de baja por paternidad;B2
+estar de canguro;B1
+estar de fiesta;B2
+estar de juerga;B2
+estar de luna de miel;B1
+estar de mal humor;B1
+estar de oferta;B1
+estar de pie;B1
+estar de promoción;B1
+estar de vacaciones;B1
+estar de viaje de novios;B1
+estar decaído;B2
+estar deprimido;B1
+estar derecho;B2
+estar desempleado;B2
+estar despejado;B2
+estar distraído;B2
+estar embarazada;B1
+estar en Babia;B2
+estar en coma;B2
+estar en oferta;B1
+estar enamorado;B1
+estar enfadado;A2
+estar enfermo;A1
+estar estresado;B1
+estar estropeado;B1
+estar frío;B2
+estar helado;B2
+estar jubilado;A2
+estar libre;B1
+estar limpio;B1
+estar mal educado;B2
+estar mal enchufado;B1
+estar mal informado;B1
+estar mareado;B1
+estar moreno;B1
+estar nervioso;A2
+estar nublado;B1
+estar preocupado;A2
+estar rebajado;B1
+estar sano;B1
+estar sucio;B2
+estar transparente;B2
+estar triste;A2
+estatal;B2
+estatua;A2
+estatua de barro;B2
+estatua de bronce;B2
+estatua de mármol;B2
+estatura media;B2
+estatura mediana;B2
+estatura normal;B2
+este;A1
+estilo;B2
+estilo ágil;B2
+estilo abstracto;B2
+estilo arquitectónico;B2
+estilo barroco;B2
+estilo clásico;B1
+estilo cubista;B2
+estilo cuidado;B2
+estilo definido;B2
+estilo directo;B2
+estilo elegante;B2
+estilo escultórico;B2
+estilo expresionista;B2
+estilo futurista;B2
+estilo gótico;B2
+estilo impresionista;B2
+estilo literario;B2
+estilo modernista;B2
+estilo moderno;B1
+estilo particular;B2
+estilo pictórico;B2
+estilo propio;B2
+estilo realista;B1
+estilo románico;B2
+estilo surrealista;B1
+estimado;B1
+estimar;B2
+estiramiento;B1
+estirar;B1
+estofado;B1
+estornudar;B2
+estrés;B1
+estratégico;B2
+estrategia;B2
+estrecho;B1
+estrella;A2
+estrenar;B2
+estrenar una película;B2
+estreno;B2
+estreno cinematográfico;B2
+estresado;B1
+estresarse;B2
+estrofa;B2
+estropajo;B1
+estropeado;B1
+estropearse un electrodoméstico;B2
+estructura;B1
+estudiante;A1
+estudiante en prácticas;B1
+estudiar;A1
+estudiar el bachillerato;B1
+estudiar un doctorado;B1
+estudiar un máster;B1
+estudiar una carrera;B1
+estudio;A1
+estudio de mercado;B2
+estudios primarios;B2
+estudios secundarios;B2
+estudios superiores;B2
+estudios universitarios;B2
+estudioso;B1
+estupendo;B2
+etapa;B1
+etiqueta;B2
+etiquetar;B2
+ETT;B2
+euro;A1
+europa;A2
+europeo;A2
+evaluación;B2
+evaluación final;B2
+evaluación parcial;B2
+evangelio;B2
+evaporarse;B1
+evento;B1
+evidente;B2
+evidentemente;B2
+evolución;B2
+evolucionar;B2
+examen;A1
+examen anual;B2
+examen cuatrimestral;B2
+examen en línea;B1
+examen escrito;B1
+examen final;B2
+examen oral;B1
+examen parcial;B2
+examen trimestral;B2
+examinarse;B2
+exceso;B2
+exceso de equipaje;B2
+excursión;A2
+excursionista;B1
+exfoliación;B2
+exfoliar;B2
+exhibición;B1
+exhibir;B2
+existir;A2
+exmarido;A2
+exmujer;A2
+expediente académico;B1
+expedir;B2
+experiencia;B1
+experimentado;B2
+experimentar dolor;B2
+experimento;B1
+experto;B2
+explicación;B1
+explicar;A2
+explicar las reglas del juego;B2
+explicar un tema;B1
+explicar una lección;B1
+explorar;B1
+explosión;B2
+explotación;B2
+explotar;B2
+exponer;B2
+exponerse;B2
+exponerse a la radiación solar;B2
+exportación;B1
+exportación de mercancías;B2
+exportar;B1
+exposición;A2
+exposición de pintura;A2
+expresar;B1
+expresión;B2
+expresidiario;B2
+expresionismo;B2
+expresionista;B2
+exprimido;B2
+exprimidor;B2
+exprimir;A2
+exprimir un limón;B2
+exquisito;B2
+extender;B1
+extensión;A2
+exterior;A2
+extinguir;B2
+extinguirse;B2
+extraño;B1
+extraíble;B2
+extracto;B2
+extraer;B1
+extranjero;A1
+extraviar;B1
+extraviar las maletas;B2
+extremidad;B2
+extremo oriente;B2
+extrovertido;B1
+fábrica;A2
+física;B1
+físico;B1
+fútbol;B2
+fórmula;B2
+fórmula matemática;B2
+fórmula química;B2
+fa;B2
+fabada;B2
+fabricación;B1
+fabricar;B1
+fachada;B2
+facilitar;B2
+factura;B2
+factura de la luz;B2
+factura de teléfono;B2
+factura del gas;B2
+factura del teléfono;B2
+facturar;B1
+facturar el equipaje;B1
+facturar las maletas;B1
+falda;A1
+falda corta;B1
+falda larga;B1
+fallar;B2
+fallecer;B2
+falsificar;B2
+falso;B1
+falta;B1
+falta de luminosidad;B2
+faltar;B1
+familia;A1
+familia adoptiva;B2
+familia numerosa;B2
+familiar;A2
+familiar cercano;B2
+familiar lejano;B2
+fan;B2
+faringe;B2
+faringitis;B2
+farmacéutica;B2
+farmacéutico;B2
+farmacia;A1
+farmacia de guardia;B1
+farola;B2
+fascinación;B2
+fascinado;B2
+fascinar;B2
+fascismo;B2
+fastidiar;B2
+fatiga;B1
+fauna;B2
+favorecer;B1
+fax;A1
+faz;B2
+fealdad;B1
+febrero;A1
+fecha;A1
+fecha de expiración;B2
+fecha de nacimiento;A1
+fechar;B2
+fecundación;B2
+fecundar;B2
+felicidad;B2
+felicitar;B1
+feliz;B2
+femenino;B1
+fenomenal;B2
+feo;A2
+feria de arte;B2
+feroz;B2
+ferry;B2
+festival;B2
+festival de música;B2
+fiable;B2
+fibra;B1
+ficha;B1
+fichar;B2
+fidelidad;B2
+fiebre;B1
+fiebre alta;B2
+fiebre baja;B2
+fiel;B2
+fiesta;A1
+fiesta de cumpleaños;A2
+fiesta de disfraces;B1
+fiesta de fin de curso;A2
+fiesta local;B2
+fiesta nacional;B2
+fiesta oficial;B2
+figura;B1
+figurar;B2
+filósofo;B2
+fila;B1
+fila de un cine;B1
+fila de un teatro;B1
+filete;A2
+filete con patatas;A2
+filete de ternera;A2
+filosófico;B2
+filosofía;B2
+filtrar;B2
+final;B1
+final abierto;B1
+final feliz;B1
+final triste;B1
+finalizar;B2
+financiación;B2
+financiar;B2
+finca;B2
+firma;B1
+firmar;A1
+firmar la paz;B2
+firmar un cheque;B2
+firmar un contrato;B1
+firmar un contrato de alquiler;B2
+firmar un presupuesto;B2
+firmar una hipoteca;B2
+fiscal;B2
+flamenco;A2
+flan;B1
+flash;B1
+flauta;B1
+flautista;B1
+flexibilidad;B2
+flexibilidad de horario;B2
+flexible;B1
+flexionar;B1
+flexionar la rodilla;B1
+flexo;A2
+flojo;B2
+flor;A1
+flor artificial;B2
+flor delicada;B2
+flor exótica;B2
+flor natural;B2
+flor seca;B2
+flor silvestre;B2
+flora;B2
+florecer;B2
+florero;B1
+flotador;B2
+flotar;B2
+fluir;B2
+foca;B1
+folio;B1
+folleto;B1
+fondo;B1
+fondo de inversión;B2
+fontanería;B2
+fontanero;B2
+forestal;B2
+forma;A2
+formación;B1
+formación a cargo de la empresa;B1
+formación continua;B1
+formación permanente;B2
+formación profesional;B1
+formal;B1
+formar;B1
+formar parte;B1
+formarse;B2
+formulación;B2
+formular;B2
+formular una crítica;B2
+formular una pregunta;B2
+foro;A2
+foro de discusión;A2
+fotógrafo;A2
+foto;A1
+foto central;B2
+foto digital;B1
+foto en blanco y negro;B1
+foto en color;B1
+fotocopia;A1
+fotocopiadora;A2
+fotografía;A2
+fotografía abstracta;B2
+fotografía artística;B2
+fotografía científica;B2
+fotografía de estudio;B2
+fotografía digital;B1
+fotografiar;B1
+frágil;B2
+fríamente;B2
+frío;B1
+fracaso;B1
+fracturar;B2
+fracturarse;B2
+fracturarse un hueso;B2
+fragilidad;B2
+fragmentar;B2
+fragmentarse;B2
+fragmento;B2
+frambuesa;B2
+freír;B1
+freír huevos;B1
+freír patatas;B1
+fregadero;B1
+fregar;B1
+fregar el suelo;B1
+fregar los platos;B1
+fregona;B1
+freidora;B2
+frenar;B1
+freno;B1
+frente;B2
+fresa;A2
+fresco;B1
+frigorífico;B1
+frito;B1
+frontera;B2
+fronterizo;B2
+fruta;A1
+frutería;A2
+frutero;A2
+fruto;B2
+frutos del bosque;B2
+frutos secos;B2
+fuego;B1
+fuegos artificiales;B2
+fuente;B1
+fuerte;A2
+fuerza;A2
+función;B2
+función de circo;B2
+función de teatro;B2
+funcionar;B1
+funcionario;A2
+fundado;B1
+fundamental;B2
+fundamentar;B2
+fundamento;B2
+fundir;B2
+fundirse;B2
+funeral;B2
+furioso;B2
+fusil;B2
+futbolista;B2
+género literario;B2
+gafas;A1
+gafas de cerca;B2
+gafas de lejos;B2
+gafas de protección;B2
+gafas de sol;A2
+gafas graduadas;B2
+galaxia;B2
+galería;B1
+galería de arte;B1
+galleta;A2
+gallina;B1
+gallo;B1
+gamba;A2
+ganadería;B1
+ganadero;B2
+ganado;B2
+ganador;B1
+ganancia;B2
+ganar;A2
+ganar clientes;B2
+ganar dinero;A2
+ganar elecciones;B2
+ganar la copa;B2
+ganar las elecciones;B2
+ganar peso;B2
+ganar un juicio;B2
+ganar un sueldo;B1
+ganar una beca;B1
+ganar una medalla;B2
+ganarse;B1
+ganga;B2
+garaje;A1
+garantía;B1
+garantizar;B1
+garbanzo;B1
+garganta;A2
+gargantilla;B2
+gargantilla de oro;B2
+gargantilla de plata;B2
+gas;B1
+gasa;B2
+gasoil;B1
+gasolina;A2
+gasolina normal;B1
+gasolina súper;B1
+gasolina sin plomo;B1
+gasolinera;B1
+gastar;B1
+gasto;B2
+gastos de agua;B2
+gastos de comunidad;B2
+gastos de envío;B1
+gastos de portería;B2
+gato;A2
+gato callejero;B2
+gay;B1
+gazpacho;B1
+gel;A2
+gel de afeitar;B1
+gel fijador;B2
+gemelo;B2
+genérico;B2
+genética;B1
+genético;B2
+general;B1
+generalización;B2
+generalizar;B2
+generar;B1
+generosidad;B2
+generoso;A2
+genial;B1
+genio;B2
+geográfico;B1
+geografía;B1
+gestión;B2
+gesticular;B2
+gestionar;B2
+gesto;B2
+gestualidad;B2
+gimnasia;B2
+gimnasio;A2
+ginebra;A2
+ginecólogo;B1
+girar;B1
+giro postal;B2
+giro telegráfico;B2
+global;B1
+globo;B1
+gobernar;B1
+gobierno;A2
+gobierno central;B2
+gobierno democrático;B2
+gobierno independiente;B2
+gobierno liberal;B2
+gobierno nacionalista;B2
+gobierno progresista;B2
+gobierno totalitario;B2
+gol;B1
+golfo;B2
+golpe;B1
+golpear;B1
+goma;A1
+goma de borrar;A1
+gomina;B2
+gordito;A2
+gordo;A2
+gorra;A2
+gorro;A2
+gorro de baño;B1
+gorro de ducha;B1
+gota;B1
+gozar;B1
+gráfico;B2
+grúa;B2
+grabar;B2
+grabar un archivo;B2
+grabar un programa;B2
+grabar un programa de radio;B2
+grabar un programa de televisión;B2
+grado;B1
+grado de parentesco;B2
+grado medio;B1
+graduado;B1
+graduado escolar;B2
+gramo;B1
+gran;A2
+gran amigo;B1
+grande;A1
+granizar;B2
+granizo;B1
+granja;B1
+grano;B2
+grapa;B2
+grapadora;B2
+grapar;B2
+grasa;B1
+graso;B2
+gratis;A2
+gratuito;A2
+grave;A2
+grifo;A2
+gripe;A2
+grosella;B2
+grupo;B1
+grupo de rock;B1
+grupo musical;B1
+grupo terrorista;B1
+guía;A2
+guía telefónica;B1
+guía turístico;A2
+guante;A2
+guante de boxeo;B1
+guapo;A2
+guardar;A2
+guardar un archivo;B1
+guardar un documento;B1
+guardarropa;B2
+guardería;B1
+guardia;B2
+guatemala;A2
+guatemalteco;A2
+guerra;A2
+guerra civil;B1
+guerra de independencia;B1
+guerra mundial;B1
+guión;A1
+guión bajo;A1
+guión cinematográfico;B2
+guindilla;B1
+guinea ecuatorial;A2
+guineano;A2
+guion;B2
+guion bajo;A2
+guion cinematográfico;B2
+guionista;B2
+guirnalda;B2
+guirnalda de flores;B2
+guisante;B1
+guitarra;A2
+guitarrista;B1
+gustar;A2
+gusto;B2
+hábitat;B2
+hígado;B2
+húmedo;B1
+haber aparcamiento;B1
+haber atasco;B1
+haber caravana;B1
+haber circulación;B2
+haber instalaciones;B1
+haber instalaciones para minusválidos;B1
+haber límite;B2
+haber movimiento;B2
+haber mucha circulación;B2
+haber mucho movimiento;B2
+haber mucho tráfico;B2
+haber obras;B2
+haber plazas libres;B1
+haber poca circulación;B2
+haber poco movimiento;B2
+haber poco tráfico;B2
+haber rebajas;B1
+haber servicio de habitaciones;B1
+haber tráfico;B2
+haber un accidente;B1
+haber un atasco;B1
+habilidad;B2
+habilitar;B2
+habitación;A1
+habitación con aire acondicionado;A1
+habitación con baño;A1
+habitación con teléfono;A1
+habitación con televisión;A1
+habitación doble;A1
+habitación doble con aire acondicionado;A1
+habitación doble con baño;A1
+habitación doble con teléfono;A1
+habitación doble con televisión;A1
+habitación individual;A1
+habitación individual con aire acondicionado;A1
+habitación individual con baño;A1
+habitación individual con teléfono;A1
+habitación individual con televisión;A1
+habitante;A2
+habitantes por metro cuadrado;B2
+hablador;B1
+hablar;A1
+hablar bien de;B2
+hablar con clientes;A2
+hablar con el jefe;A2
+hablar mal de;B2
+hablar por teléfono;A2
+hablar sobre;B1
+hablar sobre un tema;B1
+hacer;A1
+hacer abdominales;B1
+hacer amigos;B2
+hacer atletismo;B1
+hacer buen tiempo;A1
+hacer calor;A1
+hacer campaña;B2
+hacer camping;B1
+hacer ciclismo;B1
+hacer cine;B1
+hacer clic;B1
+hacer clic con el ratón;B1
+hacer cola;B1
+hacer daño;B2
+hacer de canguro;A2
+hacer deporte;A1
+hacer descenso de barrancos;B2
+hacer descuento;B1
+hacer doble clic;B2
+hacer ejercicio;A1
+hacer el amor;B1
+hacer el bachillerato;B1
+hacer el currículum vítae;B1
+hacer el examen;B1
+hacer el pedido;B2
+hacer errores;A2
+hacer escala;B1
+hacer escalada;B1
+hacer estiramientos;B1
+hacer estudios primarios;B2
+hacer fijo;B2
+hacer flexiones;B1
+hacer fotocopias;A2
+hacer fotos;A2
+hacer frío;A1
+hacer frente;B2
+hacer gimnasia;A1
+hacer huelga;B1
+hacer ilusión;B2
+hacer la cama;B1
+hacer la comida;B1
+hacer la compra;A2
+hacer la declaración de la renta;B2
+hacer la digestión;B2
+hacer la lista de la compra;A2
+hacer la presentación;B2
+hacer la tesis;B2
+hacer la tesis doctoral;B2
+hacer las maletas;A2
+hacer los deberes;A1
+hacer los estudios primarios;B2
+hacer los estudios secundarios;B2
+hacer los estudios universitarios;B2
+hacer mal tiempo;A1
+hacer milagros;B2
+hacer natación;B1
+hacer penitencia;B2
+hacer prácticas;B1
+hacer publicidad;B2
+hacer quinielas;B2
+hacer régimen;B1
+hacer secundarios;B2
+hacer senderismo;A2
+hacer sol;A1
+hacer turismo;B1
+hacer un brindis;B2
+hacer un cambio;B1
+hacer un comentario;B2
+hacer un control;B1
+hacer un crucero;B1
+hacer un cuadro;B2
+hacer un curso;A2
+hacer un curso de cocina;B1
+hacer un curso de jardinería;B1
+hacer un descanso;B1
+hacer un descuento;B1
+hacer un dibujo;A2
+hacer un doctorado;B1
+hacer un edificio;B1
+hacer un ejercicio;A1
+hacer un esquema;B1
+hacer un examen;A1
+hacer un examen oral;B1
+hacer un experimento;B2
+hacer un giro;B2
+hacer un giro postal;B2
+hacer un incremento;B2
+hacer un informe;B1
+hacer un ingreso;B2
+hacer un intercambio;B1
+hacer un máster;B1
+hacer un papel;B2
+hacer un pedido;B1
+hacer un picnic;B1
+hacer un plano;B2
+hacer un presupuesto;B1
+hacer un proyecto;B1
+hacer un régimen;B1
+hacer un recibo;B2
+hacer un regalo;B1
+hacer un resumen;B1
+hacer un sacrificio;B2
+hacer un safari;B1
+hacer un stop;B1
+hacer un test;B1
+hacer un test escrito;B1
+hacer un viaje organizado;B1
+hacer una acampada;B2
+hacer una actividad;A1
+hacer una ampliación;B2
+hacer una apuesta;B2
+hacer una carrera;B1
+hacer una casa;B1
+hacer una compra;B2
+hacer una copia;B1
+hacer una despedida de soltero;B1
+hacer una devolución;B1
+hacer una entrevista;B1
+hacer una entrevista de trabajo;B1
+hacer una excursión;B1
+hacer una factura;B2
+hacer una fiesta;A2
+hacer una fiesta de cumpleaños;A2
+hacer una fiesta de fin de curso;A2
+hacer una foto;A2
+hacer una inversión;B2
+hacer una llamada;B1
+hacer una llamada internacional;B2
+hacer una llamada interurbana;B2
+hacer una marcha;B1
+hacer una mudanza;B1
+hacer una pausa;B1
+hacer una película;B1
+hacer una presentación;B1
+hacer una prueba;B2
+hacer una receta;B1
+hacer una receta médica;B1
+hacer una redacción;A2
+hacer una reforma;B2
+hacer una reserva;A2
+hacer una tabla;B2
+hacer una transferencia;B2
+hacer una venta;B2
+hacer una visita;B2
+hacer unas prácticas;B1
+hacer viento;A1
+hacerse eco;B2
+hacerse mayor;B2
+hacerse socio;B2
+hacerse socio de un club;B2
+hacerse socio de una asociación;B2
+hacerse socio de una asociación deportiva;B2
+hacerse un esguince;B2
+hacerse una herida;B1
+hacerse una idea;B2
+hacerse una idea acerca de;B2
+hacerse una lesión;B2
+hacerse una revisión;B1
+hallar;B2
+hambre;A1
+hambriento;B2
+hamburguesa;A1
+hamburguesería;B2
+harina;A2
+harina de maíz;B2
+harina de trigo;B2
+harina integral;B2
+heladería;A2
+heladera;A2
+heladero;A2
+helado;A2
+helado de chocolate;A2
+helado de fresa;A2
+helado de vainilla;A2
+helar;B2
+helicóptero;B1
+helio;B2
+hembra;B1
+hemisferio;B1
+hemisferio norte;B1
+hemisferio sur;B1
+heredar;B2
+heredero;B2
+herida;B1
+herida grave;B2
+herida leve;B2
+herida profunda;B2
+herida superficial;B2
+herido;B2
+herir;B1
+herir la sensibilidad;B2
+hermano;A1
+hermanos gemelos;A2
+hervido;B1
+hervir;B1
+hervir agua;B1
+hervir el agua;B1
+hervir la leche;B1
+hervir leche;B1
+heterogéneo;B2
+heterosexual;B1
+hidrógeno;B2
+hidratación;B2
+hidrato;B1
+hidrato de carbono;B1
+hidromasaje;B2
+hielo;B1
+hierba;B1
+hierro;B1
+higiene;B1
+hijo;A1
+hijo único;A2
+hijo adoptivo;B2
+hilo;B2
+hilo dental;B2
+himno;B2
+hinchable;B2
+hinchado;B2
+hinchar;B2
+hinduismo;B2
+hipócrita;B2
+hipótesis;B2
+hipertensión;B2
+hipocresía;B2
+hipoteca;B1
+hipotenusa;B2
+historia;B1
+historia antigua;B1
+historia contemporánea;B1
+historia del arte;B1
+historia medieval;B1
+historia universal;B1
+historiador;B1
+hobby;A2
+hockey;B1
+hockey sobre hielo;B1
+hogar;B2
+hoja;A2
+hoja de cálculo;B2
+hoja de papel;A2
+hola;A1
+hombre;A1
+hombro;B1
+homeopático;B2
+homosexual;B1
+hondo;B2
+honduras;A2
+hondureño;A2
+honestamente;B2
+honestidad;B2
+honesto;B2
+honorado;B2
+horóscopo;B1
+hora;A1
+horario;A1
+horario comercial;B2
+horario continuo;B2
+horario flexible;B1
+horizontal;B2
+horizonte;B2
+horneado;B1
+horno;B1
+horrible;B2
+horror;B2
+hortaliza;B1
+hospedar;B1
+hospedarse;B1
+hospital;A1
+hospital de guardia;B1
+hospitalizar;B2
+hostal;B1
+hotel;A1
+huelga;B1
+huella;B2
+huerta;B1
+hueso;B1
+huevo;A2
+huevo frito;B1
+humanidad;B2
+humano;A2
+humillación;B2
+humillar;B2
+humo;B1
+hundir;B2
+hundirse;B2
+huracán;B1
+hurgar;B2
+hurgar en la herida;B2
+hurtar;B2
+hurto;B1
+huso horario;A2
+iberia;B2
+idéntico;B2
+idea;B2
+ideal;B2
+identidad;B2
+identificación;B2
+identificar;B2
+identificar huellas;B2
+ideológico;B2
+iglesia;A2
+iglesia anglicana;B1
+iglesia católica;B1
+iglesia evangélica;B1
+igual;A2
+igualar;B1
+igualdad;B2
+ilegal;B1
+iluminación;B2
+iluminación alegre;B2
+iluminación directa;B2
+iluminación indirecta;B2
+iluminación suave;B2
+iluminación tenue;B2
+iluminar;B2
+iluminar un espacio;B1
+iluminar una habitación;B1
+ilusionado;B2
+ilusionarse;B2
+ilustración;B2
+imán;B2
+imagen;A2
+imaginación;B1
+imaginar;B1
+imaginarse;B2
+imitación;B2
+imitar;B2
+imitar un estilo;B2
+impaciencia;B1
+impacientarse;B2
+impaciente;B1
+impacto medioambiental;B2
+imponer;B2
+importación;B1
+importación de mercancías;B2
+importar;B1
+impresión;B1
+impresionismo;B2
+impresionista;B2
+impresora;A2
+impresora en color;B1
+impresora láser;B1
+imprimir;B1
+imprimir un libro;B2
+improvisación;B2
+imprudencia;B2
+impuesto;B2
+impuntual;B2
+impuntualidad;B2
+inaugurar;B2
+incómodo;B2
+incapaz;B2
+incendiar;B2
+incendiarse;B2
+incendio;A2
+incendio forestal;B1
+incidencia;B2
+incidente;B2
+incidir;B2
+incinerar;B2
+incomestible;B2
+incomible;B2
+incompetente;B2
+inconsciente;B2
+inconstancia;B2
+inconstante;B2
+incorporación;B1
+incorporación inmediata;B1
+incorporar;B2
+incorporarse;B2
+incremento;B2
+indemnización;B2
+indescriptible;B2
+indicar;B2
+indicar una maniobra;B1
+indigestión;B2
+indigesto;B2
+indignación;B2
+indignado;B2
+indignar;B2
+indigno;B2
+indirecto;A2
+industria;B1
+industria siderúrgica;B2
+industria textil;B2
+industrial;B2
+INEM;B2
+inexperto;B2
+infancia;B2
+infantil;B1
+infarto;B2
+infección;B1
+infernal;B2
+infidelidad;B2
+infiel;B2
+infierno;B1
+inflable;B2
+inflamado;B2
+influenciable;B2
+influenciar;B2
+influir;B2
+influyente;B2
+informática;A2
+informático;A2
+información;A1
+información al cliente;B2
+informal;B1
+informar;B1
+informativo;B2
+infusión;A2
+infusión de manzanilla;B1
+infusión de poleo;B1
+infusión de tila;B1
+ingeniero;A2
+ingrediente;A2
+ingresar dinero;B2
+ingresar en un hospital;B1
+ingresar en urgencias;B1
+ingreso;B2
+ingresos elevados;B2
+ingresos extra;B2
+ingresos periódicos;B2
+iniciar;B1
+injusticia;B2
+injusticia social;B2
+injusto;B2
+inmóvil;B2
+inmediatamente;B2
+inmediato;B1
+inmigración;B2
+inmigrante;B1
+inmobiliaria;B2
+inmortal;B2
+inmueble;B2
+innovación;B2
+innovador;B2
+inocencia;B2
+inocente;B2
+inodoro;A2
+inorgánico;B1
+inquietar;B2
+inquieto;B2
+inquilino;B2
+insípido;B2
+inscribir;B1
+inscribirse;B1
+inscribirse en un club;B1
+inscribirse en un grupo;B1
+inscribirse en una asociación;B1
+inscribirse en una lista de distribución;B2
+insecto;B1
+inseguridad;B2
+inseguro;B1
+insensibilidad;B2
+insensible;B2
+insertado;B2
+insertar;B2
+insertar una palabra;B2
+insinceridad;B2
+insincero;B2
+inspección;B2
+inspeccionar;B2
+inspeccionar el equipaje;B2
+inspeccionar las maletas;B2
+inspector;B2
+inspector de hacienda;B2
+inspector de policía;B2
+inspiración;B2
+inspirar;B2
+instalación;B2
+instalación eléctrica;B2
+instalaciones deportivas;B2
+instalar;B2
+instalar un antivirus;B2
+instalar un programa;B1
+instituto;A1
+instituto nacional de empleo;B2
+instrucción;A2
+instrumento;A2
+instrumento de cuerda;B1
+instrumento de percusión;B1
+instrumento de viento;B1
+insular;B2
+insultante;B2
+insultar;B1
+insulto;B1
+integración;B2
+integración social;B2
+integrar;B2
+integrarse;B2
+inteligencia;B1
+inteligencia artificial;B2
+inteligente;A1
+intenso;B2
+interés;A2
+interés fijo;B2
+interés variable;B2
+interacción;B2
+interactivo;B2
+interactuar;B2
+intercambiador;B2
+intercambiar;B1
+intercambiar datos;B1
+intercambiar documentos;B1
+intercambiar imágenes;B1
+intercambiar información;B1
+intercambio;B1
+interesante;B1
+interino;B2
+interior;A2
+internacional;B1
+internet;A1
+interponer;B2
+interpretación;B2
+interpretar;B2
+interpretar un papel;B2
+interpretar un texto;B2
+interrogar;B2
+interrogar a un delincuente;B2
+interrogar a un sospechoso;B2
+interrogar al delincuente;B2
+interrogar al sospechoso;B2
+interrumpir;B2
+interrupción;B2
+interruptor;B2
+interurbano;B2
+intestino;B2
+intranquilidad;B1
+intranquilizarse;B2
+intranquilo;B1
+introducción;B1
+introducir;B1
+introducir datos en el ordenador;B1
+introducir una técnica;B2
+introvertido;B1
+inundación;B1
+inundar;B2
+inundarse;B2
+inventar;B1
+invento;B1
+inventor;B1
+invernadero;B1
+inversión;B2
+inversión a largo plazo;B2
+inversor;B2
+invertir;B2
+invertir dinero;B2
+investigación;B2
+investigador;B2
+investigar;B2
+investigar el delito fiscal;B2
+investigar un delito fiscal;B2
+invierno;A1
+invitación;B1
+invitado;B1
+invitar;B1
+invitar a una despedida de soltero;B1
+invitar a una fiesta de fin de curso;B1
+involucrado;B2
+involucrar;B2
+involucrarse;B2
+inyección;B2
+ir;A1
+ir a clase;A1
+ir a correos;A2
+ir a la cárcel;B1
+ir a la compra;A2
+ir a la iglesia;A1
+ir a la mezquita;A1
+ir a la montaña;A1
+ir a la playa;A1
+ir a la sinagoga;A1
+ir a madrid;A1
+ir a misa;B1
+ir a trabajar;A2
+ir a un bar;A1
+ir a un café;A1
+ir a un concierto;A1
+ir a un museo;A1
+ir a un restaurante;A1
+ir a una discoteca;A1
+ir a ver un piso;B1
+ir al campo;A1
+ir al cine;A1
+ir al circo;A1
+ir al gimnasio;A1
+ir al hospital;A1
+ir al médico;A1
+ir al parque;A1
+ir al teatro;A1
+ir andando;A1
+ir bien con;B1
+ir bien con todo;B1
+ir con retraso;B1
+ir de acampada;B2
+ir de camping;B1
+ir de compras;A2
+ir de copas;B1
+ir de corbata;B2
+ir de excursión;A2
+ir de fiesta;B2
+ir de juerga;B2
+ir de marcha;B1
+ir de paseo;A2
+ir de pesca;B2
+ir de rebajas;B1
+ir de tapas;B1
+ir de tiendas;A2
+ir de traje;B2
+ir de uniforme;B2
+ir de urgencias;B1
+ir de vacaciones;A2
+ir de viaje;A2
+ir de visita;B2
+irónicamente;B2
+irónico;B2
+irresponsabilidad;B2
+irresponsable;B2
+irse;B1
+irse a vivir a;B1
+irse de fin de semana;B1
+irse de luna de miel;B1
+irse de puente;B1
+irse de viaje de novios;B1
+isla;A2
+islamismo;B2
+itinerario;B2
+jabón;A1
+jacuzzi;B2
+jamón;A2
+jamón serrano;A2
+jamón york;A2
+japonés;A1
+jardín;A1
+jardín de infancia;B1
+jardinería;B1
+jardinera;B1
+jardinero;A2
+jarrón;B2
+jarra;A2
+jarra de agua;A2
+jarra de cerveza;A2
+jaula;B1
+jazz;A2
+jeans;A2
+jefe;A1
+jefe de estado;B1
+jefe de estudios;B2
+jefe de obra;B2
+jefe de personal;B2
+jersey;A1
+jirafa;B1
+JJ. OO.;B2
+jornada;B1
+jornada completa;B1
+jornada de reflexión;B2
+jornada de trabajo;B2
+jornada laboral;B2
+jornada parcial;B1
+joven;A1
+joya;B1
+jubilación;B1
+jubilación anticipada;B1
+jubilado;B1
+jubilarse;B1
+judía;B1
+judía blanca;B1
+judío;A1
+judo;B2
+juego;A1
+juego de azar;B2
+juego de cartas;B1
+juego de ingenio;B2
+juego de mesa;B1
+juego de naipes;B2
+juego limpio;B2
+juego sucio;B2
+juegos olímpicos;B2
+juerga;B2
+juerguista;B2
+jueves;A1
+juez;A2
+jugada;B2
+jugador;B1
+jugador de hockey;B1
+jugar;A2
+jugar a la comba;B2
+jugar a la lotería;B2
+jugar a la oca;A2
+jugar a las canicas;B2
+jugar a las cartas;A2
+jugar a las palas;B2
+jugar a los bolos;B1
+jugar a los dardos;B1
+jugar al ajedrez;A2
+jugar al béisbol;B1
+jugar al baloncesto;A1
+jugar al balonmano;B1
+jugar al escondite;B2
+jugar al fútbol;A1
+jugar al parchís;A2
+jugar al tenis;A1
+jugar con la pelota;B1
+jugar en la arena;B1
+jugar limpio;B2
+jugar una partida;B2
+jugo;A2
+jugoso;B2
+juguete;B1
+juicio;B1
+juicio oral;B2
+julio;A1
+junio;A1
+junta;B1
+junto;A1
+jurado;B2
+jurado popular;B2
+juramento;B2
+jurar;B2
+justicia;B2
+justicia social;B2
+justificación;B2
+justificar;B2
+justo;B2
+juzgar;B1
+kilómetro;B1
+kilómetro cuadrado;B1
+kilo;A2
+kilo de filetes;A2
+kilo de patatas;A2
+kilogramo;B1
+kiwi;B1
+lácteo;B1
+lágrima;B2
+lámpara;A2
+lámpara de pie;B1
+lámpara de techo;B1
+lápiz;A1
+lápiz de labios;B1
+lápiz de ojos;B1
+líder;B2
+límite;B2
+línea;B1
+línea ADSL;B1
+línea continua;B2
+línea de autobús;B2
+línea de metro;B2
+línea de teléfono;B2
+línea diagonal;B2
+línea discontinua;B2
+línea horizontal;B2
+línea ocupada;B1
+línea recta;B2
+línea telefónica;B2
+línea vertical;B2
+líquido;B1
+lógicamente;B2
+lógico;B2
+la capital;A1
+labio;B1
+laborable;B2
+laboratorio;B1
+laca;B2
+lactosa;B2
+ladera;B2
+lado;B1
+ladrón;B1
+ladrón de guante blanco;B2
+ladrillo;B2
+lago;B1
+laguna;B2
+laico;B2
+lamentar;B2
+lamentarse;B2
+lamento;B2
+lana;B1
+lancha;B1
+langosta;B2
+langostino;B2
+lanzamiento;B2
+lanzamiento de peso;B2
+lanzamiento de un producto;B2
+lanzamiento espacial;B2
+lanzar;B2
+largo;B1
+largometraje;B2
+las afueras;B1
+lata;A2
+lata de atún;A2
+lata de refresco;A2
+lata de tomate;A2
+lava;B1
+lavabo;A1
+lavadero;A2
+lavadora;A2
+lavaplatos;A2
+lavar;A2
+lavar el coche;A2
+lavar la ropa;A2
+lavar los platos;A2
+lavarse;A1
+lavarse el pelo;A1
+lavarse la cara;A1
+lavarse las manos;A1
+lavarse los dientes;A1
+lavavajillas;A2
+lazo;A2
+lazo de amistad;B2
+león;B1
+lección;A1
+leche;A1
+leche condensada;B1
+leche descremada;B2
+leche desnatada;B1
+leche en polvo;B2
+leche entera;B1
+lechero;B1
+lechuga;A2
+lectura;A2
+leer;A1
+leer un libro;A1
+leer un periódico;A1
+leer una revista;A1
+legal;B1
+legendario;B2
+legumbre;B1
+lengua;B2
+lenguado;B2
+lenguaje;B2
+lenteja;B1
+lentilla;B2
+leo;B2
+lesbiana;B1
+lesión;B2
+lesionarse;B2
+letra;B1
+letra de una canción;B1
+levadura;B2
+levantamiento de pesas;B1
+levantar;A2
+levantar la cabeza;B1
+levantar la mano;B1
+levantar los brazos;B1
+levantar pesas;B1
+levantarse;A1
+leve;B2
+ley;B1
+leyenda;B2
+liberación;B2
+liberal;B1
+libertad;B2
+libertad de expresión;B2
+libertad de prensa;B2
+libre;B2
+librería;A2
+libro;A1
+libro de reclamaciones;B2
+libro de texto;A2
+licenciado;B1
+licenciarse;B2
+licenciatura;B1
+licor;B1
+licuado;B2
+licuar;B2
+lienzo;B2
+liga;B2
+ligado;B2
+ligar;B1
+ligero;B2
+ligue;B2
+limón;B1
+lima;B1
+limar;B2
+limarse las uñas;B1
+limitar;B2
+limitar al este;B2
+limitar al norte;B2
+limitar al oeste;B2
+limitar al sur;B2
+limpiadora;B2
+limpiar;A2
+limpiar el baño;A2
+limpiar el polvo;B1
+limpiar la casa;A2
+limpiar la cocina;A2
+limpieza;B2
+limpio;A2
+lince;B2
+lindo;A2
+lineal;B2
+lingüística;B2
+lingüístico;B2
+lino;B1
+linterna;B2
+liso;B1
+lista;B1
+lista de distribución;B2
+lista de invitados;B1
+listo;A2
+literario;B2
+literatura;A2
+literatura clásica;B1
+literatura contemporánea;B2
+literatura medieval;B2
+literatura moderna;B1
+literatura realista;B2
+literatura romántica;B2
+litoral protegido;B2
+litoral virgen;B2
+litro;B1
+litro de agua;A2
+litro de leche;A2
+llama;B2
+llamada;A2
+llamada gratuita;B2
+llamada internacional;B2
+llamada interprovincial;B2
+llamada interurbana;B2
+llamada local;B2
+llamada urbana;B2
+llamadas ilimitadas;B2
+llamar;B1
+llamar a cobro revertido;B2
+llamar a la policía;A2
+llamar a los bomberos;A2
+llamar para una entrevista;B2
+llamar para una entrevista de trabajo;B2
+llamar por el apellido;B2
+llamar por el nombre;B2
+llamar por teléfono;A2
+llamarse;A1
+llanura;B2
+llave;A1
+llegada;A2
+llegar;A2
+llegar con retraso;B1
+llegar el recibo de la luz;B2
+llegar el recibo del agua;B2
+llegar la factura de la luz;B2
+llegar la factura del agua;B2
+llenar;B1
+llenarse;B2
+llevar;B1
+llevar [número cardinal] años;B1
+llevar [número cardinal] años conviviendo en pareja;B1
+llevar [número cardinal] años conviviendo juntos;B1
+llevar [número cardinal] años cotizados;B2
+llevar [número cardinal] años en pareja;B1
+llevar [número cardinal] años en paro;B2
+llevar [número cardinal] años juntos;B1
+llevar [número cardinal] años viviendo en pareja;B1
+llevar [número cardinal] años viviendo juntos;B1
+llevar a cabo;B2
+llevar a cabo un servicio;B2
+llevar a cabo un trabajo;B2
+llevar a cabo una función;B2
+llevar a cabo una tarea;B2
+llevar a juicio;B2
+llevar adelante;B1
+llevar al tinte;B2
+llevar arroz;A2
+llevar barba;A1
+llevar bigote;A1
+llevar corto;A2
+llevar el pedido;B2
+llevar el pelo corto;A2
+llevar el pelo largo;A2
+llevar el pelo limpio;A2
+llevar el pelo liso;A2
+llevar el pelo rizado;A2
+llevar el pelo sucio;A2
+llevar gafas;A1
+llevar las manos limpias;A2
+llevar las manos sucias;A2
+llevar liso;A2
+llevar los dientes limpios;A2
+llevar los dientes sucios;A2
+llevar puesto;B2
+llevar rizado;A2
+llevar salsa;A2
+llevar suelto;B1
+llevar un pañuelo;A2
+llevar un restaurante;B2
+llevar un sombrero;A2
+llevar un vestido;A2
+llevar una gorra;A2
+llevar una moto;B2
+llevar una vida sana;A2
+llevarse;B1
+llevarse bien;B1
+llevarse el primer plato;B1
+llevarse el segundo plato;B1
+llevarse mal;B1
+llevarse mucho;B1
+llorar;B1
+llover;A1
+lluvia;A2
+lluvia ácida;B2
+local;B2
+localización;B2
+localizado;B1
+localizar;B1
+loco;B2
+locutor;B1
+logo;B2
+lomo;B1
+loncha;A2
+loncha de jamón;B1
+loncha de queso;B1
+loro;A2
+lotería;B2
+lubina;B2
+luchar;B2
+luchar contra el delito fiscal;B2
+lugar;A1
+lugar bien acondicionado;B2
+lugar bien iluminado;B2
+lugar de nacimiento;A1
+lugar mal acondicionado;B2
+lugar mal iluminado;B2
+lugareño;B1
+lujoso;B2
+luminoso;B1
+luna;A2
+luna de miel;B1
+luna llena;B2
+lunar;B1
+lunes;A1
+luz;B1
+luz alegre;B2
+luz directa;B2
+luz indirecta;B2
+luz suave;B2
+luz tenue;B2
+máquina;B1
+mármol;B2
+márquetin;B1
+máster;B1
+médico;A1
+médico de guardia;B1
+mérito;B2
+método;B1
+método de análisis;B2
+método de estudio;B2
+méxico;A2
+músculo;B1
+música;A1
+música barroca;B2
+música clásica;A2
+música de cámara;B2
+música moderna;A2
+música popular;B2
+música religiosa;B2
+música tradicional;B2
+músico;A2
+módem;B2
+móvil;B1
+macarrones;A2
+macedonia;A2
+macedonia de frutas;B2
+maceta;B1
+madalena;B1
+madera;B1
+madre;A1
+madre de alquiler;B2
+madre soltera;B1
+madurar;B2
+madurez;B2
+maduro;B2
+maestría;B1
+maestro;B2
+mafia;B2
+magdalena;B1
+magro;B2
+magro de cerdo;B2
+magro de ternera;B2
+mal;A1
+mal comunicado;A1
+mal estado;A2
+mal orientado;B2
+mal tiempo;A2
+mala distribución;B2
+malas vistas;B1
+maleducado;B1
+malestar;B2
+maletín;A2
+maleta;A1
+maletero;B1
+malo;A1
+mamá;A2
+mamífero;B1
+mamar;B2
+mancha;B2
+mandar;B2
+mandar dinero;B2
+mandar por correo;B1
+mandar un correo electrónico;A2
+mandar una carta;B1
+manejar;B2
+manejar software libre;B2
+manejar un antivirus;B2
+manejar un programa;B2
+manga por hombro;B2
+manicura;B2
+maniobra;B1
+maniobra de giro a la izquierda;B1
+mano;A2
+mano de obra;B2
+manso;B2
+manta;B1
+mantel;B1
+mantener;B2
+mantener el contacto;B2
+mantener la comunicación;B2
+mantener una relación;B2
+mantenerse;B2
+mantenerse bien;B2
+mantenerse bien informado;B1
+mantenerse en forma;B1
+mantenerse joven;B2
+mantenerse mal;B2
+mantenerse mal informado;B1
+mantenimiento;B2
+mantequilla;A2
+manual;B2
+manzana;A2
+manzano;B1
+mapa;A1
+mapa de carretera;B1
+maquillador;B2
+maquillaje;B1
+maquillar;B1
+maquillarse;B1
+maquinilla de afeitar;B1
+mar;A1
+mar báltico;B1
+mar mediterráneo;B1
+mar rojo;B1
+marítimo;B2
+marcar;B1
+marcar un gol;B1
+marcar un número de teléfono;B1
+marcha;B2
+marcha nupcial;B2
+marchar;B2
+marcharse;A2
+marcharse de fin de semana;B1
+marcharse de puente;B1
+marco;B2
+marea;B2
+marea negra;B2
+mareado;B1
+marear;B2
+marearse;B2
+maremoto;B1
+mareo;B2
+margarina;B1
+margarita;A2
+marginación;B2
+marido;A1
+marinero;B1
+marino;B1
+marisco;B1
+marketing;B1
+marroquí;A1
+martes;A1
+marxismo;B2
+marxista;B2
+marzo;A1
+masaje;B2
+masaje relajante;B2
+masajista;B2
+mascarilla;B2
+mascota;B1
+masculino;B1
+masticar;B2
+matar;B1
+matemáticas;A2
+materia;B1
+materia anual;B2
+materia obligatoria;B2
+materia prima;B1
+materia trimestral;B2
+material de construcción;B2
+maternal;B2
+maternidad;B2
+matiz;B2
+matrícula;B1
+matricular;B1
+matricularse;B1
+matrimonio;B1
+matrimonio heterosexual;B1
+matrimonio homosexual;B1
+maximizar;B2
+maximizar un documento;B2
+maximizar una ventana;B2
+mayo;A1
+mayonesa;A2
+mayor;A2
+mayoría;B1
+mayoría étnica;B2
+mayoría religiosa;B2
+mayoría social;B2
+mecánicamente;B2
+mecánico;A2
+mecha;B2
+medalla;B2
+media jornada;B1
+media pensión;A2
+medias;A2
+medicamento;A2
+medicamento contraindicado;B2
+medicamento genérico;B2
+medicamento homeopático;B2
+medicina;A2
+medicinal;B2
+medida de seguridad;B2
+medio ambiente;B1
+medio audiovisual;B2
+medio kilo;A2
+medio periodístico;B2
+medioambiente;B2
+medios de comunicación;B1
+medios de información;B1
+medir;B1
+medir la luz;B1
+mejillón;B2
+mejilla;B2
+mejor;A2
+mejorar;B2
+melón;A2
+melena;B2
+melena suelta;B2
+mellizo;B2
+memorizado;B1
+memorizar;B1
+memorizar una fórmula;A2
+memorizar una regla;A2
+menú;B1
+menú del día;B1
+menestra;A2
+menestra de verduras;A2
+menor;A2
+mensaje;A2
+mensaje de texto;B1
+mensajero;B1
+menstruación;B2
+menstrual;B2
+mensual;B1
+mentira;B1
+mentiroso;B1
+mercado;A1
+mercado financiero;B2
+mercado inmobiliario;B2
+mercancía;B2
+mercancía extranjera;B2
+mercancía internacional;B2
+mercancía nacional;B2
+mercurio;B2
+merecer;B2
+merecer la pena;B2
+merendar;A1
+merengue;B1
+merienda;A1
+merluza;A2
+mermelada;A2
+mesa;A1
+mesa electoral;B2
+mesero;A2
+mesilla de noche;B1
+mesita de noche;B1
+meter;B1
+meter datos;B1
+meter datos en el ordenador;B1
+meter dinero;B1
+meter dinero de la cuenta;B1
+meterse;B2
+meterse en camisa de once varas;B2
+metro;A1
+metro cúbico;B1
+metro cuadrado;B1
+metro ligero;B2
+mexicano;A1
+mezclar;B1
+mezclar las cartas;B2
+mezquita;B1
+miércoles;A1
+microondas;A2
+microscopio;B2
+miedo;B1
+miel;B1
+miembro;B2
+mil;A1
+milésimo;B1
+milímetro;B1
+milagro;B2
+mileurista;B2
+miligramo;B1
+militar;B1
+mineral;B1
+minifalda;B1
+minimizar;B2
+minimizar un documento;B2
+minimizar una ventana;B2
+ministerio;B1
+ministerio de hacienda;B2
+ministro;A2
+ministro de asuntos exteriores;B1
+ministro de defensa;B1
+ministro de educación;B1
+ministro de interior;B1
+minoría;B1
+minoría étnica;B2
+minoría religiosa;B2
+minoría social;B2
+mirada;B1
+mirar;A2
+mirar en un diccionario;B1
+mirar en un libro;B1
+mirar un mapa;A2
+mirar un plano;A2
+mirar un plano de metro;A2
+misa;B1
+mobiliario;B2
+mochila;A2
+moderno;B1
+modificación;B2
+modificar;B2
+modo;B1
+modo de preparación;B1
+molécula;B2
+molde;B2
+moldear;B2
+molecular;B2
+moler;B2
+molestar;B2
+molestia;B2
+molido;B2
+monárquico;B2
+monólogo;B2
+monarquía;B1
+moneda;A2
+moneda extranjera;B2
+monedero;B1
+monitor;B1
+monitor de actividades;B2
+monitorear;B2
+monitorizar;B2
+monja;B2
+monje;B2
+mono;B1
+monoteísta;B2
+montaña;A1
+montañero;B1
+montaje;B2
+montar;B2
+montar en bici;A2
+montar en bicicleta;A2
+montar en el tobogán;B2
+montar en los columpios;B2
+montar en moto;A2
+montar la tienda de campaña;B2
+montar un restaurante;B2
+montar un viaje;B2
+montar una exposición;B2
+montar una fiesta;B2
+montarse en un coche;B1
+montarse en una bicicleta;B1
+montarse en una moto;B1
+monte;B2
+monumento;A2
+mora;B2
+morder;B2
+mordisco;B2
+morenito;A2
+moreno;A2
+moreno de piel;B1
+morir;A2
+morirse;A2
+moroso;B2
+mosca;A2
+mosquito;A2
+mostaza;B1
+mostrador;A2
+mostrador de facturación;B2
+mostrar;B1
+mostrar amistad;B2
+mostrar apoyo;B2
+mostrar cariño;B2
+mostrar comprensión;B2
+mostrar confianza;B2
+mostrar respeto;B2
+mostrar un comportamiento;B2
+mostrar un comportamiento adecuado;B2
+mostrar un comportamiento injusto;B2
+mostrar un sentimiento;B2
+mostrar una actitud adecuada;B2
+mostrar una actitud injusta;B2
+moto;B1
+motor;B1
+mover;B1
+mover el cuerpo;B1
+mover la cabeza;B1
+mover las manos;B1
+mover los brazos;B1
+moverse;B1
+movimiento;B1
+movimiento artístico;B2
+muñeca;B1
+muchas calorías;B2
+muchas gracias;A1
+mucho gusto;A1
+mudanza;B1
+mudarse;B2
+mudarse de barrio;B2
+mudarse de casa;B2
+mudarse de zona;B2
+mudo;B2
+mueble;A2
+muela;A2
+muerte;B1
+muerto;B1
+muestra;B2
+muestra de arte;B2
+mujer;A1
+multa;B1
+multar;B1
+multinacional;A2
+multiplicación;B2
+multiplicar;B1
+mundial;B1
+mundo;A2
+muralla;B1
+museo;A1
+musical;A2
+muslo;B1
+muslos de pavo;B2
+muslos de pollo;B2
+musulmán;A1
+muy bien, gracias;A1
+muy hecho;B1
+náuseas;B2
+núcleo;B2
+número;A1
+número de identificación;B2
+número de matrícula;B2
+número de teléfono;A1
+número decimal;B2
+número equivocado;B1
+número impar;B2
+número par;B2
+nómina;B2
+nacer;A2
+nación;B1
+nacimiento;B2
+nacimiento de un río;B2
+nacional;B1
+nacionalidad;A1
+nadador;A2
+nadar;A1
+nadar y guardar la ropa;B2
+nailon;B1
+naranja;A2
+nariz;A1
+narración;B2
+narrador;B2
+narrar;B2
+nata;B1
+natación;B2
+natural;B2
+naturaleza;A2
+navaja;B2
+nave;B2
+navegación;B2
+navegador;B1
+navegar;B1
+navegar por internet;A2
+navegar por la red;A2
+navidad;A2
+neceser;B2
+necesidad;B1
+negar;B2
+negativo;B2
+negociar;B2
+negociar un contrato;B2
+negocio;A2
+negro;A1
+nervio;B2
+nervioso;B1
+neumonía;B2
+neurólogo;B1
+neurona;B2
+nevar;A1
+nevera;A2
+nevera portátil;B1
+niña;A1
+niñez;B2
+niño;A1
+niño adoptado;B1
+niño huérfano;B2
+niño probeta;B2
+nicaragüense;A2
+nicaragua;A2
+niebla;A2
+nieto;A1
+nieve;A2
+nitidez;B2
+nitrógeno;B2
+no caber duda;B2
+no estar mal;B2
+no llegarle a la suela del zapato;B2
+no llegarle la camisa al cuerpo;B2
+no pintar nada;B2
+no practicante;B2
+no querer verlo ni en pintura;B2
+no saber a nada;B1
+no soportar;B1
+no tener carácter;B2
+no tener dos dedos de frente;B2
+no tener educación;B2
+no tener estudios;B1
+no tener modales;B2
+no tener personalidad;B2
+no tener temperamento;B2
+noble;B2
+nombre;A1
+nombre de usuario;B1
+nonagésimo;A2
+nordeste;A2
+norma;B2
+norma de circulación;B1
+noroeste;A2
+norte;A1
+nota;A2
+nota alta;B2
+nota baja;B2
+nota final;B2
+nota injusta;B2
+nota justa;B2
+nota media;B2
+nota musical;B2
+notar;B2
+noticia;B1
+noticia bomba;B2
+noticia de última hora;B2
+noticia de actualidad;B2
+noticia extraoficial;B2
+noticia fiable;B2
+noticia oficial;B2
+novecientos;A2
+novela;A2
+novela de amor;B1
+novela de aventuras;B1
+novela de ciencia ficción;B1
+novela histórica;B1
+novela negra;B2
+novela policíaca;B1
+novela policiaca;B1
+novela romántica;B1
+novela rosa;B2
+novelista;B1
+noveno;A2
+noventa;A1
+noviazgo;B1
+noviembre;A1
+novio;A1
+nube;A2
+nublado;A2
+nublarse;B1
+nuboso;A2
+nudista;B2
+nuera;B2
+nuevas tecnologías;B2
+nueve;A1
+nuevo;A1
+nuevo testamento;B2
+nuez;B1
+nutrición;B2
+nutrientes;B2
+nutritivo;B2
+oídos sordos;B2
+oír;A2
+obedecer;B1
+obedecer a los padres;B1
+obedecer una ley;B2
+obediencia;B1
+obediente;B1
+objetivo;B2
+objeto;B1
+objeto de análisis;B2
+objeto de estudio;B2
+obra;B2
+obra arquitectónica;B2
+obra conocida;B2
+obra de arte;B1
+obra de teatro;A2
+obra desconocida;B2
+obra escultórica;B2
+obra literaria;B1
+obra pictórica;B2
+obra representativa;B2
+obra teatral;B2
+obsequiar;B2
+obsequio;B2
+observación;B2
+observar;B1
+obtener;B2
+obtener créditos;B2
+obtener un descuento;B2
+obtener una beca;B2
+obviamente;B2
+obvio;B2
+océano;A2
+océano ártico;B1
+océano atlántico;B1
+océano pacífico;B1
+ocasión;A2
+ocasional;B1
+ocasionalmente;B1
+occidental;B1
+occidente;B1
+oceánico;B1
+oceanía;B1
+ochenta;A1
+ocho;A1
+ochocientos;A1
+ocio;B2
+octavo;A2
+octogésimo;A2
+octubre;A1
+oculista;B1
+ocultación;B2
+ocultar;B2
+oculto;B2
+ocupación;B2
+ocupado;B1
+ocupar un cargo;B2
+ocupar un cargo de responsabilidad;B2
+ocupar un cargo directivo;B2
+ocupar un cargo público;B2
+ocupar un puesto;B2
+ocupar una plaza;B2
+ocuparse;B2
+odiado;B1
+odiar;A2
+odio;B2
+odioso;B2
+oeste;A1
+oferta;B1
+oferta de empleo;B1
+oferta de trabajo;B1
+oferta pública de empleo;B2
+oficina;A1
+oficina de correos;A2
+oficina de empleo;A2
+oficina de información;A1
+oficina de información y turismo;A1
+oficina de turismo;A1
+oficina del INEM;B2
+oficinista;A2
+oficio;B1
+ofrecer;B1
+ofrecer educación superior;B2
+ofrecer educación universitaria;B2
+ofrecer una ayuda;B1
+ofrecerse;B2
+oftalmólogo;B1
+ojo;A1
+ola;A2
+ola de calor;B1
+ola de frío;B1
+oler;B1
+olfato;B2
+olimpiada;B2
+oliva;B1
+olivo;A2
+olla;B2
+olla a presión;B2
+olvidar;B1
+olvidarse;B1
+once;A1
+onda;B2
+ONU;B1
+opción;B1
+opcional;B2
+operación;B1
+operar;B2
+opinar;B2
+opinión;B1
+oportunidad;B1
+optimismo;B1
+optimista;B1
+orégano;B2
+oración;B2
+orador;B2
+oral;B1
+oralmente;B2
+orar;B2
+ordenador;A1
+ordenador portátil;A2
+ordenar;B1
+oreja;A2
+orgánico;B1
+organización;B1
+organización de las naciones unidas;B1
+organizado;B2
+organizar;B2
+organizar un cóctel;B2
+organizar un viaje;B2
+organizar una celebración;B2
+organizar una exposición;B2
+organizar una fiesta de disfraces;B2
+orgullo;B2
+orgulloso;B2
+orientación;B2
+orientado al norte;B2
+orientado al sur;B2
+oriental;B1
+orientar;B2
+oriente;B1
+oriente medio;B2
+oriente próximo;B2
+origen;B2
+original;B1
+orilla;B2
+orilla del mar;B2
+orilla del río;B2
+oro;B1
+orquesta;B1
+ortodoxia;B1
+ortodoxo;B1
+osa mayor;B2
+osa menor;B2
+oso;B1
+otoñal;A2
+otoño;A1
+otorrino;B2
+otorrinolaringólogo;B2
+oveja;B1
+oxígeno;B2
+oyente;B2
+página;A1
+página web;A1
+páginas amarillas;B1
+pájaro;A2
+párroco;B2
+pérdida;B2
+pétalo;B2
+público;B1
+póquer;B2
+póster;B1
+paño;B1
+paño de cocina;B2
+pañuelo;B1
+país;A1
+país en vías de desarrollo;B1
+países pobres;B1
+países ricos;B1
+pacífico;B1
+paciencia;B1
+paciente;B1
+pactar;B2
+padecer;B2
+padecer una depresión;B2
+padecer una enfermedad;B2
+padre;A1
+padres adoptivos;B1
+paella;A1
+paga;B1
+paga extra;B2
+pagar;A2
+pagar a plazos;B2
+pagar al contado;B2
+pagar con cheque;B1
+pagar con tarjeta;B1
+pagar el agua;B1
+pagar el alquiler;B1
+pagar el gas;B1
+pagar el piso;B1
+pagar el recibo de la luz;B2
+pagar el recibo del agua;B2
+pagar el recibo del teléfono;B1
+pagar el teléfono;B1
+pagar en efectivo;B1
+pagar en metálico;B1
+pagar impuestos;B1
+pagar intereses;B1
+pagar la comunidad;B1
+pagar la factura de la luz;B2
+pagar la factura del agua;B2
+pagar la hipoteca;B1
+pagar la luz;B1
+pagar la matrícula;A2
+pagar un crédito;B2
+pagar un préstamo;B2
+pagar un seguro;B2
+pagar una hipoteca;B1
+pagar una multa;B2
+pago;B2
+pago de las costas;B2
+pago por adelantado;B1
+paisaje;B1
+paisaje industrial;B2
+paisaje natural;B2
+paisaje tropical;B2
+paisaje urbano;B2
+pala;B1
+palacio;B1
+palacio de deportes;B2
+paladar;B2
+palanca;B2
+paleta;B2
+palillos;B1
+palma;B2
+palmear;B2
+palmera;B2
+palo;B1
+pan;A1
+pan de molde;B2
+pan integral;B2
+pan rallado;B2
+panadería;A2
+panadero;A2
+panamá;A2
+panameño;A2
+pancarta;B2
+panel;B2
+panel solar;B2
+pantalón;A1
+pantalla;B1
+pantalla plana;B2
+pantalones vaqueros;A1
+pantano;B2
+papá;A2
+papel;A2
+papel de impresora;B1
+papel higiénico;A2
+papel reciclado;B1
+papelería;A2
+papelera;A2
+papeleta;B2
+papilas;B2
+papilas gustativas;B2
+paquete;A2
+paquete de arroz;A2
+paquete de harina;A2
+paquete de salchichas;A2
+paquete postal;B2
+parálisis;B2
+para llevar;B1
+para mayores de 18 años;B2
+para todos los públicos;B2
+para tomar;B1
+para tomar aquí;B1
+paraíso;B2
+parada;B1
+parada de autobús;A1
+parada de metro;A1
+parada de taxi;A1
+parador;B2
+paraguas;A2
+paraguay;A2
+paraguayo;A2
+paralizado;B2
+paralizar;B2
+parapente;B1
+parar;B1
+parar el balón;B1
+parchís;B2
+parecerse;B2
+parecerse a su hermano;B1
+parecerse a su padre;B1
+parecerse entre ellos;B1
+pared;A2
+pareja;B1
+pareja de hecho;B1
+parentesco;B2
+parentesco de primer grado;B2
+parentesco de segundo grado;B2
+pariente;B2
+pariente lejano;B2
+parlamentario;B2
+parlamento;B1
+paro;A1
+parque;A1
+parque acuático;B1
+parque de atracciones;A2
+parque de bomberos;B1
+parque natural;B1
+parque temático;B2
+parque zoológico;A2
+partícula;B2
+parte;B1
+parte meteorológico;B2
+participación;B2
+participante;B2
+participar;B1
+participar en el entrenamiento;B2
+participar en un proceso;B2
+participar en un proceso de selección;B2
+participar en un proceso de selección de personal;B2
+participar en una lista de distribución;B2
+partida;B2
+partido;B2
+partido de baloncesto;B1
+partido de centro;B1
+partido de derechas;B1
+partido de fútbol;B1
+partido de izquierdas;B1
+partido de la oposición;B1
+partido político;A2
+partir;B2
+partirse;B2
+parto;B2
+pasárselo bien;B1
+pasárselo en grande;B2
+pasárselo fenomenal;B2
+pasárselo mal;B1
+pasado de moda;B2
+pasajero;A2
+pasaporte;A1
+pasar;A2
+pasar de curso;B2
+pasar el aspirador;B1
+pasar el rato;B2
+pasar el verano;B2
+pasar la aduana;B2
+pasar lista;B2
+pasar por caja;B1
+pasar por la caja;B1
+pasar un calor espantoso;B2
+pasar un calor horrible;B2
+pasar un control de aduana;B2
+pasar un control de carreteras;B2
+pasar un examen;B2
+pasar un frío espantoso;B2
+pasar un frío horrible;B2
+pasar una enfermedad;B2
+pasar una inspección;B2
+pasar una llamada;B1
+pasarlas canutas;B2
+pasarlo bien;B1
+pasarlo en grande;B2
+pasarlo fenomenal;B2
+pasarlo mal;B1
+pasarse;B2
+pasatiempos;B1
+pasear;A2
+pasear por la orilla;B1
+paseo;A1
+paseo marítimo;B2
+pasillo;A2
+paso a paso;B1
+paso de cebra;B1
+paso de peatones;B1
+pasta;A2
+pasta de dientes;A2
+pastel;B1
+pastelero;B1
+pastilla;B1
+pastilla de jabón;B1
+patín;B1
+patata;A2
+patata frita;B1
+paternal;B2
+paternidad;B2
+patinador;B1
+patinaje;B1
+patinaje sobre hielo;B1
+patinar;B1
+patio;B1
+patio de butacas;B2
+pato;B1
+paz;A2
+PC;A2
+peaje;B2
+peatón;B2
+pecado;B2
+pecador;B2
+pecar;B2
+pecho;B1
+pechuga;B1
+pechuga de pavo;B2
+pechuga de pollo;B2
+pediatra;B2
+pedicura;B2
+pedir;B1
+pedir algo;A2
+pedir cita;B1
+pedir el libro de reclamaciones;B2
+pedir el menú;A2
+pedir el menú del día;A2
+pedir el plato del día;A2
+pedir hora;B1
+pedir la carta;A2
+pedir la cuenta;A2
+pedir la jubilación;B2
+pedir la jubilación anticipada;B2
+pedir la nacionalidad;A2
+pedir la vez;B2
+pedir revisión de examen;B2
+pedir un anticipo;B2
+pedir un ascenso;B2
+pedir un aumento de sueldo;B2
+pedir un crédito;B2
+pedir un préstamo;B2
+pedir un presupuesto;B2
+pedir un recibo;B2
+pedir una beca;B1
+pedir una factura;B2
+pedir una hipoteca;B1
+pedir una sopa;A2
+pedirle peras al olmo;B2
+pegar;B1
+pegar una palabra;B1
+pegarse;B1
+pegatina;B2
+peinado;B1
+peinarse;A2
+peine;B1
+película;A1
+película con subtítulos;B1
+película de acción;B1
+película de amor;B1
+película de aventuras;B1
+película de ciencia ficción;B1
+película de dibujos animados;B1
+película de guerra;B1
+película de risa;B1
+película de terror;B1
+película del oeste;B1
+película doblada;B1
+película en versión original;B1
+película muda;B1
+película policiaca;B1
+película romántica;B1
+película subtitulada;B1
+pelar;B1
+pelar fruta;B1
+pelar patatas;B1
+pelea;B2
+pelear;B2
+pelearse;B2
+peligro;B1
+peligroso;B1
+pelo;A1
+pelo brillante;B2
+pelo corto;A2
+pelo largo;A2
+pelo liso;A2
+pelo moreno;A2
+pelo sano;B2
+pelota;B1
+pelota de golf;B1
+pelota de tenis;B1
+peluquería;A2
+peluquero;A2
+península;B1
+penalti;B1
+pendiente;B1
+peninsular;B2
+pensamiento;B2
+pensar;B1
+pensión;B1
+pensión completa;A2
+pequeño;A1
+pequeño electrodoméstico;B1
+perú;A2
+pera;A2
+peral;B1
+percance;B2
+percepción;B2
+percepción visual;B2
+percha;B2
+perchero;B1
+percibir;B2
+percibir el desempleo;B2
+perdón;A1
+perdedor;B1
+perder;B1
+perder a alguien;B2
+perder a los padres;B2
+perder a un hermano;B2
+perder a un hijo;B2
+perder clientes;B2
+perder el apetito;B2
+perder el autobús;B1
+perder el control;B2
+perder el empleo;B2
+perder el empleo de forma indefinida;B2
+perder el empleo de forma temporal;B2
+perder el equipaje;B1
+perder el tren;B1
+perder el turno;B2
+perder las elecciones;B2
+perder las ganas de comer;B2
+perder las maletas;B1
+perder peso;B2
+perder un documento;B1
+perder un juicio;B2
+perderse;B2
+perderse un programa de radio;B2
+perderse un programa de televisión;B2
+perejil;A2
+pereza;B2
+perezoso;B2
+perfectamente;B2
+perfil;B1
+perfil competitivo;B2
+perfil profesional;B2
+perfumar;B2
+perfumarse;B2
+perfume;B1
+periódico;A2
+periódico de la mañana;B2
+periódico de la tarde;B2
+periodismo;B1
+periodista;A2
+periodo;B1
+periodo de prueba;B2
+periodo electoral;B2
+perjudicial;B2
+perjuicio;B2
+permanencia;B2
+permanente;B2
+permiso;A2
+permiso de circulación;B2
+permitir;B1
+perro;A2
+perro callejero;B2
+perro de caza;B2
+perro policía;B2
+persiana;B1
+persona;A1
+personaje;B1
+personaje principal;B2
+personaje secundario;B2
+personal;B1
+personalmente;B2
+personas en paro;B2
+personas mayores;B2
+perspectiva;B2
+pertenecer;B2
+pertenecer a un partido político;B2
+peruano;A2
+pesado;B1
+pesar;A2
+pesarse;A2
+pesca;B1
+pescadería;A2
+pescadero;A2
+pescado;A1
+pescado a la plancha;B1
+pescado azul;B2
+pescado blanco;B2
+pescado congelado;B2
+pescado de mar;B2
+pescado de río;B2
+pescado fresco;B2
+pescado frito;B1
+pescado hervido;B1
+pescador;B1
+pesimismo;B1
+pesimista;B1
+peso;B1
+pestaña;B1
+petardo;B2
+petróleo;B2
+pez;A2
+piña;B1
+piñata;B2
+pianista;B1
+piano;A2
+picadora;B2
+picante;B1
+picar;B1
+picar carne;B2
+picnic;B1
+pictórico;B2
+pie;A2
+pie de foto;B2
+piel;B1
+piel fresca;B2
+pierna;A2
+pierna de cordero;B2
+pijama;A2
+pila;B2
+pillar;B2
+pillar un catarro;B2
+pillar un virus;B2
+pilotar;B2
+piloto;A2
+pimienta;A2
+pincel;B2
+pincelada;B2
+pinchar;B2
+pinchar el enlace;B2
+pinchar en el enlace;B2
+pinchar en un enlace;B2
+pinchar una rueda;B2
+pincharse;B2
+pincho;A2
+pincho de tortilla;A2
+pino;A2
+pintar;A2
+pintar la mona;B2
+pintar un cuadro;B1
+pintar un paisaje;B1
+pintar un retrato;B1
+pintarse;B1
+pintarse las uñas;B2
+pintarse los labios;B1
+pintarse los ojos;B1
+pintor;A2
+pintor de brocha gorda;B2
+pintor impresionista;B1
+pintura;B2
+pintura románica;B1
+pinzas;B1
+pirámide;B2
+piragüismo;B2
+piragüista;B1
+piragua;B1
+pisar;B2
+piscina;A2
+piso;A1
+piso céntrico;A1
+piso de [número cardinal] habitaciones;A2
+piso de estudiantes;A2
+piso de segunda mano;B1
+piso exterior;A1
+piso interior;A1
+piso luminoso;B1
+piso soleado;B1
+pista;B2
+pista de baile;B2
+pista de hielo;B1
+pista de la discoteca;B2
+pista de tenis;B1
+pista de una discoteca;B2
+pista del circo;B2
+pistola;B1
+pitar;B1
+pizarra;A1
+pizca;B2
+pizca de sal;B2
+pizza;A1
+pizzería;A2
+pizzero;A2
+plástico;B1
+plátano;A2
+plan;A2
+plan de ahorro;B2
+plancha;B1
+planchar;B1
+planear;A2
+planeta;A2
+planificación;B1
+planificar;B1
+plano;A1
+plano de fondo;B2
+plano general;B2
+plano turístico;B1
+planta;A1
+planta acuática;B2
+planta carnívora;B2
+planta de exterior;B1
+planta de interior;B1
+planta de reciclaje;B2
+planta silvestre;B2
+planta trepadora;B2
+planta venenosa;B2
+plantar;B1
+plantar un árbol;B1
+plantear;B2
+plantear una duda;B2
+plantilla;B2
+plantilla de trabajadores;B2
+plata;B1
+platea;B2
+plato;A2
+plato combinado;A2
+plato de postre;A2
+plato del día;A2
+plato preparado;B1
+playa;A1
+plaza;A1
+plaza de toros;B1
+plaza del garaje;A2
+plaza mayor;A2
+plazo;B1
+pluma;B2
+población;B1
+población activa;B2
+población adulta;B2
+población joven;B2
+población urbana;B2
+poblar;B2
+pobre;A2
+pobreza;B1
+pocas calorías;B2
+poco;A1
+poco hecho;B1
+poder;B2
+poder judicial;B2
+poder legislativo;B2
+poder político;B2
+podrido;B2
+poema;B1
+poesía;B1
+poeta;B1
+política;A2
+político;B1
+polen;B2
+policía;A1
+policía de tráfico;B1
+policía municipal;B2
+polideportivo;A2
+politeísta;B2
+pollo;B1
+pollo de corral;B2
+polo norte;B1
+polo sur;B1
+polución;B1
+pomada;B1
+pompa;B2
+poner;A2
+poner dinero;B1
+poner el despertador;A2
+poner el intermitente;B2
+poner el lavaplatos;B1
+poner el lavavajillas;B1
+poner en copia;B1
+poner en copia oculta;B1
+poner en duda;B2
+poner en escena;B2
+poner en escena una obra teatral;B2
+poner en marcha;B2
+poner gasolina;B1
+poner huevos;B1
+poner la lavadora;B1
+poner la mesa;B1
+poner la radio;B1
+poner la televisión;B1
+poner las notas;B2
+poner los platos;B1
+poner notas;B2
+poner rebajas;B1
+poner un electrodoméstico;B1
+poner un enchufe;B2
+poner un esparadrapo;B2
+poner un huevo;B2
+poner un punto de luz;B2
+poner un restaurante;B2
+poner una denuncia;B2
+poner una diapositiva;B2
+poner una escayola;B2
+poner una gasa;B2
+poner una multa;B2
+poner una obra de teatro;B1
+poner una película;B1
+poner una reclamación;B2
+poner una transparencia;B2
+poner una venda;B2
+ponerse;A2
+ponerse al teléfono;B1
+ponerse bien;B1
+ponerse contento;B1
+ponerse de buen humor;B1
+ponerse de espaldas;B2
+ponerse de frente;B2
+ponerse de mal humor;B1
+ponerse de perfil;B2
+ponerse de pie;B2
+ponerse de rodillas;B2
+ponerse el casco;B2
+ponerse el cinturón de seguridad;B2
+ponerse el sol;B2
+ponerse el termómetro;B1
+ponerse enfermo;B1
+ponerse furioso;B2
+ponerse guapo;B2
+ponerse histérico;B2
+ponerse malo;B1
+ponerse rojo;B2
+ponerse triste;B1
+ponerse un traje;A2
+ponerse una mascarilla;B2
+ponerse una pomada;B2
+ponerse una vacuna;B1
+pop;A2
+popular;B1
+por cuenta ajena;B2
+por cuenta propia;B2
+por escrito;B2
+por favor;A1
+por la mañana;A1
+por la noche;A1
+por la tarde;A1
+porche;B1
+poro;B2
+portátil;A2
+portada;B2
+portarse;B1
+portarse bien;B1
+portarse mal;B1
+portería;B1
+portero;B1
+posdata;B1
+posgrado;B2
+posibilidad;B1
+posibilidad de promoción;B1
+positivo;B2
+posproducción;B2
+postal;A1
+postre;A1
+postura;B1
+prácticas;B1
+préstamo;B2
+príncipe;A2
+practicante;B2
+practicar;A2
+practicar la religión;B1
+practicar un deporte;A2
+prado;B1
+preadolescencia;B2
+precaución;B2
+precio;A1
+precios especiales;B1
+precisión;B2
+precocinado;B2
+prefijo;A2
+pregrado;B1
+pregunta;A1
+preguntar;A2
+premiar;B2
+premio;B2
+premio literario;B2
+prenda;B2
+prensa;B1
+prensa amarilla;B2
+prensa del corazón;B2
+prensa deportiva;B2
+prensa digital;B2
+prensa económica;B2
+prensa escrita;B2
+prensa gratuita;B2
+prensa rosa;B2
+preocupación;B1
+preocupado;B1
+preocupar;B1
+preocuparse;B1
+preparar;B1
+preparar la cena;B1
+preparar la comida;B1
+preparar un examen;B2
+preparar un presupuesto;B2
+preparar una comida;B2
+preparar una factura;A2
+prepararse;B2
+prepararse un examen;B2
+preproducción;B2
+presentación;B2
+presentador;A2
+presentar;A2
+presentar el currículum vítae;B1
+presentar el pasaporte;B1
+presentar la declaración de la renta;B2
+presentar un presupuesto;B2
+presentar un proyecto;B2
+presentarse;A2
+presentarse a elecciones;B2
+presentarse a las elecciones;B2
+presentarse a un examen;B2
+preservar;B2
+preservar el medio ambiente;B2
+preservativo;B1
+presidente;A2
+prestar;B2
+prestar dinero;B2
+presupuesto;B2
+prevenir;B2
+prevenir el estrés;B2
+prevenir los riesgos laborales;B2
+previsión meteorológica;B2
+previsualización;B2
+previsualizar;B2
+primavera;A1
+primaveral;A2
+primer apellido;A1
+primer ministro;A2
+primer plano;B2
+primer plato;A1
+primer tiempo;B1
+primera comunión;B2
+primera página;B2
+primero;A1
+primo;A1
+princesa;A2
+principal;B2
+principio;B2
+prisión;B2
+prisionero;B2
+privado;B1
+probador;A2
+probar;B1
+probar una bebida;B1
+probarse;A2
+probarse ropa;A2
+problema medioambiental;B2
+procedimiento;B2
+procesador;B2
+procesador de textos;B2
+procesamiento;B2
+procesar;B2
+procesión;B2
+proceso;B1
+proceso de selección;B2
+proceso de selección de personal;B2
+producción;B1
+producir;B1
+producirse;B1
+producirse un accidente;B2
+producto;B2
+producto alimenticio;B2
+producto congelado;B2
+producto dietético;B2
+producto fresco;B2
+producto natural;B1
+producto orgánico;B2
+producto para diabéticos;B2
+productor;B2
+productos cosméticos;B2
+productos de belleza;B2
+productos precocinados;B2
+productos ricos en fibra;B2
+profesión;A1
+profesión liberal;B1
+profesional;B2
+profesionalidad;B2
+profesor;A1
+profesorado;B2
+profundidad;B2
+profundo;B2
+programa;A2
+programa de información deportiva;B1
+programa de información general;B1
+programa del curso;A2
+programa electoral;B2
+programa radiofónico;B2
+programa televisivo;B2
+programación;B2
+programación apta para todos los públicos;B2
+programación cultural;B2
+programación de calidad;B2
+programación para todos los públicos;B2
+programar;B1
+programar el horno;B1
+programar un electrodoméstico;B1
+progresar;B2
+progresista;B2
+progreso;B1
+prohibido aparcar;B2
+prohibir;B2
+promesa;B2
+prometer;B1
+promoción;B2
+promocionado;B1
+promocionar;B1
+propaganda;B2
+propaganda electoral;B2
+propiedad;B1
+propietario;B1
+propina;A2
+proponer;B2
+proporción;B2
+proporcionar;B2
+propuesta;B2
+prosa;B2
+prosista;B2
+prospecto;B2
+prostitución;B2
+prostituta;B2
+protagonista;B1
+proteína;B1
+protección;B2
+protección ciudadana;B2
+proteger;B1
+proteger el medio ambiente;B1
+proteger la naturaleza;B1
+protegerse;B1
+protegerse de la radiación solar;B2
+protestante;B1
+protestantismo;B2
+proveedor;B2
+proveedor de acceso;B2
+proveedor de conexión;B2
+provincia;B1
+provincial;B2
+provocar;B2
+proyectar;B1
+proyectar una diapositiva;B2
+proyectar una transparencia;B2
+proyecto;B1
+proyector;B2
+prudente;B2
+prueba;B1
+prueba anual;B2
+prueba cuatrimestral;B2
+prueba de nivel;B2
+prueba de orina;B1
+prueba de sangre;B1
+prueba final;B2
+prueba parcial;B2
+psicólogo;B1
+psicología;B1
+puñado;B2
+publicar;B2
+publicar un artículo;B1
+publicar un libro;B2
+publicar un reportaje;B1
+publicar una entrevista;B1
+publicar una noticia;B1
+publicarse;B1
+publicidad;A2
+publicista;B1
+publicitario;B1
+pudrirse;B2
+pueblo;A1
+puente;B1
+puente aéreo;B2
+puerta;A1
+puerta de embarque;B1
+puerto;A1
+puerto rico;A2
+puertorriqueño;A2
+puesto;B1
+puesto de socorro;B2
+puesto de trabajo;B1
+pulmón;B1
+pulsaciones;B2
+pulsar;B1
+pulsera;B1
+punta;A2
+punto;A1
+punto de encuentro;B1
+punto de información;B1
+puntuación;B2
+puntual;A2
+puntualidad;B2
+puré;A2
+pureza;B2
+purgatorio;B2
+puro;B2
+puzle;B2
+qué hora es;A1
+química;B1
+quedar;A2
+quedar ajustado;B2
+quedar amplio;B2
+quedar ancho;B1
+quedar apretado;B2
+quedar bien;B1
+quedar campeón de copa;B2
+quedar campeón de liga;B2
+quedar campeón del mundo;B2
+quedar con;A2
+quedar con gente;A2
+quedar corto;B1
+quedar estrecho;B1
+quedar flojo;B2
+quedar grande;B1
+quedar largo;B1
+quedar mal;B1
+quedar pequeño;B1
+quedar subcampeón de copa;B2
+quedar subcampeón de liga;B2
+quedar subcampeón del mundo;B2
+quedar una asignatura pendiente;B2
+quedar una cicatriz;B2
+quedarse;B1
+quedarse agachado;B2
+quedarse de espaldas;B2
+quedarse de rodillas;B2
+quedarse dormido;B2
+quedarse en blanco;B2
+quedarse huérfano;B2
+quedarse mudo;B2
+quedarse quieto;B2
+quedarse sin batería;B1
+quedarse sin frenos;B2
+quedarse sin gasolina;B2
+quedarse sin saldo;B1
+quedarse viudo;B2
+quemadura;B1
+quemar;B1
+quemar un dedo;B1
+quemar una mano;B1
+quemarse;B1
+quemarse la comida;B1
+quemarse la espalda;B2
+quemarse los hombros;B2
+quemarse un dedo;B1
+quemarse una mano;B1
+quesito;B1
+queso;A2
+queso azul;B2
+queso de cabra;B2
+queso de oveja;B2
+queso fresco;B2
+queso rallado;B2
+quince;A1
+quincuagésimo;A2
+quiniela;B2
+quinientos;A1
+quinto;A1
+quiosco;A1
+quiosquero;A2
+quirófano;B2
+quisquilloso;B2
+quitar;B1
+quitar el polvo;B1
+quitar la mesa;B1
+quitar la sed;B2
+quitar los platos;B1
+quitar un electrodoméstico;B1
+quitarse;A2
+quitarse la ropa;A2
+quitarse ropa;A2
+récord;B2
+régimen;B2
+régimen de alquiler;B2
+rímel;B2
+río;A1
+raíz;B1
+rabino;B2
+ración;B2
+radiación;B2
+radiaciones ultravioletas;B1
+radio;A1
+radioactividad;B2
+radioactivo;B2
+radiografía;B2
+rallar;B2
+rallar queso;B2
+rama;B1
+ramadán;A2
+ramillete;B2
+ramillete de flores;B2
+ramo;B1
+ramo de flores;A2
+rapar;B2
+raparse;B2
+raqueta;B1
+rascar;B2
+rascarse;B2
+rastrillo;B2
+ratón;B1
+raya;B1
+rayo;B2
+rayos solares;B2
+razón;B2
+razonable;B2
+razonar;B2
+re;B2
+reñir;B2
+reaccionar;B2
+realidad;B2
+realismo;B2
+realización;B2
+realización de una película;B2
+realizar;B2
+realizar un pago;B2
+realizar un presupuesto;B2
+realizar un trabajo;B2
+realizar una entrevista;B1
+realizar una entrevista de trabajo;B1
+rebajar;B2
+rebajas;B1
+rebeldía;B2
+rebelde;B2
+rebozado;B2
+rebozar;B2
+rebozar una pechuga;B2
+recepción;B1
+recepcionista;B1
+receta;A2
+recetar;B2
+rechazar;B2
+rechazo;B2
+recién nacido;B1
+recibidor;A2
+recibir;A2
+recibir clases;B2
+recibir la correspondencia;B2
+recibir la educación superior;B2
+recibir la educación universitaria;B2
+recibir un correo;A2
+recibir un fax;A2
+recibir un mensaje;A2
+recibir un mensaje electrónico;A2
+recibir una ayuda;B1
+recibir una carta;A2
+recibir una llamada;A2
+recibir una postal;A2
+recibo;B2
+recibo de la comunidad;B1
+recibo de la luz;B1
+recibo del agua;B1
+recibo del gas;B1
+recibo del teléfono;B2
+reciclado;B1
+reciclaje;B1
+reciclar;B2
+reciclar cartón;B1
+reciclar latas;B1
+reciclar papel;B1
+reciclar pilas;B1
+reciclar vidrio;B1
+recipiente;B2
+recitar;B2
+recogedor;B1
+recoger;B1
+recoger el equipaje;B1
+recoger la basura;B2
+recoger la casa;B2
+recoger la cocina;B1
+recoger la correspondencia;B2
+recoger la mesa;B1
+recoger la tienda de campaña;B2
+recoger las maletas;B1
+recoger los platos;B1
+recogerse el pelo;B2
+recolectar;B1
+recordar;B1
+recorrer;B1
+recorrer el océano;B2
+recorrer el país;B2
+recortar;B2
+recortarse;B2
+recortarse el bigote;B2
+recortarse la barba;B2
+rectángulo;B1
+rectangular;B1
+rector;B2
+recuerdo;B2
+recuperación;B1
+recuperar;B2
+recursos;B2
+recursos económicos;B2
+recursos naturales;B1
+red;B1
+red de falsificación de documentos;B2
+red de prostitución;B2
+red de teléfono;B2
+red de tráfico;B2
+red de tráfico de armas;B2
+red de transportes;B2
+red nacional de ferrocarriles españoles;B2
+red telefónica;B2
+redacción;B2
+redactar;B1
+redactar un artículo;B1
+redactar un contrato;B2
+redactar un reportaje;B1
+redactar una entrevista;B1
+redactar una noticia;B1
+redactor;B2
+redactor jefe;B2
+reducción;B2
+reducción de precio;B2
+reducir;B1
+reducir la velocidad;B1
+reenviar;B1
+reenviar un documento;B1
+referéndum;B2
+reflexión;B2
+reflexionar;B2
+reforma;B2
+reformar;B2
+reformar una ley;B2
+refresco;B1
+regadera;B2
+regalar;A2
+regalo;A2
+regar;B1
+regar el jardín;B1
+regar las plantas;B1
+regar las zonas verdes;B2
+región;A2
+región poblada;B2
+región superpoblada;B2
+regional;B1
+registrar;B2
+registrar el equipaje;B2
+registrar las maletas;B2
+registrarse;B2
+registro;B2
+regla;A2
+reglado;B2
+regulación;B2
+regular;B2
+regularmente;B2
+rehogado;B2
+rehogar;B2
+reina;A1
+reiniciar;B2
+reiniciar el ordenador;B2
+reivindicación;B2
+reivindicar;B2
+relámpago;B2
+relación;A2
+relación amistosa;B2
+relación amorosa;B2
+relación de pareja;B1
+relación laboral;B2
+relación personal;B2
+relación profesional;B2
+relación virtual;B2
+relacionar;B1
+relacionarse;B1
+relacionarse con alguien;B2
+relajarse;B1
+relatar;B2
+relato;B2
+religión;A1
+religión mayoritaria;B2
+religión minoritaria;B2
+religioso;B2
+rellenar;B2
+rellenar una solicitud de empleo;B2
+reloj;A1
+reloj analógico;B2
+reloj de pulsera;B2
+reloj digital;B2
+remitente;B1
+remover;B2
+renfe;B2
+renovación;B2
+renovación de contrato;B2
+renovar;B2
+renovar el carné de conducir;B2
+renovar el permiso de circulación;B2
+renovar un contrato;B2
+renovar un documento;B1
+renta fija;B2
+renta variable;B2
+rentabilidad;B2
+república;A2
+república dominicana;A2
+reparación;B2
+reparar;B1
+repartidor;B2
+repartir;B2
+reparto;B2
+reparto del correo;B1
+repasar;A2
+repasar un ejercicio;A2
+repasar una lección;A2
+repasar una unidad;A2
+repetición;B1
+repetir;B1
+repetir el curso;B1
+reponer;B2
+reponer fuerzas;B2
+reportar;B2
+reportero;B2
+representación;B2
+representación teatral;B2
+representante;B2
+representante de empresa;B2
+representar;B2
+representar una obra teatral;B2
+reproducción;B2
+reptil;B1
+republicano;B1
+reserva;A2
+reservado;A2
+reservar;A2
+reservar un billete de autobús;A2
+reservar un billete de avión;A2
+reservar un billete de tren;A2
+reservar una entrada;A2
+reservar una entrada por internet;A2
+reservar una entrada por teléfono;A2
+reservar una habitación;A2
+reservar una mesa;A2
+resfriado;B1
+residencia;B2
+residencia estival;B2
+residencia permanente;B2
+residencia temporal;B2
+residuo;B2
+residuos atómicos;B2
+residuos radiactivos;B2
+residuos tóxicos;B2
+resignado;B2
+resignarse;B2
+resolución;B2
+resolver;B2
+resolver pasatiempos;B2
+resolver una duda;B2
+respetar;B1
+respetar el medio ambiente;B1
+respetar la naturaleza;B1
+respeto;B1
+respirar;B1
+responder;A2
+responder a un correo;A2
+responder a un fax;A2
+responder a una llamada;A2
+responder a una postal;A2
+responder un fax;A2
+responder una carta;A2
+responder una postal;A2
+responsabilidad;B2
+responsable;B2
+responsable de ventas;B1
+restar;B1
+restaurante;A1
+restaurante chino;A2
+restaurante de cuatro tenedores;B2
+restaurante de fama internacional;B2
+restaurante de tres tenedores;B2
+restaurante italiano;A2
+restaurante mexicano;A2
+restaurante sencillo;B1
+restaurante vegetariano;A2
+resto;B2
+resultado;B2
+resultar;B2
+resumen;B2
+resumido;B2
+resumir;B2
+resumir un texto;B2
+retirar;B2
+retirar dinero;B2
+retirar el primer plato;B2
+retirar el segundo plato;B2
+retirar la mesa;B2
+retirar los platos;B2
+retirarse;B2
+retoque;B2
+retransmisión deportiva;B1
+retransmitir;B1
+retransmitir un partido;B1
+retrasar;B2
+retrasar un vuelo;B2
+retrasarse;B2
+retraso;B1
+retrato;B2
+retrato robot;B2
+retrete;B1
+retroproyector;B2
+reunión;A2
+reunión de antiguos alumnos;B2
+reunión de socios;B2
+reunión de vecinos;B2
+reunión formal;B1
+reunión informal;B1
+reunir;B1
+reunirse;B1
+reutilizar;B1
+revelación;B2
+revelar;B2
+revelar un carrete;B2
+revelar una foto;B2
+revelar una fotografía;B2
+revisar;B1
+revisar la instalación eléctrica;B2
+revisión;B1
+revisión a fondo;B2
+revisión anual;B2
+revisión de examen;B2
+revisión dental;B2
+revisión ginecológica;B2
+revisión periódica;B2
+revisor;B1
+revista;B2
+revista literaria;B2
+revolución;B2
+revolución industrial;B2
+rey;A1
+rezar;B1
+rezo;B1
+riñón;B2
+rico;A2
+rico en calcio;B2
+rico en calorías;B2
+rico en fibra;B2
+rico en proteínas;B2
+rico en vitaminas;B2
+riesgo;B2
+rima;B2
+rimar;B2
+riqueza;B1
+ritmo;B2
+rival;B2
+rivalidad;B2
+rizado;A2
+robar;B1
+robo;B1
+robot;B1
+robot de cocina;B2
+rock;A2
+rocoso;B2
+rodaje;B2
+rodar;B2
+rodar una película;B2
+rodilla;B1
+rojo;A1
+rollo;B1
+romántico;B2
+romanticismo;B2
+romero;B2
+rompecabezas;B2
+romper;B1
+romper una relación;B2
+romperse;B1
+romperse un brazo;B1
+romperse una pierna;B1
+ron;A2
+ropa;A1
+ropa de calle;B2
+ropa de cama;B2
+ropa de deporte;B1
+ropa de fiesta;B2
+ropa de hombre;A2
+ropa de invierno;B1
+ropa de montaña;B2
+ropa de mujer;A2
+ropa de niño;A2
+ropa de temporada;B2
+ropa de verano;B1
+ropa interior;B1
+rosa;A1
+rotonda;B2
+rotulador;A2
+rotulador de punta fina;B2
+rotulador de punta gruesa;B2
+rotulador fluorescente;B2
+rubio;A2
+rueda;A2
+rueda de prensa;B2
+rueda de repuesto;B2
+rueda pinchada;B1
+rumor;B2
+rural;B1
+ruta;B2
+sábado;A1
+sábana;A2
+sándwich;A1
+sándwich mixto;A2
+séptimo;A1
+símbolo;B2
+símbolo químico;B1
+síntesis;B2
+síntoma;B2
+sabbat;A2
+saber;A1
+saber bien;B1
+saber de memoria;B1
+saber fatal;B1
+saber fenomenal;B1
+saber mal;B1
+saberse;B1
+saberse todo al dedillo;B2
+sabor;B1
+sabor agradable;B1
+sabor bueno;B1
+sabroso;B2
+sacacorchos;B2
+sacapuntas;A1
+sacar;B1
+sacar al perro;B1
+sacar buena nota;B1
+sacar conclusiones;B1
+sacar dinero;B1
+sacar dinero de la cuenta;B1
+sacar el carné de conducir;B2
+sacar fotos;B1
+sacar la basura;B1
+sacar la conclusión;B1
+sacar los trapos al sol;B2
+sacar los trapos sucios;B2
+sacar mala nota;B1
+sacar un [número cardinal];B2
+sacar un notable;B2
+sacar un sobresaliente;B2
+sacar una carta;B2
+sacar una ficha;B2
+sacar una foto;B1
+sacarse;B2
+sacarse algo de la manga;B2
+sacarse el carné de conducir;B2
+sacerdote;B1
+saco;B1
+saco de dormir;B1
+sagradas escrituras;B2
+sal;A2
+salón;A1
+salón comedor;A2
+salón de belleza;B2
+sala de cine;B1
+sala de conciertos;B2
+sala de embarque;B1
+sala de espera;A2
+sala de estar;A1
+sala de exposiciones;B2
+sala de llegadas;B1
+sala de reuniones;B1
+salado;B1
+salami;A2
+salario;A2
+salchichón;B1
+salchicha;A2
+saldo;B1
+salero;B1
+sales de baño;B2
+salida;A1
+salida de emergencia;B1
+salida de mercancías;B2
+salir;A2
+salir a la pizarra;B1
+salir al recreo;B2
+salir con;B1
+salir con alguien;B1
+salir con amigos;A2
+salir con retraso;B1
+salir de copas;B1
+salir de fiesta;B1
+salir de fin de semana;B1
+salir de juerga;B2
+salir de marcha;B1
+salir de paseo;B1
+salir de puente;B1
+salir de rebajas;B1
+salir de tapas;B1
+salir el sol;B1
+salir gratis;B2
+salir voluntario;B1
+salirse;B2
+salirse de la carretera;B2
+saliva;B2
+salmón;A2
+salmonete;B2
+salsa;A2
+salsa de tomate;A2
+saltar;B1
+saltarse las reglas del juego;B2
+saltear;B2
+salto;B1
+salto de altura;B2
+salto de vallas;B2
+salud;B1
+saludable;B2
+saludar;B1
+saludar afectuosamente;B2
+saludar calurosamente;B2
+saludo;B1
+salvadoreño;A2
+salvaje;B1
+salvar;B2
+san;B1
+sanatorio;B2
+sandía;B1
+sandalia;B1
+sangre;A2
+sano;A2
+santo;B1
+sardina;A2
+sartén;B1
+satélite;B1
+satisfacción;B1
+satisfacer;B1
+satisfecho;B1
+saturno;B2
+sauna;B2
+savia;B2
+saxofón;B1
+saxofonista;B1
+sazón;B2
+sazonar;B2
+señal;B2
+señal de tráfico;B1
+señalar;B2
+señor;A1
+secador;B1
+secador de pelo;B1
+secar;B1
+secarse;B1
+secarse el pelo;B1
+secarse las hojas;B1
+sección;B1
+sección de bebidas;B1
+sección de congelados;B1
+sección de cultura;B1
+sección de deportes;B1
+sección de economía;B1
+sección de lácteos;B1
+seco;B1
+secretaría;B1
+secretaria;B1
+secta;B2
+secta religiosa;B2
+secta satánica;B2
+sector;B2
+sector de población;B2
+secuencia;B2
+secuestrador;B2
+secuestrar;B1
+secuestrar a alguien;B2
+secuestro;B1
+secundario;B2
+sed;A2
+seda;B1
+seda dental;B2
+seducir;B2
+seductor;B2
+seguidor;B1
+seguir;B1
+seguir la pista;B2
+seguir las reglas del juego;B2
+seguir un programa de radio;B2
+seguir un programa de televisión;B2
+seguir una pista;B2
+seguir una regla;B2
+segunda mano;B1
+segunda residencia;B2
+segundo;A1
+segundo apellido;A1
+segundo plato;A1
+segundo tiempo;B1
+seguridad;B2
+seguridad ciudadana;B2
+seguridad social;A2
+seguro;B1
+seguro a terceros;B2
+seguro a todo riesgo;B1
+seguro de enfermedad;B1
+seguro de vida;B1
+seguro del coche;B1
+seguro médico;B1
+seguro obligatorio;B1
+seguro público;B1
+seguro privado;B1
+seis;A1
+seiscientos;A1
+seleccionar;B1
+seleccionar una palabra;B1
+sello;B1
+selva;B1
+semáforo;B1
+sembrado;B1
+sembrar;B1
+semilla;B1
+seminario;B2
+senado;B1
+senador;B2
+senderismo;B1
+senderista;B1
+sensación;B1
+sensibilidad;B2
+sensible;B2
+sentado;B1
+sentar;B1
+sentar bien;B1
+sentar mal;B1
+sentarse;A2
+sentarse a comer;B2
+sentarse a la mesa;B2
+sentencia;B2
+sentenciar;B2
+sentido;B2
+sentido figurado;B2
+sentido literal;B2
+sentido metafórico;B2
+sentimental;B2
+sentimiento;B1
+sentir;A2
+sentir alegría;B2
+sentir angustia;B2
+sentir calor;B1
+sentir cansancio;B2
+sentir confianza;B2
+sentir dolor;B2
+sentir frío;B1
+sentir hambre;B1
+sentir respeto;B2
+sentir sed;B1
+sentir sueño;B1
+sentir un calor espantoso;B2
+sentir un calor horrible;B2
+sentir un frío espantoso;B2
+sentir un frío horrible;B2
+sentirse;A2
+sentirse agobiado;B2
+sentirse animado;B2
+sentirse bien;A2
+sentirse con ánimo;B2
+sentirse débil;B1
+sentirse dolido;B2
+sentirse mal;A2
+sentirse regular;B1
+separación;B1
+separación de poderes;B2
+separar;B1
+separarse;B1
+septiembre;A1
+septuagésimo;A2
+sequía;B2
+ser;A1
+ser aficionado a;B1
+ser alérgico;B2
+ser alcohólico;B2
+ser alto;A1
+ser atento;B2
+ser bajo;A1
+ser blanco;B1
+ser blanco de piel;B1
+ser bonito;A1
+ser calvo;A2
+ser camarero;A1
+ser campeón;B2
+ser clavados;B2
+ser coleccionista de;B2
+ser como de la familia;B2
+ser como dos gotas de agua;B2
+ser condenado;B1
+ser contratado;B2
+ser coser y cantar;B2
+ser de altura media;B2
+ser de altura mediana;B2
+ser de altura normal;B2
+ser de bali;A2
+ser de carácter brusco;B2
+ser de carácter débil;B1
+ser de carácter difícil;B1
+ser de carácter fácil;B1
+ser de carácter fuerte;B1
+ser de carácter serio;B2
+ser de carácter tranquilo;B2
+ser de clase alta;B2
+ser de clase baja;B2
+ser de clase media;B2
+ser de dominio público;B2
+ser de estatura media;B2
+ser de estatura mediana;B2
+ser de estatura normal;B2
+ser de familia humilde;B2
+ser de familia rica;B2
+ser de familia trabajadora;B2
+ser de laos;A2
+ser de mozambique;A2
+ser de un equipo;B2
+ser de un partido político;B2
+ser delgado;A1
+ser despedido;B2
+ser doctor en;B2
+ser doctor en empresariales;B2
+ser doctor en filología;B2
+ser educado;B1
+ser el centro de la fiesta;B2
+ser el vivo retrato;B2
+ser feo;A2
+ser gordo;A2
+ser gratis;A2
+ser guapo;A2
+ser idéntico;B2
+ser ilegal;B1
+ser indigesto;B2
+ser ingeniero;A2
+ser injusto;B2
+ser interesante;A1
+ser justo;B2
+ser legal;B1
+ser licenciado en;B2
+ser licenciado en empresariales;B2
+ser licenciado en filología;B2
+ser más corto que las mangas de un chaleco;B2
+ser maleducado;B1
+ser moreno;B1
+ser objeto de;B2
+ser objeto de análisis;B2
+ser objeto de estudio;B2
+ser rubio;A2
+ser subcampeón;B2
+ser trabajador;A2
+ser un éxito;B1
+ser un genio;B1
+ser vegetariano;A2
+ser virgen;B2
+serie;B1
+seriedad;B2
+serio;A1
+serpiente;B1
+servicio;B1
+servicio de atención;B2
+servicio de atención al cliente;B2
+servicio de habitaciones;B1
+servicio de información al cliente;B2
+servicio de limpieza;B2
+servicio de recogida de basura;B2
+servicio de seguridad;B2
+servicio militar;B2
+servicio militar obligatorio;B2
+servicio postal;B1
+servicios financieros;B2
+servicios sociales;B1
+servidor;B2
+servidor de acceso;B2
+servilleta;A2
+servir;B1
+servir el primer plato;B1
+servir el segundo plato;B1
+servir una bebida;B1
+servir una comida;B1
+servir una mesa;B2
+sesenta;A1
+sesión;B1
+sesión de cine;B2
+seta;B2
+setecientos;A1
+setenta;A1
+sexagésimo;A2
+sexo;A2
+sexto;A1
+sexto sentido;B2
+sexual;B1
+siete;A1
+signo;B1
+signo del zodiaco;B2
+silbato;B1
+silencio;B1
+sillón;A1
+silla;A1
+silla homologada;B2
+simpático;A2
+simpatía;B1
+sin ánimos;B2
+sin amueblar;A2
+sin conservantes ni colorantes;B2
+sin hogar;B2
+sin hueso;B2
+sin IVA;A2
+sin recursos;B2
+sin recursos económicos;B2
+sin techo;B2
+sin trabajo;B2
+sinagoga;B1
+sinceramente;B2
+sinceridad;B2
+sincero;B1
+sindicato;B1
+sinfonía;B2
+sistema;B1
+sistema antivirus;B1
+sistema nervioso;B2
+sitio;B1
+situado;B2
+snowboard;B1
+sobre;A1
+sobreexplotación;B2
+sobreexplotar;B2
+sobrepeso;B1
+sobrexplotación;B2
+sobrexplotar;B2
+sobrino;A1
+sociólogo;B1
+sociable;A2
+socialismo;B2
+socialista;B1
+sociedad;B2
+sociedad de consumo;B2
+socio;A2
+sociología;B1
+socorro;A2
+sofá;A1
+sofreír;B1
+sofrito;B1
+sol;A1
+soldado;B1
+soleado;B1
+solicitar;B1
+solicitar la tarjeta de cliente;B2
+solicitar la tarjeta de fidelidad;B2
+solicitar un crédito;B2
+solicitar un documento;B1
+solicitar un préstamo;B2
+solicitar una beca;B1
+solicitar una hipoteca;B2
+solicitar una plaza;B2
+solicitud;B2
+solidaridad;B2
+solidario;B2
+solomillo;B1
+solomillo de ternera;B1
+soltar;B1
+soltero;B1
+sombra;B1
+sombra de ojos;B2
+sombrero;A2
+sombrilla;B1
+sonar;B1
+sonido;B1
+sonreír;B2
+sopa;A1
+sopa de pescado;B1
+sopa de verduras;B1
+sopera;B2
+soplar;B1
+soplar el viento;B2
+soportar;B1
+sorbete;B2
+sorbete al cava;B2
+sordo;B2
+sorprendente;B2
+sorprenderse;B2
+sorprendido;B2
+sorpresa;B1
+soso;B1
+sospecha;B1
+sospechar;B1
+sospechoso;B2
+sostenible;B2
+stop;B1
+suave;B1
+suavizante;B2
+subcampeón;B2
+subida;B1
+subida salarial;B1
+subir;B1
+subir de un autobús;B1
+subir de un avión;B1
+subir de un barco;B1
+subir de un coche;B1
+subir de un tren;B1
+subir de una bicicleta;B1
+subir de una moto;B1
+subir el desempleo;B2
+subir el interés;B1
+subir el paro;B2
+subir el precio;B1
+subir el sueldo;B1
+subir la bolsa;B2
+subir la marea;B2
+subir la temperatura;B1
+subirse;B1
+subirse a un autobús;B1
+subirse a un avión;B1
+subirse a un barco;B1
+subirse a un coche;B1
+subirse a un tren;B1
+subirse a una bicicleta;B1
+subirse a una moto;B1
+subjetivo;B2
+submarino;B2
+subrayar;B1
+subrayar un libro;B1
+subtítulo;B2
+subtitulado;B2
+suceder;B2
+suceso;B2
+suciedad;B2
+sucio;B1
+sudar;B1
+sudeste;A2
+sudor;B2
+suegro;B2
+sueldo;B1
+suelo;A2
+suelo húmedo;B1
+suelo seco;B1
+suelto;B2
+suerte;B2
+sufrir un desmayo;B2
+sufrir un infarto;B2
+sufrir una enfermedad;B2
+sufrir una lesión;B2
+sufrir una parálisis;B2
+sufrir una reacción alérgica;B2
+suite;B1
+suite nupcial;B2
+sujetador;A2
+sujetar;B2
+suma;B1
+superar;B2
+superar el examen;B2
+superar el periodo de prueba;B2
+superar un examen;B2
+superar una prueba;B2
+superficial;B2
+superficie;B1
+supermercado;A1
+superpoblación;B2
+superpoblado;B2
+suplemento;B1
+suplemento cultural;B1
+suplemento de economía;B1
+supositorio;B2
+sur;A1
+suroeste;A2
+surrealismo;B2
+surrealista;B2
+susceptible;B2
+suscribirse;B2
+suscribirse a un periódico;B2
+suscribirse a una revista;B2
+suspender;A2
+suspender un control;B1
+suspender un examen;A2
+suspender un examen oral;B1
+suspender un test escrito;B1
+suspenso;B1
+sustancia;B2
+sustentable;B2
+sustituir;B2
+sustituto;B2
+sustraer;B2
+táctica;B2
+té;A1
+técnica;B2
+técnica de análisis;B2
+técnica de estudio;B2
+técnico;B2
+tímido;B2
+tío;A1
+típico;B1
+título;B2
+túnel;B1
+tóxico;B1
+tabique;B2
+tabla;B1
+tabla de embutidos;B1
+tabla de planchar;B1
+tablero;B1
+tac;B2
+tacón;B1
+tacaño;B2
+tacto;B2
+tala;B2
+talar;B2
+talar un árbol;B2
+talento;B2
+talentoso;B2
+talla;B2
+tallado;B2
+tallar;B2
+taller;B2
+talonario;B2
+talonario de cheques;B2
+tambor;B1
+tango;A2
+tanque;B2
+tanto gusto;A1
+tapón;B2
+tapón de botella;B2
+tapa;A2
+tapar;B2
+tapear;B2
+tapete;B2
+taquilla;B2
+tardar;B1
+tarea;A2
+tarea doméstica;B1
+tarifa;B1
+tarifa de celular;B1
+tarifa plana;B2
+tarima;B2
+tarjeta;A1
+tarjeta de crédito;B1
+tarjeta de embarque;B1
+tarjeta de estudiante;A2
+tarjeta de la biblioteca;A2
+tarjeta de móvil;B1
+tarjeta de memoria;B1
+tarjeta de teléfono;B1
+tarjeta de visita;A2
+tarjeta extraíble;B2
+tarjeta telefónica;A2
+tarrina;B1
+tarrina de mantequilla;B1
+tarro;B1
+tarro de mermelada;B1
+tarta;A2
+tarta de chocolate;A2
+tarta de crema;A2
+tarta de manzana;A2
+tarta nupcial;B2
+tatarabuelo;B2
+tataranieto;B2
+taxi;A1
+taxista;A1
+tazón;B2
+taza;A2
+taza de café;B1
+taza de desayuno;B1
+taza de té;B1
+taza de váter;B1
+teórico;B2
+teatro;A1
+techo;A2
+tecla;B1
+teclado;B1
+tecnología;A2
+tejido;B2
+teléfono;A1
+teléfono analógico;B2
+teléfono celular;A1
+teléfono de emergencia;A2
+teléfono digital;B2
+teléfono estropeado;B1
+teléfono fijo;A2
+teléfono móvil;A1
+teléfono público;A2
+telón;B2
+tele;A1
+teleadicto;B2
+telebasura;B1
+telefonear;B2
+telegrama;B2
+telenovela;B1
+teleobjetivo;B2
+telescopio;B2
+telespectador;B2
+televisión;A1
+televisión analógica;B2
+televisión digital;B2
+televisión por cable;B2
+televisión vía satélite;B2
+televisor;A1
+temático;B2
+tema;B2
+tema de actualidad;B2
+temor;B2
+temperatura;B1
+temperatura estable;B2
+temperatura inestable;B2
+temperatura invernal;B2
+temperatura otoñal;B2
+temperatura primaveral;B2
+temperatura variable;B2
+temperatura veraniega;B2
+templado;B1
+temporada;B2
+temporada alta;B2
+temporada baja;B2
+temporada teatral;B2
+temporal;B2
+tendón;B2
+tendencia;B2
+tender;B1
+tender la ropa;B1
+tendido;B2
+tenedor;A2
+tener;A1
+tener [número cardinal] años;A1
+tener ADSL;B2
+tener aire acondicionado;A1
+tener alergia;A2
+tener ambición;B2
+tener ansiedad;B2
+tener apetito;B2
+tener arrugas;B2
+tener ascensor;A1
+tener azúcar;B2
+tener barba;A1
+tener bigote;A1
+tener buen aspecto;B2
+tener buen carácter;B1
+tener buen color;B2
+tener buen estilo;B1
+tener buen expediente;B2
+tener buen figura;B1
+tener buen humor;A2
+tener buen tipo;B1
+tener buena letra;A2
+tener buena nota;B1
+tener buena presencia;B1
+tener buena salud;B1
+tener buena suerte;B1
+tener buenas referencias;B2
+tener buenos modales;B2
+tener cáncer;B1
+tener caducado;B2
+tener caducado el pasaporte;B2
+tener caducado el permiso de residencia;B2
+tener calefacción;A1
+tener calefacción central;A1
+tener calor;A2
+tener cambio;B1
+tener carácter;B2
+tener cobertura;B2
+tener conexión;B1
+tener conexión a internet;B1
+tener confianza;B2
+tener curiosidad;B2
+tener de oferta;B1
+tener de promoción;B1
+tener descuento;B1
+tener diarrea;B1
+tener dolor;A2
+tener educación;B2
+tener el bachillerato;B1
+tener el coche asegurado;B2
+tener el colesterol alto;B2
+tener el pelo blanco;A1
+tener el pelo corto;A2
+tener el pelo largo;A2
+tener el pelo limpio;A2
+tener el pelo liso;A2
+tener el pelo moreno;A1
+tener el pelo rizado;A2
+tener el pelo rubio;A1
+tener el pelo sucio;A2
+tener empleados;B2
+tener envidia;B2
+tener escalofríos;B2
+tener estudios;B1
+tener estudios primarios;B2
+tener experiencia;B1
+tener fe;B2
+tener fiebre;A2
+tener formación;B1
+tener frío;A2
+tener gafas;A1
+tener garantía;B1
+tener gripe;A2
+tener hambre;A2
+tener información;B1
+tener la cama hecha;B2
+tener la casa limpia;B2
+tener la casa recogida;B2
+tener la especialidad en;B2
+tener la mesa puesta;B2
+tener la nacionalidad;A2
+tener la piel clara;B1
+tener la piel oscura;B1
+tener la piel sensible;B1
+tener la piel suave;B1
+tener la regla;B1
+tener la sartén por el mango;B2
+tener la tarifa plana;B2
+tener la tensión alta;B2
+tener la tensión baja;B2
+tener las manos limpias;A2
+tener las manos suaves;B1
+tener las manos sucias;A2
+tener los dientes limpios;A2
+tener los dientes sucios;A2
+tener los ojos azules;A1
+tener los ojos claros;A1
+tener los ojos grandes;A1
+tener los ojos marrones;A1
+tener los ojos negros;A1
+tener los ojos oscuros;A1
+tener los ojos pequeños;A1
+tener los ojos verdes;A1
+tener mal aspecto;B2
+tener mal carácter;B1
+tener mal color;B2
+tener mal estilo;B1
+tener mal humor;B1
+tener mal tipo;B1
+tener mala figura;B1
+tener mala letra;A2
+tener mala nota;B1
+tener mala presencia;B1
+tener mala salud;B1
+tener mala suerte;B1
+tener malas referencias;B2
+tener malestar;B2
+tener malos modales;B2
+tener mareos;B2
+tener miedo;A2
+tener modales;B2
+tener molestias;B2
+tener mucho carácter;B1
+tener muchos años;A1
+tener náuseas;B2
+tener novio;B1
+tener pareja;B1
+tener personalidad;B2
+tener planes;A2
+tener poco carácter;B1
+tener pocos años;A1
+tener precios especiales;B1
+tener rebajas;B1
+tener relaciones;B1
+tener relaciones sexuales;B1
+tener resaca;B1
+tener respeto;B2
+tener sed;A2
+tener sentido del humor;B1
+tener SIDA;B1
+tener sueño;A2
+tener suelto;B1
+tener suerte;B1
+tener tacto;B2
+tener tarifa plana;B2
+tener tarjeta de cliente;B2
+tener tarjeta de fidelidad;B2
+tener teléfono;A1
+tener temperamento;B2
+tener tiempo libre;B1
+tener tos;A2
+tener trabajo;A1
+tener un [número cardinal];B1
+tener un accidente;B1
+tener un accidente de trabajo;B2
+tener un amante;B2
+tener un buen expediente;B2
+tener un buen servicio;B2
+tener un calor espantoso;B2
+tener un calor horrible;B2
+tener un carácter brusco;B2
+tener un carácter débil;B1
+tener un carácter difícil;B1
+tener un carácter fácil;B1
+tener un carácter fuerte;B1
+tener un carácter serio;B2
+tener un carácter tranquilo;B2
+tener un cargo;B2
+tener un cargo de responsabilidad;B2
+tener un cargo directivo;B2
+tener un cargo público;B2
+tener un comportamiento;B2
+tener un comportamiento adecuado;B2
+tener un comportamiento injusto;B2
+tener un compromiso;B1
+tener un control;B1
+tener un día libre;B2
+tener un descuento;B1
+tener un doctorado;B1
+tener un documento;B1
+tener un dolor;B2
+tener un dolor espantoso;B2
+tener un dolor horrible;B2
+tener un empleo;B2
+tener un empleo en la administración;B2
+tener un empleo en una multinacional;B2
+tener un examen;A1
+tener un examen oral;B1
+tener un frío espantoso;B2
+tener un frío horrible;B2
+tener un gesto;B2
+tener un hijo;A2
+tener un interés del + [número cardinal] + por ciento;B2
+tener un lío;B2
+tener un ligue;B2
+tener un máster;B1
+tener un mal expediente;B2
+tener un mal servicio;B2
+tener un negocio;A2
+tener un pelo de tonto;B2
+tener un pinchazo;B2
+tener un romance;B2
+tener un seguro;B2
+tener un seguro de viaje;A2
+tener un sueño;B2
+tener un sueño espantoso;B2
+tener un sueño horrible;B2
+tener un sueldo;B1
+tener un talento;B2
+tener un test;B1
+tener un test escrito;B1
+tener un tirón;B2
+tener un trabajo en un banco;A2
+tener un valor sentimental;B2
+tener una actitud;B2
+tener una actitud adecuada;B2
+tener una actitud injusta;B2
+tener una asignatura;B2
+tener una asignatura pendiente;B2
+tener una aventura;B1
+tener una buena actitud;B1
+tener una carrera;B1
+tener una cicatriz;B2
+tener una cita;A2
+tener una coartada;B2
+tener una contractura;B2
+tener una contractura muscular;B2
+tener una corazonada;B2
+tener una depresión;B2
+tener una deuda;B2
+tener una diplomatura;B2
+tener una duda;B1
+tener una enfermedad;A2
+tener una entrevista;A2
+tener una entrevista de trabajo;A2
+tener una lesión;B2
+tener una licenciatura;B2
+tener una mala actitud;B1
+tener una peluquería;A2
+tener una pista;B2
+tener una relación;B1
+tener una relación de amistad;B1
+tener una relación de amor;B1
+tener una relación de trabajo;B1
+tener una reunión;A2
+tener una salud a prueba de bomba;B2
+tener una salud de hierro;B2
+tener una tienda;A2
+tener vacaciones;A1
+tener vistas;B2
+tenis;A2
+tenista;A2
+tensión;B2
+tensión alta;B2
+tensión arterial;B2
+tensión baja;B2
+tenue;B2
+teoría;B2
+terapéutico;B2
+terapeuta;B2
+terapia;B2
+terapista;B2
+tercer mundo;B1
+tercera edad;B2
+tercero;A1
+termómetro;B1
+terminal;B1
+terminar;B1
+terminar el bachillerato;B1
+terminar un doctorado;B1
+terminar un máster;B1
+terminar una carrera;B1
+terminar una relación;B1
+ternera;B1
+ternura;B2
+terraza;B1
+terremoto;B1
+territorial;B2
+territorio;B2
+terrorismo;B1
+terrorista;B1
+tesis;B2
+tesis de maestría;B2
+tesis doctoral;B2
+tesoro;B2
+test;B1
+testamento;B2
+testigo;B2
+texto;A2
+texto literario;B2
+textualmente;B2
+tiburón;B1
+tiempo;A1
+tiempo atmosférico;A2
+tiempo estable;B2
+tiempo inestable;B2
+tiempo invernal;B2
+tiempo libre;A2
+tiempo otoñal;B2
+tiempo parcial;B2
+tiempo primaveral;B2
+tiempo variable;B2
+tiempo veraniego;B2
+tienda;A1
+tienda de campaña;B1
+tienda de decoración;A2
+tienda de deportes;A2
+tienda de discos;A2
+tienda de regalos;A2
+tienda de ropa;A2
+tierno;B2
+tierra;A2
+tierra húmeda;B1
+tierra seca;B1
+tigre;B1
+tijeras;B1
+timbre;B2
+timidez;B2
+tinta;B1
+tinta de impresora;B1
+tinta para impresora;B1
+tipo;B1
+tipo de interés;B2
+tipo de interés fijo;B2
+tipo de interés variable;B2
+tirón;B2
+tirón muscular;B2
+tirar;B1
+tirar de la cadena;B1
+tirar el dado;B2
+tirarse;B2
+tirarse en trineo;B1
+tirita;B1
+tiro;B2
+tiro con arco;B2
+titulación;B2
+titulado;B2
+titular;B2
+titularse;B2
+tiza;B1
+toalla;A2
+toalla de baño;A2
+toalla de lavabo;A2
+tobillera;B1
+tobillo;B1
+tobogán;B2
+tocar;A2
+tocar calor;B1
+tocar el claxon;B2
+tocar el gordo;B1
+tocar la lotería;B1
+tocar un instrumento;A2
+tocar un premio;B1
+tocarle el turno a alguien;B2
+tolerancia;B2
+tolerante;A2
+toma de corriente;B2
+tomar;A2
+tomar algo;A2
+tomar apuntes;B1
+tomar clases;B2
+tomar el avión;A2
+tomar el menú;A2
+tomar el metro;A2
+tomar el plato del día;A2
+tomar el sol;B1
+tomar el tren;A2
+tomar fotos;B1
+tomar la temperatura;B1
+tomar la tensión;B2
+tomar nota;B1
+tomar un aperitivo;B1
+tomar un café;A2
+tomar un medicamento;A2
+tomar un taxi;A2
+tomar una caña;A2
+tomar una copa;A2
+tomar una foto;B1
+tomar una medicina;A2
+tomar una ración;B1
+tomar una sopa;A2
+tomarse la tensión;B2
+tomate;A2
+tomillo;B2
+tomografía;B2
+tono;B2
+topo;B2
+torá;B1
+torcer;B2
+torcerse;B2
+torcerse el tobillo;B2
+torcerse un tobillo;B2
+torcido;B2
+tormenta;A2
+tornado;B2
+torneo;B2
+toro;B1
+torre;B2
+tortilla;A1
+tortuga;B1
+tos;B1
+total;A2
+total disponibilidad;B1
+tráfico;B1
+trágico;B2
+trípode;B1
+trópico;B2
+trópico de cáncer;B2
+trópico de capricornio;B2
+trabajador;A2
+trabajador en prácticas;B2
+trabajador por cuenta ajena;B2
+trabajador social;B2
+trabajar;A1
+trabajar a gusto;B2
+trabajar a tiempo completo;B2
+trabajar a tiempo parcial;B2
+trabajar como autónomo;B2
+trabajar de becario;B2
+trabajar de canguro;A2
+trabajar en óptimas condiciones;B2
+trabajar en buenas condiciones;B2
+trabajar en grupo;A2
+trabajar en malas condiciones;B2
+trabajar honradamente;B2
+trabajar para una empresa de servicios;B1
+trabajar para una empresa de transportes;B1
+trabajo;A1
+trabajo a tiempo parcial;B2
+trabajo creativo;B2
+trabajo cualificado;B2
+trabajo en cadena;B2
+trabajo en equipo;B2
+trabajo en serie;B2
+trabajo especializado;B2
+trabajo físico;B2
+trabajo intelectual;B2
+trabajo manual;B2
+trabajo remunerado;B2
+tractor;B2
+tradicional;B1
+traducción;B1
+traducir;B1
+traductor;B1
+traer;A2
+traer el menú;A2
+traer el menú del día;A2
+traer el primer plato;B1
+traer el segundo plato;B1
+traer la carta;A2
+traer la cuenta;A2
+tragar;B2
+tragedia;B2
+tragicomedia;B2
+traje;A2
+traje chaqueta;B1
+traje de fiesta;B1
+traje de noche;B1
+traje de novia;B1
+trampa;B2
+tranquilidad;B1
+tranquilizar;B2
+tranquilizarse;B2
+tranquilo;B1
+transacción;B2
+transbordador;B2
+transbordo;B1
+transcurrir;B2
+transexual;B1
+transferencia bancaria;B2
+transfusión;B2
+transfusión de sangre;B2
+transmisión celular;B2
+transmitir;B2
+transparencia;B2
+transparente;B2
+transporte;B1
+transporte aéreo;B2
+transporte de mercancías;B2
+transporte ferroviario;B2
+transporte marítimo;B2
+transporte público;B2
+tranvía;B1
+trapo;B1
+trasbordador;B2
+trasladar;B2
+trasladarse;B2
+traslado;B2
+trasplantar;B2
+trasplante;B2
+trastero;B1
+tratado;B2
+tratado de paz;B2
+tratar bien;B1
+tratar con;B2
+tratar de;B1
+tratar de tú;B2
+tratar mal;B1
+trato;B2
+travieso;B1
+trayecto;B1
+trayectoria;B2
+trazo;B2
+trece;A1
+treinta;A1
+tren;A1
+tres;A1
+trescientos;A1
+triángulo;B1
+triangular;B1
+tribunal;B2
+tribunal supremo;B2
+trigésimo;A2
+trillizo;B2
+trineo;B1
+tripulación;B2
+triste;B1
+tristeza;B2
+triunfar;B2
+triunfo;B2
+trocear;B2
+trocear una manzana;B2
+trofeo;B2
+trompeta;B1
+trompetista;B1
+tropical;B2
+trozo de pan;B1
+trozo de tarta;B1
+trueno;B2
+tsunami;B1
+tubo;B2
+tumba;B2
+tumbarse;B2
+turismo;B1
+turismo cultural;B1
+turismo de aventura;B2
+turismo de montaña;B2
+turismo de negocios;B2
+turismo de sol y playa;B2
+turismo rural;B2
+turista;B1
+turno;B2
+tutear;B2
+tutor;B2
+TV;A1
+uña;B1
+ubicación;B1
+UE;B1
+un as en la manga;B2
+un cuarto de kilo;A2
+undécimo;A2
+unión;B1
+unión europea;B1
+unidad;B1
+uniforme;B1
+unir;B2
+unirse;B2
+universal;B1
+universidad;A1
+universidad pública;B1
+universidad privada;B1
+universitario;B1
+universo;B1
+uno;A1
+urbanización;B2
+urbano;B2
+urgencia;B1
+urgente;B1
+urna;B2
+uruguay;A2
+uruguayo;A2
+usar preservativos;B2
+uso;B1
+uso obligatorio;B2
+usuario;B1
+válido;B2
+vía;B1
+víctima;B2
+vídeo;A1
+vóley;B2
+vómito;B2
+vaca;A2
+vacaciones;A1
+vacuna;B1
+vacunar;B2
+vacunarse;B2
+vagón;B2
+vago;B1
+valentía;B2
+validez;B2
+valiente;B2
+valle;B1
+valor;B2
+valor sentimental;B2
+vanguardia;B2
+vaqueros;A1
+varón;B1
+variable;B2
+vaso;A2
+vaso de agua;B1
+vecindario;B2
+vecino;A2
+veganismo;B2
+vegano;A2
+vegetal;B1
+vegetariano;A2
+veinte;A1
+veinticinco;A1
+veinticuatro;A1
+veintidós;A1
+veintinueve;A1
+veintiocho;A1
+veintiséis;A1
+veintisiete;A1
+veintiuno;A1
+vejez;B2
+vela;B1
+velocidad;B1
+velocidad máxima;B1
+velocidad mínima;B1
+velocidad permitida;B1
+vencer;B2
+venda;B2
+vendar;B2
+vendedor;A1
+vender;A1
+vender por catálogo;B1
+vender por internet;B1
+vender un apartamento;A1
+vender un piso;A1
+veneno;B2
+venenoso;B2
+venezolano;A2
+venezuela;A2
+venir;A2
+venta;B1
+ventana;A1
+ventanilla;B1
+venus;B2
+ver;A2
+ver escaparates;B2
+ver la televisión;A1
+ver un accidente;B1
+ver un programa de televisión;A2
+ver una exposición;A2
+ver una película;A1
+veraniego;B2
+verano;A1
+verde;A1
+verdulería;A2
+verdura;A1
+vergüenza;B1
+versión;B2
+versión original;B2
+verso;B2
+vertical;B2
+vertidos;B2
+vestíbulo;B2
+vestido;B1
+vestido de fiesta;B1
+vestido de noche;B1
+vestido de novia;B1
+vestir;A2
+vestirse;A2
+vestuario;B2
+veterinaria;B1
+veterinario;B1
+viajar;A2
+viajar en autobús;A2
+viajar en avión;A2
+viajar en barco;A2
+viajar en clase preferente;B2
+viajar en clase turista;B2
+viajar en coche;A2
+viajar en familia;B1
+viajar en grupo;B1
+viajar en primera;B2
+viajar en primera clase;B2
+viajar en tren;A2
+viaje;A2
+viaje corto;A2
+viaje de estudios;B1
+viaje de larga duración;B1
+viaje de negocios;B1
+viaje de novios;B1
+viaje de placer;B2
+viaje de recreo;B2
+viaje de trabajo;B1
+viaje espacial;B1
+viaje largo;A2
+viaje oficial;B2
+viaje organizado;B1
+viajero;B1
+vibrante;B2
+vibrar;B1
+vicepresidente;B1
+victoria;B2
+victorioso;B2
+vida;B1
+videoconferencia;B2
+videojuego;B1
+videoteca;B1
+vidrio;B1
+vidrio reciclado;B1
+viejo;A1
+viejo amigo;B2
+vientitrés;A1
+viento;A2
+viento del norte;A2
+viento del sur;A2
+viernes;A1
+vigésimo;A2
+vigilancia;B2
+vigilante;B1
+vigilar;B1
+vinagre;B1
+vino;A1
+vino blanco;A2
+vino blanco seco;B2
+vino de la casa;B1
+vino dulce;B2
+vino joven;B1
+vino reserva;B1
+vino rosado;B1
+vino seco;B2
+vino tinto;A2
+violín;A2
+violación;B2
+violador;B2
+violar;B2
+violencia;B2
+violencia callejera;B2
+violento;B2
+violeta;A2
+violinista;B1
+violonchelista;B1
+violonchelo;B1
+virgen;B2
+virtual;B2
+virus;A2
+visado;B1
+visión;B2
+visión borrosa;B2
+visitar;A2
+visitar un piso;B1
+vista;B1
+vistas al mar;B1
+vitamina;B1
+viudo;B1
+vivienda;B2
+vivienda de alquiler;B2
+vivienda en propiedad;B2
+vivir;A1
+vivir con el novio;B1
+vivir con la pareja;B1
+vivir de alquiler;B2
+vivir en el casco antiguo;B2
+vivir en el casco histórico;B2
+vivir en el centro;B1
+vivir en la periferia;B2
+vivir en las afueras;B1
+vivir en pareja;B1
+vivir en un apartamento;A1
+vivir en un piso;A1
+vivir en una casa;A1
+vivir juntos;A2
+vivo retrato;B2
+voléibol;B2
+volante;B1
+volcán;B1
+volcánico;B2
+voleibol;B1
+volumen;B2
+voluntariado;B1
+voluntario;B1
+voluntario de ONG;B1
+volver;A2
+volver loco;B2
+volverse;B2
+volverse loco;B2
+vomitar;B2
+votante;B2
+votar;B2
+voto;B2
+voto en blanco;B2
+voto nulo;B2
+vuelo;A2
+vuelo chárter;B2
+vuelo con escalas;B2
+vuelo de líneas regulares;B2
+vuelo directo;B2
+vuelo internacional;B2
+vuelo nacional;B2
+vuelo sin escala;B2
+vuelta;B1
+yema;B1
+yema de huevo;B1
+yerno;B2
+yogur;A2
+yogur con frutas;B1
+yogur de fresa;B1
+yogur desnatado;B1
+yogur natural;B1
+zanahoria;A2
+zapatería;A2
+zapatero;B1
+zapatero a tus zapatos;B2
+zapatilla;A2
+zapatilla de deporte;B1
+zapato;A2
+zapato de tacón;B1
+zapato plano;B1
+zapatos abiertos;B2
+zapatos cerrados;B2
+zapatos de fiesta;B2
+zapatos deportivos;B1
+zapear;B2
+zona;B1
+zona ajardinada;B2
+zona comercial;B1
+zona horaria;B1
+zona industrial;B1
+zona monumental;B2
+zona nudista;B2
+zona poblada;B2
+zona protegida;B2
+zona residencial;B1
+zona superpoblada;B2
+zona verde;B2
+zona virgen;B2
+zoo;A2
+zorro;B2
+zum;B1
+zumo;A2
+zumo de frutas;A2
+zumo de naranja;A2
+zumo de tomate;A2

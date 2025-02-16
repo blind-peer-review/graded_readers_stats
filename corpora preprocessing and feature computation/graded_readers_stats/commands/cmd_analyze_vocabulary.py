@@ -75,8 +75,8 @@ def analyze(args):
             'tree': {}
         }
         num_words = sum(1 for _ in flatten(texts))
-        texts_df = texts_df.drop(columns=COL_STANZA_DOC)
-        terms_df = terms_df.drop(columns=COL_STANZA_DOC)
+        texts_df = texts_df.drop(columns=COL_STANZA_DOC, errors='ignore')
+        terms_df = terms_df.drop(columns=COL_STANZA_DOC, errors='ignore')
 
 ##############################################################################
 #                                 Terms                                      #
@@ -134,7 +134,7 @@ def analyze(args):
             "Lemma",
             "Context words",
             "Context count per word"
-        ])
+        ], errors='ignore')
         terms_df.to_csv(f'./output/terms_{level}.csv', index=False)
 
     print()

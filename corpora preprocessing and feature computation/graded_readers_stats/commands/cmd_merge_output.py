@@ -36,7 +36,11 @@ def merge_output(args):
     output = pd.DataFrame()
 
     for file in files:
-        if not file.endswith('.csv') or file.endswith('main.csv'):
+        if not file.endswith('.csv') \
+            or file.endswith('main.csv') \
+            or file.endswith('term_counts_by_text_group.csv') \
+            or file.endswith('logit-bow-readers.csv') \
+            or file.endswith('logit-bow-literature.csv'):
             continue
 
         level, _ = path_leaf(file).split('.')
@@ -44,7 +48,7 @@ def merge_output(args):
         df = df.drop(columns=[
             'Context words',
             'Context count per word'
-        ])
+        ], errors='ignore')
         # Avoid re-adding shared columns such as Lexical item, Topic, Subtopic
         common_columns_already_added = len(output) > 0
         if common_columns_already_added:
@@ -54,7 +58,7 @@ def merge_output(args):
                 'Topic',
                 'Subtopic',
                 'Lemma',
-            ])
+            ], errors='ignore')
         # Split Tree props into columns
         # (min_width, max_width, avg_width, min_height, max_height, avg_height)
         props_by_column = split_tree_column(df['Tree'])
@@ -64,7 +68,7 @@ def merge_output(args):
         df[f'Tree_{level}_MinH'] = props_by_column[3]
         df[f'Tree_{level}_MaxH'] = props_by_column[4]
         df[f'Tree_{level}_AvgH'] = props_by_column[5]
-        # df = df.drop(columns=['Tree'])
+        # df = df.drop(columns=['Tree'], errors="ignore")
 
         props_by_column = split_tree_column(df['Context tree'])
         df[f'Context_tree_{level}_MinW'] = props_by_column[0]
@@ -73,7 +77,7 @@ def merge_output(args):
         df[f'Context_tree_{level}_MinH'] = props_by_column[3]
         df[f'Context_tree_{level}_MaxH'] = props_by_column[4]
         df[f'Context_tree_{level}_AvgH'] = props_by_column[5]
-        # df = df.drop(columns=['Context tree'])
+        # df = df.drop(columns=['Context tree'], errors="ignore")
 
         df = df.rename(columns={
             "Count": f"Count_{level}",
